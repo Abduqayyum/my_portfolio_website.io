@@ -65,26 +65,26 @@ const Index = () => {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-cyan-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-emerald-700/30">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold text-white">
-              DS<span className="text-blue-400">Portfolio</span>
+              DS<span className="text-emerald-400">Portfolio</span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-slate-300 hover:text-white transition-colors">Home</a>
-              <a href="#about" className="text-slate-300 hover:text-white transition-colors">About</a>
-              <a href="#projects" className="text-slate-300 hover:text-white transition-colors">Projects</a>
-              <a href="#skills" className="text-slate-300 hover:text-white transition-colors">Skills</a>
-              <a href="#contact" className="text-slate-300 hover:text-white transition-colors">Contact</a>
+              <a href="#home" className="text-slate-300 hover:text-emerald-400 transition-colors">Home</a>
+              <a href="#about" className="text-slate-300 hover:text-emerald-400 transition-colors">About</a>
+              <a href="#projects" className="text-slate-300 hover:text-emerald-400 transition-colors">Projects</a>
+              <a href="#skills" className="text-slate-300 hover:text-emerald-400 transition-colors">Skills</a>
+              <a href="#contact" className="text-slate-300 hover:text-emerald-400 transition-colors">Contact</a>
             </div>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="text-slate-300 hover:text-white">
+              <Button variant="ghost" size="icon" className="text-slate-300 hover:text-emerald-400">
                 <Github className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="text-slate-300 hover:text-white">
+              <Button variant="ghost" size="icon" className="text-slate-300 hover:text-emerald-400">
                 <Linkedin className="h-5 w-5" />
               </Button>
             </div>
@@ -101,7 +101,7 @@ const Index = () => {
       <section id="about" className="py-20 px-6 relative">
         {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="h-full w-full bg-gradient-to-r from-blue-500 to-purple-500" 
+          <div className="h-full w-full bg-gradient-to-r from-emerald-500 to-cyan-500" 
                style={{
                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
                }}>
@@ -111,21 +111,22 @@ const Index = () => {
         <div className="container mx-auto max-w-4xl relative z-10">
           <h2 className="text-4xl font-bold text-center text-white mb-12">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop"
-                  alt="Data Science and Programming"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="text-sm font-medium">Machine Learning in Action</div>
+            <div className="relative group">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 group-hover:scale-105">
+                {/* Placeholder for your personal image - replace with your actual image */}
+                <div className="w-full h-80 bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center rounded-2xl border-4 border-emerald-400/50">
+                  <div className="text-center text-white">
+                    <div className="text-6xl mb-4">👨‍💻</div>
+                    <p className="text-lg font-medium">Upload Your Photo Here</p>
+                    <p className="text-sm opacity-80 mt-2">Replace this placeholder with your image</p>
+                  </div>
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               {/* Floating elements around image */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-bounce"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full animate-ping"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-emerald-500 rounded-full animate-bounce"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-cyan-500 rounded-full animate-ping"></div>
+              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-teal-500 rounded-full animate-pulse"></div>
             </div>
             <div className="space-y-6">
               <p className="text-lg text-slate-300 leading-relaxed">
@@ -139,9 +140,9 @@ const Index = () => {
                 and understandable to everyone.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse">5+ Years Experience</Badge>
-                <Badge variant="secondary" className="bg-purple-600 text-white animate-pulse delay-100">20+ Projects</Badge>
-                <Badge variant="secondary" className="bg-green-600 text-white animate-pulse delay-200">PhD in Computer Science</Badge>
+                <Badge variant="secondary" className="bg-emerald-600 text-white animate-pulse">5+ Years Experience</Badge>
+                <Badge variant="secondary" className="bg-cyan-600 text-white animate-pulse delay-100">20+ Projects</Badge>
+                <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-200">PhD in Computer Science</Badge>
               </div>
             </div>
           </div>
@@ -152,8 +153,8 @@ const Index = () => {
       <section id="projects" className="py-20 px-6 bg-slate-800/50 relative">
         {/* Animated background */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
         <div className="container mx-auto max-w-7xl relative z-10">
@@ -161,14 +162,14 @@ const Index = () => {
           
           {/* Category Filter */}
           <div className="flex justify-center mb-12">
-            <div className="flex space-x-2 bg-slate-700/80 backdrop-blur-sm p-2 rounded-lg border border-slate-600 shadow-xl">
+            <div className="flex space-x-2 bg-slate-700/80 backdrop-blur-sm p-2 rounded-lg border border-emerald-600/30 shadow-xl">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "ghost"}
                   onClick={() => setSelectedCategory(category)}
                   className={selectedCategory === category 
-                    ? "bg-blue-600 text-white shadow-lg" 
+                    ? "bg-emerald-600 text-white shadow-lg hover:bg-emerald-700" 
                     : "text-slate-300 hover:text-white hover:bg-slate-600"}
                 >
                   {category}
@@ -197,7 +198,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-700">
+      <footer className="py-8 px-6 border-t border-emerald-700/30">
         <div className="container mx-auto text-center">
           <p className="text-slate-400">
             © 2024 Data Science Portfolio. Built with React and Tailwind CSS.

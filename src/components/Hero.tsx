@@ -30,22 +30,22 @@ const Hero = () => {
           backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-purple-900/85 to-slate-900/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-emerald-900/85 to-cyan-900/90"></div>
       </div>
 
       {/* Animated particles */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-4 h-4 bg-blue-400 rounded-full animate-ping"></div>
-        <div className="absolute top-40 right-20 w-6 h-6 bg-purple-400 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-pink-400 rounded-full animate-bounce delay-2000"></div>
-        <div className="absolute top-1/3 left-3/4 w-5 h-5 bg-green-400 rounded-full animate-ping delay-500"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-yellow-400 rounded-full animate-pulse delay-1500"></div>
+        <div className="absolute top-20 left-10 w-4 h-4 bg-emerald-400 rounded-full animate-ping"></div>
+        <div className="absolute top-40 right-20 w-6 h-6 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-teal-400 rounded-full animate-bounce delay-2000"></div>
+        <div className="absolute top-1/3 left-3/4 w-5 h-5 bg-emerald-400 rounded-full animate-ping delay-500"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-cyan-400 rounded-full animate-pulse delay-1500"></div>
       </div>
 
       {/* Floating geometric shapes */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute top-40 right-20 w-32 h-32 bg-purple-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-      <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-pink-500/20 rounded-full blur-xl animate-pulse delay-2000"></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-emerald-500/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute top-40 right-20 w-32 h-32 bg-cyan-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+      <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-teal-500/20 rounded-full blur-xl animate-pulse delay-2000"></div>
       
       {/* Content */}
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -54,7 +54,7 @@ const Hero = () => {
           <div className="animate-fade-in">
             <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 drop-shadow-2xl">
               Hello, I'm
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
+              <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent animate-pulse">
                 {" Alex"}
               </span>
             </h1>
@@ -64,7 +64,7 @@ const Hero = () => {
           <div className="h-16 flex items-center justify-center">
             <h2 className="text-2xl md:text-4xl text-slate-200 font-light drop-shadow-lg">
               {displayText}
-              <span className="animate-pulse text-blue-400">|</span>
+              <span className="animate-pulse text-emerald-400">|</span>
             </h2>
           </div>
           
@@ -81,7 +81,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 border border-white/20"
+              className="bg-gradient-to-r from-emerald-600 via-cyan-600 to-teal-600 hover:from-emerald-700 hover:via-cyan-700 hover:to-teal-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-emerald-500/25 border border-white/20"
             >
               View My Work
               <ArrowRight className="ml-2 h-5 w-5" />
