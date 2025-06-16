@@ -3,6 +3,7 @@ import { Github, Eye, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 interface Project {
   id: number;
@@ -34,10 +35,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               Try Demo
             </Button>
           )}
-          <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
-            <Eye className="h-4 w-4 mr-2" />
-            View
-          </Button>
+          <Link to={`/project/${project.id}`}>
+            <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+              <Eye className="h-4 w-4 mr-2" />
+              View Details
+            </Button>
+          </Link>
         </div>
       </div>
       
