@@ -112,16 +112,16 @@ const Index = () => {
           <h2 className="text-4xl font-bold text-center text-white mb-12">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative group">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-300 group-hover:scale-105">
+              <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square">
                 {/* Placeholder for your personal image - replace with your actual image */}
-                <div className="w-full h-80 bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center rounded-2xl border-4 border-emerald-400/50">
+                <div className="w-full h-full bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center rounded-full border-4 border-emerald-400/50">
                   <div className="text-center text-white">
                     <div className="text-6xl mb-4">👨‍💻</div>
                     <p className="text-lg font-medium">Upload Your Photo Here</p>
                     <p className="text-sm opacity-80 mt-2">Replace this placeholder with your image</p>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               </div>
               {/* Floating elements around image */}
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-emerald-500 rounded-full animate-bounce"></div>
