@@ -98,14 +98,34 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6">
-        <div className="container mx-auto max-w-4xl">
+      <section id="about" className="py-20 px-6 relative">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="h-full w-full bg-gradient-to-r from-blue-500 to-purple-500" 
+               style={{
+                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+               }}>
+          </div>
+        </div>
+        
+        <div className="container mx-auto max-w-4xl relative z-10">
           <h2 className="text-4xl font-bold text-center text-white mb-12">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <div className="text-6xl text-white">👨‍💻</div>
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop"
+                  alt="Data Science and Programming"
+                  className="w-full h-80 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <div className="text-sm font-medium">Machine Learning in Action</div>
+                </div>
               </div>
+              {/* Floating elements around image */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full animate-bounce"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500 rounded-full animate-ping"></div>
             </div>
             <div className="space-y-6">
               <p className="text-lg text-slate-300 leading-relaxed">
@@ -119,9 +139,9 @@ const Index = () => {
                 and understandable to everyone.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Badge variant="secondary" className="bg-blue-600 text-white">5+ Years Experience</Badge>
-                <Badge variant="secondary" className="bg-purple-600 text-white">20+ Projects</Badge>
-                <Badge variant="secondary" className="bg-green-600 text-white">PhD in Computer Science</Badge>
+                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse">5+ Years Experience</Badge>
+                <Badge variant="secondary" className="bg-purple-600 text-white animate-pulse delay-100">20+ Projects</Badge>
+                <Badge variant="secondary" className="bg-green-600 text-white animate-pulse delay-200">PhD in Computer Science</Badge>
               </div>
             </div>
           </div>
@@ -129,21 +149,27 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 bg-slate-800/50">
-        <div className="container mx-auto max-w-7xl">
+      <section id="projects" className="py-20 px-6 bg-slate-800/50 relative">
+        {/* Animated background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <h2 className="text-4xl font-bold text-center text-white mb-12">Featured Projects</h2>
           
           {/* Category Filter */}
           <div className="flex justify-center mb-12">
-            <div className="flex space-x-2 bg-slate-700 p-2 rounded-lg">
+            <div className="flex space-x-2 bg-slate-700/80 backdrop-blur-sm p-2 rounded-lg border border-slate-600 shadow-xl">
               {categories.map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "ghost"}
                   onClick={() => setSelectedCategory(category)}
                   className={selectedCategory === category 
-                    ? "bg-blue-600 text-white" 
-                    : "text-slate-300 hover:text-white"}
+                    ? "bg-blue-600 text-white shadow-lg" 
+                    : "text-slate-300 hover:text-white hover:bg-slate-600"}
                 >
                   {category}
                 </Button>

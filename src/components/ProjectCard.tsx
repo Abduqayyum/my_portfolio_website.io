@@ -23,20 +23,28 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <Card className="bg-slate-800 border-slate-700 hover:border-blue-500 transition-all duration-300 group overflow-hidden">
+    <Card className="bg-slate-800/90 backdrop-blur-sm border-slate-700 hover:border-blue-500 transition-all duration-300 group overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 transform hover:-translate-y-2">
       <div className="relative overflow-hidden">
-        <div className="h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-          <div className="text-6xl opacity-50">🤖</div>
+        <div 
+          className="h-48 bg-cover bg-center relative"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop')`
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/40 to-purple-500/40"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-6xl opacity-70 filter drop-shadow-lg">🤖</div>
+          </div>
         </div>
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center space-x-4 backdrop-blur-sm">
           {project.hasLiveDemo && (
-            <Button size="sm" className="bg-green-600 hover:bg-green-700">
+            <Button size="sm" className="bg-green-600 hover:bg-green-700 shadow-lg transform hover:scale-105 transition-transform">
               <Play className="h-4 w-4 mr-2" />
               Try Demo
             </Button>
           )}
           <Link to={`/project/${project.id}`}>
-            <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-black">
+            <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-black shadow-lg transform hover:scale-105 transition-transform">
               <Eye className="h-4 w-4 mr-2" />
               View Details
             </Button>
@@ -49,7 +57,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <CardTitle className="text-white group-hover:text-blue-400 transition-colors">
             {project.title}
           </CardTitle>
-          <Badge variant="secondary" className="bg-blue-600 text-white">
+          <Badge variant="secondary" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg">
             {project.category}
           </Badge>
         </div>
@@ -62,19 +70,19 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <div className="space-y-4">
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
-              <Badge key={tech} variant="outline" className="border-slate-600 text-slate-300">
+              <Badge key={tech} variant="outline" className="border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-300 transition-colors">
                 {tech}
               </Badge>
             ))}
           </div>
           
           <div className="flex space-x-3">
-            <Button size="sm" variant="ghost" className="text-slate-300 hover:text-white">
+            <Button size="sm" variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-700 transition-all">
               <Github className="h-4 w-4 mr-2" />
               Code
             </Button>
             {project.hasLiveDemo && (
-              <Button size="sm" className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
+              <Button size="sm" className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 shadow-lg transform hover:scale-105 transition-all">
                 <Play className="h-4 w-4 mr-2" />
                 Live Demo
               </Button>
