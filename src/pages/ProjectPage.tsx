@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Upload, Download, Github, Eye, Play } from "lucide-react";
+import { ArrowLeft, Upload, Download, Github, Eye, Play, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -30,6 +30,7 @@ const ProjectPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   // Mock project data - in a real app, this would come from an API
   const projects: Project[] = [
@@ -97,11 +98,19 @@ const ProjectPage = () => {
 
   const project = projects.find(p => p.id === parseInt(id || "1"));
 
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   if (!project) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
+        isDarkMode ? 'bg-black' : 'bg-white'
+      }`}>
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
+          <h1 className={`text-4xl font-bold mb-4 transition-colors duration-300 ${
+            isDarkMode ? 'text-white' : 'text-black'
+          }`}>Project Not Found</h1>
           <Link to="/">
             <Button className="bg-blue-600 hover:bg-blue-700">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -148,17 +157,43 @@ const ProjectPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className={`min-h-screen transition-colors duration-300 ${
+      isDarkMode ? 'bg-black' : 'bg-white'
+    }`}>
       {/* Navigation */}
-      <nav className="bg-slate-900/80 backdrop-blur-md border-b border-slate-700">
+      <nav className={`backdrop-blur-md border-b transition-colors duration-300 ${
+        isDarkMode 
+          ? 'bg-black/80 border-slate-700/30' 
+          : 'bg-white/80 border-gray-200/30'
+      }`}>
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center text-white hover:text-blue-400 transition-colors">
+            <Link to="/" className={`flex items-center transition-colors ${
+              isDarkMode 
+                ? 'text-white hover:text-blue-400' 
+                : 'text-black hover:text-blue-600'
+            }`}>
               <ArrowLeft className="mr-2 h-5 w-5" />
               Back to Portfolio
             </Link>
-            <div className="text-2xl font-bold text-white">
-              DS<span className="text-blue-400">Portfolio</span>
+            <div className="flex items-center space-x-4">
+              <div className={`text-2xl font-bold transition-colors duration-300 ${
+                isDarkMode ? 'text-white' : 'text-black'
+              }`}>
+                DS<span className={isDarkMode ? 'text-blue-400' : 'text-blue-600'}>Portfolio</span>
+              </div>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={toggleTheme}
+                className={`h-10 w-10 transition-colors ${
+                  isDarkMode 
+                    ? 'text-slate-300 hover:text-blue-400' 
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+              >
+                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
         </div>
@@ -171,34 +206,60 @@ const ProjectPage = () => {
             <Badge variant="secondary" className="bg-blue-600 text-white">
               {project.category}
             </Badge>
-            <h1 className="text-4xl font-bold text-white">{project.title}</h1>
+            <h1 className={`text-4xl font-bold transition-colors duration-300 ${
+              isDarkMode ? 'text-white' : 'text-black'
+            }`}>{project.title}</h1>
           </div>
-          <p className="text-xl text-slate-300 mb-8">{project.description}</p>
+          <p className={`text-xl mb-8 transition-colors duration-300 ${
+            isDarkMode ? 'text-slate-300' : 'text-gray-700'
+          }`}>{project.description}</p>
           
           {/* Project Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-gray-200'
+            }`}>
               <CardHeader>
-                <CardTitle className="text-white text-lg">Accuracy</CardTitle>
+                <CardTitle className={`text-lg transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                }`}>Accuracy</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-2xl font-bold text-green-400">{project.accuracy}</p>
               </CardContent>
             </Card>
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-gray-200'
+            }`}>
               <CardHeader>
-                <CardTitle className="text-white text-lg">Dataset</CardTitle>
+                <CardTitle className={`text-lg transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                }`}>Dataset</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-300">{project.dataset}</p>
+                <p className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                }`}>{project.dataset}</p>
               </CardContent>
             </Card>
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-gray-200'
+            }`}>
               <CardHeader>
-                <CardTitle className="text-white text-lg">Model Type</CardTitle>
+                <CardTitle className={`text-lg transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                }`}>Model Type</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-300">{project.modelType}</p>
+                <p className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                }`}>{project.modelType}</p>
               </CardContent>
             </Card>
           </div>
@@ -209,11 +270,19 @@ const ProjectPage = () => {
               <Play className="mr-2 h-4 w-4" />
               Live Demo
             </Button>
-            <Button variant="outline" className="border-slate-400 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'border-slate-400 text-slate-300 hover:bg-slate-700' 
+                : 'border-gray-400 text-gray-700 hover:bg-gray-100'
+            }`}>
               <Github className="mr-2 h-4 w-4" />
               View Code
             </Button>
-            <Button variant="outline" className="border-slate-400 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'border-slate-400 text-slate-300 hover:bg-slate-700' 
+                : 'border-gray-400 text-gray-700 hover:bg-gray-100'
+            }`}>
               <Download className="mr-2 h-4 w-4" />
               Download Model
             </Button>
@@ -223,19 +292,33 @@ const ProjectPage = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Project Details */}
           <div>
-            <Card className="bg-slate-800 border-slate-700 mb-8">
+            <Card className={`mb-8 transition-colors duration-300 ${
+              isDarkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-gray-200'
+            }`}>
               <CardHeader>
-                <CardTitle className="text-white">Project Overview</CardTitle>
+                <CardTitle className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                }`}>Project Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-300 leading-relaxed mb-6">
+                <p className={`leading-relaxed mb-6 transition-colors duration-300 ${
+                  isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                }`}>
                   {project.longDescription}
                 </p>
                 <div>
-                  <h4 className="text-white font-semibold mb-3">Technologies Used:</h4>
+                  <h4 className={`font-semibold mb-3 transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Technologies Used:</h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline" className="border-slate-600 text-slate-300">
+                      <Badge key={tech} variant="outline" className={`transition-colors duration-300 ${
+                        isDarkMode 
+                          ? 'border-slate-600 text-slate-300' 
+                          : 'border-gray-400 text-gray-700'
+                      }`}>
                         {tech}
                       </Badge>
                     ))}
@@ -247,17 +330,27 @@ const ProjectPage = () => {
 
           {/* Model Testing */}
           <div>
-            <Card className="bg-slate-800 border-slate-700">
+            <Card className={`transition-colors duration-300 ${
+              isDarkMode 
+                ? 'bg-slate-800 border-slate-700' 
+                : 'bg-white border-gray-200'
+            }`}>
               <CardHeader>
-                <CardTitle className="text-white">Test the Model</CardTitle>
-                <CardDescription className="text-slate-400">
+                <CardTitle className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-white' : 'text-black'
+                }`}>Test the Model</CardTitle>
+                <CardDescription className={`transition-colors duration-300 ${
+                  isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                }`}>
                   Upload an image to see the model in action
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* File Upload */}
                 <div className="space-y-2">
-                  <Label htmlFor="image-upload" className="text-white">
+                  <Label htmlFor="image-upload" className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>
                     Select Image
                   </Label>
                   <div className="flex items-center gap-4">
@@ -266,7 +359,11 @@ const ProjectPage = () => {
                       type="file"
                       accept="image/*"
                       onChange={handleFileSelect}
-                      className="bg-slate-700 border-slate-600 text-white"
+                      className={`transition-colors duration-300 ${
+                        isDarkMode 
+                          ? 'bg-slate-700 border-slate-600 text-white' 
+                          : 'bg-white border-gray-300 text-black'
+                      }`}
                     />
                     <Button
                       onClick={handleTestModel}
@@ -288,12 +385,16 @@ const ProjectPage = () => {
                 {/* Image Preview */}
                 {previewUrl && (
                   <div className="space-y-2">
-                    <Label className="text-white">Preview</Label>
+                    <Label className={`transition-colors duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-black'
+                    }`}>Preview</Label>
                     <div className="relative">
                       <img
                         src={previewUrl}
                         alt="Preview"
-                        className="w-full h-64 object-cover rounded-lg border border-slate-600"
+                        className={`w-full h-64 object-cover rounded-lg border transition-colors duration-300 ${
+                          isDarkMode ? 'border-slate-600' : 'border-gray-300'
+                        }`}
                       />
                     </div>
                   </div>
@@ -302,8 +403,14 @@ const ProjectPage = () => {
                 {/* Results */}
                 {result && (
                   <div className="space-y-2">
-                    <Label className="text-white">Results</Label>
-                    <Card className="bg-slate-700 border-slate-600">
+                    <Label className={`transition-colors duration-300 ${
+                      isDarkMode ? 'text-white' : 'text-black'
+                    }`}>Results</Label>
+                    <Card className={`transition-colors duration-300 ${
+                      isDarkMode 
+                        ? 'bg-slate-700 border-slate-600' 
+                        : 'bg-gray-50 border-gray-200'
+                    }`}>
                       <CardContent className="pt-6">
                         <p className="text-green-400 font-semibold">{result}</p>
                       </CardContent>
@@ -315,7 +422,9 @@ const ProjectPage = () => {
                 {isProcessing && (
                   <div className="flex items-center justify-center p-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
-                    <span className="ml-3 text-slate-300">Processing your image...</span>
+                    <span className={`ml-3 transition-colors duration-300 ${
+                      isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                    }`}>Processing your image...</span>
                   </div>
                 )}
               </CardContent>

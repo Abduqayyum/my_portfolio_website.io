@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, Github, Linkedin, Mail, Eye, Code, FileText, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -267,7 +266,7 @@ const Index = () => {
       <section id="contact" className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300 ${
         isDarkMode ? 'bg-slate-900/50' : 'bg-gray-50'
       }`}>
-        <ContactSection />
+        <ContactSection isDarkMode={isDarkMode} />
       </section>
 
       {/* Footer */}
