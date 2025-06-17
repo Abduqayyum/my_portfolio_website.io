@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, Github, Linkedin, Mail, Eye, Code, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,9 +64,9 @@ const Index = () => {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+    <div className="min-h-screen bg-black">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-indigo-900/80 backdrop-blur-md border-b border-purple-700/30">
+      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-slate-700/30">
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-xl sm:text-2xl font-bold text-white">
@@ -113,15 +112,20 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="relative group order-2 lg:order-1">
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
-                {/* Placeholder for your personal image - replace with your actual image */}
-                <div className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center rounded-full border-4 border-purple-400/50">
+                {/* Replace this div with your actual image */}
+                <img 
+                  src="/api/placeholder/400/400" 
+                  alt="Your Profile Photo" 
+                  className="w-full h-full object-cover rounded-full border-4 border-purple-400/50"
+                />
+                {/* Fallback if image doesn't load */}
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center rounded-full border-4 border-purple-400/50" style={{display: 'none'}}>
                   <div className="text-center text-white px-4">
                     <div className="text-4xl sm:text-6xl mb-2 sm:mb-4">👨‍💻</div>
-                    <p className="text-sm sm:text-lg font-medium">Upload Your Photo Here</p>
-                    <p className="text-xs sm:text-sm opacity-80 mt-1 sm:mt-2">Replace this placeholder with your image</p>
+                    <p className="text-sm sm:text-lg font-medium">Your Photo Here</p>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               </div>
               {/* Floating elements around image */}
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-full animate-bounce"></div>
@@ -150,7 +154,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-slate-800/50 relative">
+      <section id="projects" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-slate-900/50 relative">
         {/* Animated background */}
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -193,12 +197,12 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-slate-800/50">
+      <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-slate-900/50">
         <ContactSection />
       </section>
 
       {/* Footer */}
-      <footer className="py-6 sm:py-8 px-4 sm:px-6 border-t border-purple-700/30">
+      <footer className="py-6 sm:py-8 px-4 sm:px-6 border-t border-slate-700/30">
         <div className="container mx-auto text-center">
           <p className="text-slate-400 text-sm sm:text-base">
             © 2024 Data Science Portfolio. Built with React and Tailwind CSS.

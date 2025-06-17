@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ArrowRight, Download, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +29,7 @@ const Hero = () => {
           backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop')`,
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/90 via-purple-900/85 to-pink-900/90"></div>
+        <div className="absolute inset-0 bg-black/80"></div>
       </div>
 
       {/* Animated particles - responsive sizes */}

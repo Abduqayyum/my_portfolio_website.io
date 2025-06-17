@@ -44,7 +44,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             </Button>
           )}
           <Link to={`/project/${project.id}`}>
-            <Button size="sm" variant="outline" className="border-white text-white hover:bg-white hover:text-black shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm">
+            <Button size="sm" className="bg-slate-700 text-white hover:bg-slate-600 border border-slate-500 shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm">
               <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               View Details
             </Button>
