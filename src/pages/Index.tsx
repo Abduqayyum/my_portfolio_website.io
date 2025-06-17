@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import { ArrowRight, Github, Linkedin, Mail, Eye, Code, FileText, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +10,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { isDarkMode, toggleTheme } = useTheme();
   
   const projects = [
     {
@@ -65,9 +66,7 @@ const Index = () => {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  // Using toggleTheme from ThemeContext
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
@@ -259,7 +258,7 @@ const Index = () => {
 
       {/* Skills Section */}
       <section id="skills" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
-        <SkillsSection />
+        <SkillsSection isDarkMode={isDarkMode} />
       </section>
 
       {/* Contact Section */}

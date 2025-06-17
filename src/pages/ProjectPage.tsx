@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Upload, Download, Github, Eye, Play, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,7 +31,7 @@ const ProjectPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const { isDarkMode, toggleTheme } = useTheme();
 
   // Mock project data - in a real app, this would come from an API
   const projects: Project[] = [
@@ -98,9 +99,7 @@ const ProjectPage = () => {
 
   const project = projects.find(p => p.id === parseInt(id || "1"));
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  // Using toggleTheme from ThemeContext
 
   if (!project) {
     return (
