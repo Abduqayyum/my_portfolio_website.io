@@ -1,101 +1,19 @@
 
-import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Upload, Download, Github, Eye, Play, Sun, Moon } from "lucide-react";
+import { ArrowLeft, Github, Play, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { projects, type Project } from "@/data/projects";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  longDescription: string;
-  image: string;
-  technologies: string[];
-  demoUrl: string;
-  githubUrl: string;
-  hasLiveDemo: boolean;
-  category: string;
-  accuracy?: string;
-  dataset?: string;
-  modelType?: string;
-}
+// Project type imported from shared data
 
 const ProjectPage = () => {
   const { id } = useParams();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const { isDarkMode, toggleTheme } = useTheme();
 
-  // Mock project data - in a real app, this would come from an API
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Image Classification Model",
-      description: "Deep learning model for multi-class image classification using CNN architecture.",
-      longDescription: "This advanced image classification model uses a Convolutional Neural Network (CNN) architecture built with TensorFlow and Keras. The model has been trained on a diverse dataset of over 100,000 images across 50 different categories. It employs data augmentation techniques, batch normalization, and dropout layers to achieve robust performance. The architecture includes multiple convolutional layers with ReLU activation, max-pooling layers for dimensionality reduction, and a fully connected layer for final classification. The model demonstrates excellent generalization capabilities and can accurately classify images in real-time.",
-      image: "/api/placeholder/400/250",
-      technologies: ["Python", "TensorFlow", "Keras", "OpenCV", "NumPy"],
-      demoUrl: "#",
-      githubUrl: "#",
-      hasLiveDemo: true,
-      category: "Computer Vision",
-      accuracy: "94.2%",
-      dataset: "Custom Dataset (100k images)",
-      modelType: "CNN Architecture"
-    },
-    {
-      id: 2,
-      title: "Object Detection System",
-      description: "Real-time object detection using YOLO v8 architecture.",
-      longDescription: "This state-of-the-art object detection system leverages the YOLO v8 (You Only Look Once) architecture to detect and localize multiple objects in real-time. The model can identify 80+ different object classes with high precision and recall rates. It features advanced techniques like anchor-free detection, multi-scale training, and mosaic data augmentation. The system is optimized for both accuracy and speed, making it suitable for real-time applications. The model has been fine-tuned on custom datasets and can handle various lighting conditions and object scales.",
-      image: "/api/placeholder/400/250",
-      technologies: ["PyTorch", "YOLO v8", "OpenCV", "Python", "CUDA"],
-      demoUrl: "#",
-      githubUrl: "#",
-      hasLiveDemo: true,
-      category: "Computer Vision",
-      accuracy: "89.7% mAP",
-      dataset: "COCO + Custom Dataset",
-      modelType: "YOLO v8"
-    },
-    {
-      id: 3,
-      title: "Sentiment Analysis Dashboard",
-      description: "NLP model for analyzing sentiment in social media data.",
-      longDescription: "This comprehensive sentiment analysis system processes and analyzes social media text data to determine emotional sentiment. Built using advanced NLP techniques including BERT transformers, the model can classify text into positive, negative, or neutral sentiments with high accuracy. The system includes preprocessing pipelines for text cleaning, tokenization, and feature extraction. It also features a real-time dashboard for visualizing sentiment trends and patterns. The model has been trained on millions of social media posts and can handle various text formats, slang, and emoticons.",
-      image: "/api/placeholder/400/250",
-      technologies: ["Python", "BERT", "NLTK", "Streamlit", "Pandas"],
-      demoUrl: "#",
-      githubUrl: "#",
-      hasLiveDemo: false,
-      category: "NLP",
-      accuracy: "92.4%",
-      dataset: "Social Media Dataset (2M posts)",
-      modelType: "BERT Transformer"
-    },
-    {
-      id: 4,
-      title: "Predictive Analytics Model",
-      description: "Machine learning model for forecasting business metrics.",
-      longDescription: "This sophisticated predictive analytics model employs ensemble methods and time series analysis to forecast various business metrics. The system combines multiple algorithms including XGBoost, Random Forest, and LSTM networks to provide accurate predictions. It features automated feature engineering, hyperparameter optimization, and cross-validation techniques. The model can handle seasonal patterns, trends, and anomalies in the data. It includes comprehensive data preprocessing pipelines and can work with both structured and unstructured data sources.",
-      image: "/api/placeholder/400/250",
-      technologies: ["Python", "Scikit-learn", "XGBoost", "LSTM", "Matplotlib"],
-      demoUrl: "#",
-      githubUrl: "#",
-      hasLiveDemo: false,
-      category: "Data Science",
-      accuracy: "87.3% MAE",
-      dataset: "Business Metrics Dataset",
-      modelType: "Ensemble Methods"
-    }
-  ];
+// Projects are imported from shared data
 
   const project = projects.find(p => p.id === parseInt(id || "1"));
 
@@ -121,39 +39,7 @@ const ProjectPage = () => {
     );
   }
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setSelectedFile(file);
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-      setResult(null);
-    }
-  };
-
-  const handleTestModel = async () => {
-    if (!selectedFile) return;
-
-    setIsProcessing(true);
-    setResult(null);
-
-    // Simulate model processing
-    setTimeout(() => {
-      // Mock results based on project type
-      if (project.category === "Computer Vision") {
-        if (project.id === 1) {
-          setResult("Prediction: Cat (Confidence: 94.2%)");
-        } else {
-          setResult("Detected Objects: 2 cats, 1 dog, 1 person (Confidence: 89.7%)");
-        }
-      } else if (project.category === "NLP") {
-        setResult("Sentiment: Positive (Confidence: 92.4%)");
-      } else {
-        setResult("Prediction: Upward trend expected (Confidence: 87.3%)");
-      }
-      setIsProcessing(false);
-    }, 3000);
-  };
+  // Removed in-page testing per requirements
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
@@ -214,77 +100,87 @@ const ProjectPage = () => {
           }`}>{project.description}</p>
           
           {/* Project Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-slate-800 border-slate-700' 
-                : 'bg-white border-gray-200'
-            }`}>
-              <CardHeader>
-                <CardTitle className={`text-lg transition-colors duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>Accuracy</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-bold text-green-400">{project.accuracy}</p>
-              </CardContent>
-            </Card>
-            <Card className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-slate-800 border-slate-700' 
-                : 'bg-white border-gray-200'
-            }`}>
-              <CardHeader>
-                <CardTitle className={`text-lg transition-colors duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>Dataset</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className={`transition-colors duration-300 ${
-                  isDarkMode ? 'text-slate-300' : 'text-gray-700'
-                }`}>{project.dataset}</p>
-              </CardContent>
-            </Card>
-            <Card className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-slate-800 border-slate-700' 
-                : 'bg-white border-gray-200'
-            }`}>
-              <CardHeader>
-                <CardTitle className={`text-lg transition-colors duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>Model Type</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className={`transition-colors duration-300 ${
-                  isDarkMode ? 'text-slate-300' : 'text-gray-700'
-                }`}>{project.modelType}</p>
-              </CardContent>
-            </Card>
-          </div>
+          {(project.accuracy || project.dataset || project.modelType) && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`text-lg transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Accuracy</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold text-green-400">{project.accuracy}</p>
+                </CardContent>
+              </Card>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`text-lg transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Dataset</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                  }`}>{project.dataset}</p>
+                </CardContent>
+              </Card>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`text-lg transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Model Type</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                  }`}>{project.modelType}</p>
+                </CardContent>
+              </Card>
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex gap-4 mb-8">
-            <Button className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
-              <Play className="mr-2 h-4 w-4" />
-              Live Demo
-            </Button>
-            <Button variant="outline" className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'border-slate-400 text-slate-300 hover:bg-slate-700' 
-                : 'border-gray-400 text-gray-700 hover:bg-gray-100'
-            }`}>
-              <Github className="mr-2 h-4 w-4" />
-              View Code
-            </Button>
-            <Button variant="outline" className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'border-slate-400 text-slate-300 hover:bg-slate-700' 
-                : 'border-gray-400 text-gray-700 hover:bg-gray-100'
-            }`}>
-              <Download className="mr-2 h-4 w-4" />
-              Download Model
-            </Button>
+            {project.hasLiveDemo && project.demoUrl && (
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                <Button className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
+                  <Play className="mr-2 h-4 w-4" />
+                  Live Demo
+                </Button>
+              </a>
+            )}
+            {project.githubUrl && project.githubUrl !== "#" && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className={`transition-colors duration-300 ${
+                  isDarkMode 
+                    ? 'border-slate-400 text-slate-300 hover:bg-slate-700' 
+                    : 'border-gray-400 text-gray-700 hover:bg-gray-100'
+                }`}>
+                  <Github className="mr-2 h-4 w-4" />
+                  View Code
+                </Button>
+              </a>
+            )}
+            {!project.hasLiveDemo && project.demoVideo && project.videoUrl && (
+              <a href={project.videoUrl} target="_blank" rel="noopener noreferrer">
+                <Button className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600">
+                  <Play className="mr-2 h-4 w-4" />
+                  Watch Demo
+                </Button>
+              </a>
+            )}
           </div>
         </div>
 
@@ -327,7 +223,7 @@ const ProjectPage = () => {
             </Card>
           </div>
 
-          {/* Model Testing */}
+          {/* Demo Video */}
           <div>
             <Card className={`transition-colors duration-300 ${
               isDarkMode 
@@ -337,94 +233,28 @@ const ProjectPage = () => {
               <CardHeader>
                 <CardTitle className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-white' : 'text-black'
-                }`}>Test the Model</CardTitle>
+                }`}>Demo Video</CardTitle>
                 <CardDescription className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-slate-400' : 'text-gray-600'
                 }`}>
-                  Upload an image to see the model in action
+                  Watch how this model works in practice
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                {/* File Upload */}
-                <div className="space-y-2">
-                  <Label htmlFor="image-upload" className={`transition-colors duration-300 ${
-                    isDarkMode ? 'text-white' : 'text-black'
-                  }`}>
-                    Select Image
-                  </Label>
-                  <div className="flex items-center gap-4">
-                    <Input
-                      id="image-upload"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileSelect}
-                      className={`transition-colors duration-300 ${
-                        isDarkMode 
-                          ? 'bg-slate-700 border-slate-600 text-white' 
-                          : 'bg-white border-gray-300 text-black'
-                      }`}
+              <CardContent>
+                {project.demoVideo && project.videoUrl ? (
+                  <div className="aspect-video w-full overflow-hidden rounded-lg">
+                    <iframe
+                      src={project.videoUrl}
+                      title={`${project.title} demo video`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
                     />
-                    <Button
-                      onClick={handleTestModel}
-                      disabled={!selectedFile || isProcessing}
-                      className="bg-blue-600 hover:bg-blue-700"
-                    >
-                      {isProcessing ? (
-                        <>Processing...</>
-                      ) : (
-                        <>
-                          <Upload className="mr-2 h-4 w-4" />
-                          Test Model
-                        </>
-                      )}
-                    </Button>
                   </div>
-                </div>
-
-                {/* Image Preview */}
-                {previewUrl && (
-                  <div className="space-y-2">
-                    <Label className={`transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-black'
-                    }`}>Preview</Label>
-                    <div className="relative">
-                      <img
-                        src={previewUrl}
-                        alt="Preview"
-                        className={`w-full h-64 object-cover rounded-lg border transition-colors duration-300 ${
-                          isDarkMode ? 'border-slate-600' : 'border-gray-300'
-                        }`}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Results */}
-                {result && (
-                  <div className="space-y-2">
-                    <Label className={`transition-colors duration-300 ${
-                      isDarkMode ? 'text-white' : 'text-black'
-                    }`}>Results</Label>
-                    <Card className={`transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-slate-700 border-slate-600' 
-                        : 'bg-gray-50 border-gray-200'
-                    }`}>
-                      <CardContent className="pt-6">
-                        <p className="text-green-400 font-semibold">{result}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                )}
-
-                {/* Processing Indicator */}
-                {isProcessing && (
-                  <div className="flex items-center justify-center p-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-400"></div>
-                    <span className={`ml-3 transition-colors duration-300 ${
-                      isDarkMode ? 'text-slate-300' : 'text-gray-700'
-                    }`}>Processing your image...</span>
-                  </div>
+                ) : (
+                  <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                    No demo video available for this project.
+                  </p>
                 )}
               </CardContent>
             </Card>

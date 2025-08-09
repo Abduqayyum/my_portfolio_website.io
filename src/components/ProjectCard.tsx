@@ -5,17 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  demoUrl: string;
-  githubUrl: string;
-  hasLiveDemo: boolean;
-  category: string;
-}
+import type { Project } from "@/data/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -42,11 +32,13 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
           </div>
         </div>
         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center space-x-2 sm:space-x-4 backdrop-blur-sm px-4">
-          {project.hasLiveDemo && (
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm">
-              <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              Try Demo
-            </Button>
+          {project.hasLiveDemo && project.demoUrl && (
+            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm">
+                <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                Try Demo
+              </Button>
+            </a>
           )}
           <Link to={`/project/${project.id}`}>
             <Button size="sm" className={`shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm ${
@@ -96,19 +88,25 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm ${
-              isDarkMode 
-                ? 'text-slate-300 hover:text-white hover:bg-slate-700' 
-                : 'text-gray-600 hover:text-black hover:bg-gray-100'
-            }`}>
-              <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              Code
-            </Button>
-            {project.hasLiveDemo && (
-              <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm">
-                <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Live Demo
-              </Button>
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm ${
+                  isDarkMode 
+                    ? 'text-slate-300 hover:text-white hover:bg-slate-700' 
+                    : 'text-gray-600 hover:text-black hover:bg-gray-100'
+                }`}>
+                  <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  Code
+                </Button>
+              </a>
+            )}
+            {project.hasLiveDemo && project.demoUrl && (
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm">
+                  <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                  Live Demo
+                </Button>
+              </a>
             )}
           </div>
         </div>
