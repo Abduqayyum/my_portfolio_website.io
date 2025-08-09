@@ -15,8 +15,30 @@ const Index = () => {
   const projects = [
     {
       id: 1,
-      title: "Image Classification Model",
-      description: "Deep learning model for multi-class image classification using CNN architecture. Achieved 94% accuracy on test dataset.",
+      title: "Uzbek Car Model Recognition",
+      description: "Fine-tuned Facebook ViT model to recognize Uzbek car models (Jiguli, Labo, Lasetti, Matiz, Spark, Nexia, Nexia3, Damas, Cobalt, Bus). Achieved 98% accuracy on test data.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "ViT", "Transformers", "PyTorch"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 2,
+      title: "Vehicle Color Recognition",
+      description: "Fine-tuned Facebook ViT model to recognize vehicle colors (black, blue, red, yellow, gray, white, green). Achieved 95% accuracy on test data.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "ViT", "Transformers", "PyTorch"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 3,
+      title: "Gender Classification Model",
+      description: "Deep learning model trained on 20,000 images for gender classification. Accurately classifies individuals as male or female with 95% accuracy.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
       demoUrl: "#",
@@ -25,42 +47,97 @@ const Index = () => {
       category: "Computer Vision"
     },
     {
-      id: 2,
-      title: "Object Detection System",
-      description: "Real-time object detection using YOLO v8. Capable of detecting 80+ different object classes with high precision.",
+      id: 4,
+      title: "Age Classification Model",
+      description: "Advanced deep learning model that classifies individuals into various age groups based on image data using state-of-the-art architectures.",
       image: "/api/placeholder/400/250",
-      technologies: ["PyTorch", "YOLO", "OpenCV", "Python"],
+      technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
       demoUrl: "#",
       githubUrl: "#",
       hasLiveDemo: true,
       category: "Computer Vision"
     },
     {
-      id: 3,
-      title: "Sentiment Analysis Dashboard",
-      description: "NLP model for analyzing sentiment in social media data with interactive visualization dashboard.",
+      id: 5,
+      title: "Uzbek License Plate Recognition",
+      description: "Fine-tuned PaddleOCR English model specifically for Uzbek license plates. Improved character recognition accuracy to 94% by handling O/0 confusion.",
       image: "/api/placeholder/400/250",
-      technologies: ["Python", "NLTK", "Streamlit", "Pandas"],
+      technologies: ["Python", "PaddleOCR", "OpenCV", "OCR"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: false,
-      category: "NLP"
+      hasLiveDemo: true,
+      category: "OCR/NLP"
     },
     {
-      id: 4,
-      title: "Predictive Analytics Model",
-      description: "Machine learning model for forecasting business metrics using time series analysis and ensemble methods.",
+      id: 6,
+      title: "License Plate Blurring System",
+      description: "YOLO-based license plate detection system with 95% accuracy. Automatically detects and blurs license plates using OpenCV for privacy protection.",
       image: "/api/placeholder/400/250",
-      technologies: ["Python", "Scikit-learn", "XGBoost", "Matplotlib"],
+      technologies: ["Python", "YOLO", "OpenCV", "Computer Vision"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: false,
-      category: "Data Science"
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 7,
+      title: "Active Liveness Detection",
+      description: "AI-powered liveness detection using Mediapipe for facial landmarks and Random Forest for head movement detection. Ensures physical presence during authentication.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "Mediapipe", "Random Forest", "OpenCV"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 8,
+      title: "Face Recognition System",
+      description: "Robust face recognition using unique facial feature extraction and NearestNeighbor algorithm. Achieved 96% accuracy with unknown face detection capability.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "scikit-learn", "OpenCV", "Machine Learning"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 9,
+      title: "Violence Detection Model",
+      description: "Fine-tuned Facebook TimeSformer transformer model for video violence detection. Achieved 97% accuracy using spatio-temporal features for video classification.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "Transformers", "TimeSformer", "Video Analysis"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Video Analysis"
+    },
+    {
+      id: 10,
+      title: "Real-time Crowd Detection",
+      description: "Real-time crowd monitoring system with configurable thresholds. Tracks average people count over time periods and records crowd events when thresholds are exceeded.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "OpenCV", "YOLO", "Real-time Processing"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Computer Vision"
+    },
+    {
+      id: 11,
+      title: "Uzbek Speech-to-Text Model",
+      description: "Custom STT model trained by fine-tuning Whisper Medium on 600+ hours of Uzbek audio dataset. Achieved high accuracy with excellent WER metrics for Uzbek language.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "Whisper", "Transformers", "Audio Processing"],
+      demoUrl: "#",
+      githubUrl: "#",
+      hasLiveDemo: true,
+      category: "Speech/NLP"
     }
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const categories = ["All", "Computer Vision", "NLP", "Data Science"];
+  const categories = ["All", "Computer Vision", "OCR/NLP", "Video Analysis", "Speech/NLP"];
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
