@@ -19,7 +19,7 @@ const Index = () => {
       description: "Fine-tuned Facebook ViT model to recognize Uzbek car models (Jiguli, Labo, Lasetti, Matiz, Spark, Nexia, Nexia3, Damas, Cobalt, Bus). Achieved 98% accuracy on test data.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "ViT", "Transformers", "PyTorch"],
-      demoUrl: "#",
+      demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-Car-Model-Recognition",
       githubUrl: "#",
       hasLiveDemo: true,
       category: "Computer Vision"
@@ -30,7 +30,7 @@ const Index = () => {
       description: "Fine-tuned Facebook ViT model to recognize vehicle colors (black, blue, red, yellow, gray, white, green). Achieved 95% accuracy on test data.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "ViT", "Transformers", "PyTorch"],
-      demoUrl: "#",
+      demoUrl: "https://huggingface.co/spaces/Abduqayum/Vehicle-Color-Recognition-Model",
       githubUrl: "#",
       hasLiveDemo: true,
       category: "Computer Vision"
@@ -43,7 +43,7 @@ const Index = () => {
       technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
       category: "Computer Vision"
     },
     {
@@ -54,7 +54,7 @@ const Index = () => {
       technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
       category: "Computer Vision"
     },
     {
@@ -63,7 +63,7 @@ const Index = () => {
       description: "Fine-tuned PaddleOCR English model specifically for Uzbek license plates. Improved character recognition accuracy to 94% by handling O/0 confusion.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "PaddleOCR", "OpenCV", "OCR"],
-      demoUrl: "#",
+      demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-License-Plate-Recognition-Model",
       githubUrl: "#",
       hasLiveDemo: true,
       category: "OCR/NLP"
@@ -76,7 +76,7 @@ const Index = () => {
       technologies: ["Python", "YOLO", "OpenCV", "Computer Vision"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
       category: "Computer Vision"
     },
     {
@@ -85,9 +85,10 @@ const Index = () => {
       description: "AI-powered liveness detection using Mediapipe for facial landmarks and Random Forest for head movement detection. Ensures physical presence during authentication.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "Mediapipe", "Random Forest", "OpenCV"],
-      demoUrl: "#",
+      demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
+      demoVideo: true,
       category: "Computer Vision"
     },
     {
@@ -98,7 +99,7 @@ const Index = () => {
       technologies: ["Python", "scikit-learn", "OpenCV", "Machine Learning"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
       category: "Computer Vision"
     },
     {
@@ -107,9 +108,10 @@ const Index = () => {
       description: "Fine-tuned Facebook TimeSformer transformer model for video violence detection. Achieved 97% accuracy using spatio-temporal features for video classification.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "Transformers", "TimeSformer", "Video Analysis"],
-      demoUrl: "#",
+      demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
+      demoVideo: true,
       category: "Video Analysis"
     },
     {
@@ -118,9 +120,10 @@ const Index = () => {
       description: "Real-time crowd monitoring system with configurable thresholds. Tracks average people count over time periods and records crowd events when thresholds are exceeded.",
       image: "/api/placeholder/400/250",
       technologies: ["Python", "OpenCV", "YOLO", "Real-time Processing"],
-      demoUrl: "#",
+      demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
+      demoVideo: true,
       category: "Computer Vision"
     },
     {
@@ -131,8 +134,20 @@ const Index = () => {
       technologies: ["Python", "Whisper", "Transformers", "Audio Processing"],
       demoUrl: "#",
       githubUrl: "#",
-      hasLiveDemo: true,
+      hasLiveDemo: false,
       category: "Speech/NLP"
+    },
+    {
+      id: 12,
+      title: "Abandoned Object Detection",
+      description: "YOLO-based real-time system that detects abandoned objects like bags, backpacks, and other belongings. Monitors when objects are left unattended and triggers immediate alerts for security purposes.",
+      image: "/api/placeholder/400/250",
+      technologies: ["Python", "YOLO", "OpenCV", "Real-time Processing"],
+      demoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      githubUrl: "#",
+      hasLiveDemo: false,
+      demoVideo: true,
+      category: "Computer Vision"
     }
   ];
 
