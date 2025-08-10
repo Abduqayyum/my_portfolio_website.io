@@ -16,6 +16,7 @@ const ProjectPage = () => {
 // Projects are imported from shared data
 
   const project = projects.find(p => p.id === parseInt(id || "1"));
+  const hasVideo = Boolean(project?.demoVideo && project?.videoUrl);
 
   // Using toggleTheme from ThemeContext
 
@@ -184,7 +185,7 @@ const ProjectPage = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className={`grid gap-12 ${hasVideo ? 'lg:grid-cols-2' : 'grid-cols-1'}`}>
           {/* Project Details */}
           <div>
             <Card className={`mb-8 transition-colors duration-300 ${
@@ -224,41 +225,38 @@ const ProjectPage = () => {
           </div>
 
           {/* Demo Video */}
-          <div>
-            <Card className={`transition-colors duration-300 ${
-              isDarkMode 
-                ? 'bg-slate-800 border-slate-700' 
-                : 'bg-white border-gray-200'
-            }`}>
-              <CardHeader>
-                <CardTitle className={`transition-colors duration-300 ${
-                  isDarkMode ? 'text-white' : 'text-black'
-                }`}>Demo Video</CardTitle>
-                <CardDescription className={`transition-colors duration-300 ${
-                  isDarkMode ? 'text-slate-400' : 'text-gray-600'
-                }`}>
-                  Watch how this model works in practice
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                {project.demoVideo && project.videoUrl ? (
+          {hasVideo && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Demo Video</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    Watch how this model works in practice
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
                   <div className="aspect-video w-full overflow-hidden rounded-lg">
                     <iframe
                       src={project.videoUrl}
                       title={`${project.title} demo video`}
                       className="w-full h-full"
+                      loading="lazy"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
                   </div>
-                ) : (
-                  <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                    No demo video available for this project.
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     </div>

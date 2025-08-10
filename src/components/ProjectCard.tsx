@@ -87,7 +87,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
             ))}
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <div className="flex flex-row flex-wrap items-center gap-2 sm:gap-3">
             {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm ${

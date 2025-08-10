@@ -56,9 +56,9 @@ export const projects: Project[] = [
     id: 3,
     title: "Gender Classification Model",
     description:
-      "Deep learning model trained on 20,000 images for gender classification. Accurately classifies individuals as male or female with 95% accuracy.",
+      "A deep learning pipeline that classifies gender from face images with 95% test accuracy. Built by fine‑tuning a ResNet backbone on ~20k open‑source images with strong augmentation and regularization for robust, real‑world performance.",
     longDescription:
-      "CNN-based facial attribute classifier trained on 20k images with strong regularization and augmentation to generalize across lighting, pose, and background.",
+      "Fine‑tuned ResNet-based facial attribute classifier trained on ~20k images. The training pipeline uses class balancing, label smoothing, heavy augmentation (lighting, pose, background), and careful validation to generalize across demographics and capture conditions.",
     image: "/api/placeholder/400/250",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
@@ -66,20 +66,24 @@ export const projects: Project[] = [
     hasLiveDemo: false,
     category: "Computer Vision",
     accuracy: "95%",
+    dataset: "Open‑source gender-labeled face datasets (~20k images)",
+    modelType: "ResNet (fine‑tuned)",
   },
   {
     id: 4,
     title: "Age Classification Model",
     description:
-      "Advanced deep learning model that classifies individuals into various age groups based on image data using state-of-the-art architectures.",
+      "A deep learning model that predicts age groups from images. I fine‑tuned a VGG backbone on open‑source age‑labeled datasets to deliver accurate, stable predictions across lighting and pose variations.",
     longDescription:
-      "Deep CNN/transformer hybrid for age group estimation with class-balanced loss and calibration for stable predictions.",
+      "Age-group classifier trained by fine‑tuning VGG with class-balanced sampling and calibration. Extensive augmentation and regularization improve generalization across demographics and imaging conditions.",
     image: "/api/placeholder/400/250",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
     githubUrl: "#",
     hasLiveDemo: false,
     category: "Computer Vision",
+    dataset: "Open‑source age‑labeled face datasets",
+    modelType: "VGG (fine‑tuned)",
   },
   {
     id: 5,
@@ -131,9 +135,9 @@ export const projects: Project[] = [
     id: 8,
     title: "Face Recognition System",
     description:
-      "Robust face recognition using unique facial feature extraction and NearestNeighbor algorithm. Achieved 96% accuracy with unknown face detection capability.",
+      "A robust face recognition pipeline using discriminative feature embeddings and a Nearest Neighbor decision rule with thresholding to reject unknown faces. Designed to adapt to different datasets and deployment needs.",
     longDescription:
-      "Feature extraction + nearest neighbor with thresholding to recognize known identities while rejecting unknowns.",
+      "I extract compact facial embeddings and match with a Nearest Neighbor classifier, using a tuned threshold to recognize only known identities and reject unknowns. The system is dataset‑agnostic and can be trained on multiple face datasets depending on requirements.",
     image: "/api/placeholder/400/250",
     technologies: ["Python", "scikit-learn", "OpenCV", "Machine Learning"],
     demoUrl: "",
@@ -141,6 +145,8 @@ export const projects: Project[] = [
     hasLiveDemo: false,
     category: "Computer Vision",
     accuracy: "96%",
+    dataset: "Multiple face datasets (configurable per deployment)",
+    modelType: "Feature embeddings + Nearest Neighbor",
   },
   {
     id: 9,
