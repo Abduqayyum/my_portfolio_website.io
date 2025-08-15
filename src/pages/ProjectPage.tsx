@@ -259,7 +259,7 @@ const ProjectPage = () => {
           )}
 
           {/* Demo Images for certain models */}
-          {(project.id === 1 || project.id === 2 || project.id === 3 || project.id === 4) && (
+          {(project.id === 1 || project.id === 3 || project.id === 4) && (
             <div>
               <Card className={`transition-colors duration-300 ${
                 isDarkMode 
@@ -288,7 +288,6 @@ const ProjectPage = () => {
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
                         <strong>Prediction:</strong> {project.id === 1 ? "Nexia3 - 98% confidence" : 
-                                                   project.id === 2 ? "Blue - 96% confidence" :
                                                    project.id === 3 ? "Female - 95% confidence" : "Age: 25-35 - 92% confidence"}
                       </p>
                     </div>
@@ -302,11 +301,39 @@ const ProjectPage = () => {
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
                         <strong>Prediction:</strong> {project.id === 1 ? "Cobalt - 97% confidence" : 
-                                                   project.id === 2 ? "White - 94% confidence" :
                                                    project.id === 3 ? "Male - 94% confidence" : "Age: 35-45 - 91% confidence"}
                       </p>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Vehicle Color Recognition Results */}
+          {project.id === 2 && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Model Performance Results</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    Real vehicle color classification results with confidence scores
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <img 
+                    src="/lovable-uploads/a6872517-9e97-48fa-98d2-35cb3aa3451a.png" 
+                    alt="Vehicle color recognition model predictions showing various cars with color classifications and probability scores" 
+                    className="w-full rounded-lg border"
+                  />
                 </CardContent>
               </Card>
             </div>
