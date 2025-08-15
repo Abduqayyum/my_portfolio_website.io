@@ -87,10 +87,10 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
             ))}
           </div>
           
-          <div className="flex flex-row flex-wrap items-center gap-2 sm:gap-3">
+          <div className="flex flex-row items-center gap-2 sm:gap-3">
             {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm ${
+                <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm h-8 ${
                   isDarkMode 
                     ? 'text-slate-300 hover:text-white hover:bg-slate-700' 
                     : 'text-gray-600 hover:text-black hover:bg-gray-100'
@@ -102,7 +102,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
             )}
             {project.hasLiveDemo && project.demoUrl && (
               <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm">
+                <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm h-8">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                   Live Demo
                 </Button>

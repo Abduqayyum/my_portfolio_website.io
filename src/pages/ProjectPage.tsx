@@ -258,6 +258,60 @@ const ProjectPage = () => {
             </div>
           )}
 
+          {/* Demo Images for certain models */}
+          {(project.id === 1 || project.id === 2 || project.id === 3 || project.id === 4) && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Model Performance Examples</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    See how the model performs on real-world data
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <img 
+                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop" 
+                        alt="Demo example 1" 
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Prediction:</strong> {project.id === 1 ? "Nexia3 - 98% confidence" : 
+                                                   project.id === 2 ? "Blue - 96% confidence" :
+                                                   project.id === 3 ? "Female - 95% confidence" : "Age: 25-35 - 92% confidence"}
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <img 
+                        src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop" 
+                        alt="Demo example 2" 
+                        className="w-full h-48 object-cover rounded-lg"
+                      />
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Prediction:</strong> {project.id === 1 ? "Cobalt - 97% confidence" : 
+                                                   project.id === 2 ? "White - 94% confidence" :
+                                                   project.id === 3 ? "Male - 94% confidence" : "Age: 35-45 - 91% confidence"}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
           {/* Audio Examples for STT Model */}
           {project.id === 11 && (
             <div>
@@ -320,6 +374,81 @@ const ProjectPage = () => {
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
                         <strong>Transcription:</strong> "Sun'iy intellekt zamonaviy dunyoda muhim o'rin tutadi. Machine learning algoritmlari hayotimizni osonlashtirmoqda."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-red-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 4: Technical Discussion</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Dasturlash tillarini o'rganish uchun amaliy mashqlar qilish kerak. Python tili juda sodda va tushunarli."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 5: Casual Conversation</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Ertaga do'stlarim bilan parkka boramiz. Havo juda yaxshi, sayr qilish uchun mukammal kun."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-indigo-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 6: Business Presentation</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Bizning kompaniya yangi mahsulotni bozorga chiqarmoqchi. Bu mahsulot mijozlarimiz uchun juda foydali bo'ladi."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-pink-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 7: Interview Recording</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Mening tajribam asosan web development sohasida. React va Node.js bilan ishlashni yaxshi bilaman."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-teal-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 8: Cultural Content</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "O'zbek milliy oshpaziligida plov eng mashhur taom hisoblanadi. Har bir viloyatda o'ziga xos pishirish usuli bor."
                       </p>
                     </div>
                   </div>
