@@ -257,6 +257,76 @@ const ProjectPage = () => {
               </Card>
             </div>
           )}
+
+          {/* Audio Examples for STT Model */}
+          {project.id === 11 && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Audio Examples</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    Listen to sample audio files and see how the model transcribes them
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 1: News Broadcasting</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Bugun O'zbekistonda yangi texnologiya sohasida muhim yutuqlarga erishildi. Raqamli transformatsiya jarayoni davom etmoqda."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 2: Conversational Speech</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Salom, qanday ahvolingiz? Men bugun juda band edim, lekin sizni ko'rish uchun vaqt topdim."
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 3: Educational Content</h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Sun'iy intellekt zamonaviy dunyoda muhim o'rin tutadi. Machine learning algoritmlari hayotimizni osonlashtirmoqda."
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     </div>

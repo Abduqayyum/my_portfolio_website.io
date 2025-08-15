@@ -187,13 +187,16 @@ export const projects: Project[] = [
     description:
       "Custom STT model trained by fine-tuning Whisper Medium on 600+ hours of Uzbek audio dataset. Achieved high accuracy with excellent WER metrics for Uzbek language.",
     longDescription:
-      "Whisper Medium fine-tuned on >600h Uzbek audio. Ongoing improvements to push WER lower for best-in-class Uzbek STT.",
+      "Advanced speech-to-text model specifically designed for the Uzbek language, built by fine-tuning OpenAI's Whisper Medium model on a comprehensive dataset of over 600 hours of Uzbek audio. The model demonstrates exceptional performance with a Word Error Rate (WER) of approximately 12% on unknown test data and a Character Error Rate (CER) of around 3%. This represents a significant advancement in Uzbek language processing capabilities, enabling accurate transcription across various speaking styles, accents, and audio qualities. The training process involved careful data curation, extensive audio preprocessing, and iterative fine-tuning to optimize performance for Uzbek phonetics and linguistic patterns.",
     image: "/api/placeholder/400/250",
     technologies: ["Python", "Whisper", "Transformers", "Audio Processing"],
-    demoUrl: "",
+    demoUrl: "https://huggingface.co/spaces/Abduqayum/uzbek-stt-model",
     githubUrl: "#",
-    hasLiveDemo: false,
+    hasLiveDemo: true,
     category: "Speech/NLP",
+    accuracy: "WER: 12%, CER: 3%",
+    dataset: "600+ hours of Uzbek audio dataset",
+    modelType: "Whisper Medium (fine-tuned)",
   },
   {
     id: 12,
