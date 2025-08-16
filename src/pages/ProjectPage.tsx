@@ -258,8 +258,8 @@ const ProjectPage = () => {
             </div>
           )}
 
-          {/* Demo Images for certain models */}
-          {(project.id === 1 || project.id === 3 || project.id === 4) && (
+          {/* Car Model Recognition Results */}
+          {project.id === 1 && (
             <div>
               <Card className={`transition-colors duration-300 ${
                 isDarkMode 
@@ -269,42 +269,77 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Performance Examples</CardTitle>
+                  }`}>Model Performance Results</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    See how the model performs on real-world data
+                    Real vehicle model classification results with confidence scores
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <img 
-                        src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop" 
-                        alt="Demo example 1" 
-                        className="w-full h-48 object-cover rounded-lg"
-                      />
-                      <p className={`text-sm transition-colors duration-300 ${
-                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
-                      }`}>
-                        <strong>Prediction:</strong> {project.id === 1 ? "Nexia3 - 98% confidence" : 
-                                                   project.id === 3 ? "Female - 95% confidence" : "Age: 25-35 - 92% confidence"}
-                      </p>
-                    </div>
-                    <div className="space-y-2">
-                      <img 
-                        src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&h=300&fit=crop" 
-                        alt="Demo example 2" 
-                        className="w-full h-48 object-cover rounded-lg"
-                      />
-                      <p className={`text-sm transition-colors duration-300 ${
-                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
-                      }`}>
-                        <strong>Prediction:</strong> {project.id === 1 ? "Cobalt - 97% confidence" : 
-                                                   project.id === 3 ? "Male - 94% confidence" : "Age: 35-45 - 91% confidence"}
-                      </p>
-                    </div>
-                  </div>
+                  <img 
+                    src="/lovable-uploads/8ecf2722-6365-4366-a317-e546d720458e.png" 
+                    alt="Car model recognition predictions showing various vehicles with model classifications and probability scores" 
+                    className="w-full rounded-lg border"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Gender Detection Results */}
+          {project.id === 3 && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Model Performance Results</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    Real gender classification results with confidence scores
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <img 
+                    src="/lovable-uploads/9e2b643d-89f9-48a0-9b84-130e8f7c9537.png" 
+                    alt="Gender detection predictions showing various faces with gender classifications and probability scores" 
+                    className="w-full rounded-lg border"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* Age Detection Results */}
+          {project.id === 4 && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>Model Performance Results</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    Real age detection results with confidence scores
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <img 
+                    src="/lovable-uploads/0f31b8a6-57e8-44f1-b644-02c5897bc4f4.png" 
+                    alt="Age detection predictions showing various faces with age range classifications and probability scores" 
+                    className="w-full rounded-lg border"
+                  />
                 </CardContent>
               </Card>
             </div>
