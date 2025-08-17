@@ -123,8 +123,8 @@ const Index = () => {
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
                 {/* Replace this div with your actual image */}
                 <img 
-                  src="/api/placeholder/400/400" 
-                  alt="Your Profile Photo" 
+                  src="/lovable-uploads/ac584144-1958-4833-a1e9-6b423b673386.png" 
+                  alt="Alex - Data Scientist & Computer Vision Engineer" 
                   className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
                 />
                 {/* Fallback if image doesn't load */}
