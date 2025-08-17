@@ -79,19 +79,19 @@ const Index = () => {
               >
                 {isDarkMode ? <Sun className="h-4 w-4 sm:h-5 sm:w-5" /> : <Moon className="h-4 w-4 sm:h-5 sm:w-5" />}
               </Button>
-              <Button variant="ghost" size="icon" className={`h-8 w-8 sm:h-10 sm:w-10 transition-colors ${
-                isDarkMode 
-                  ? 'text-slate-300 hover:text-blue-400' 
-                  : 'text-gray-600 hover:text-blue-600'
-              }`}>
-                <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className={`h-8 w-8 sm:h-10 sm:w-10 transition-colors ${
-                isDarkMode 
-                  ? 'text-slate-300 hover:text-blue-400' 
-                  : 'text-gray-600 hover:text-blue-600'
-              }`}>
-                <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className={`h-8 w-8 sm:h-10 sm:w-10 transition-colors ${
+                  isDarkMode 
+                    ? 'text-slate-300 hover:text-blue-400' 
+                    : 'text-gray-600 hover:text-blue-600'
+                }`}
+                asChild
+              >
+                <a href="https://www.linkedin.com/in/abduqayum-rasulmukhamedov-computer-vision-engineer/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
+                </a>
               </Button>
             </div>
           </div>
