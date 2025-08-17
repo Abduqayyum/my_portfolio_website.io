@@ -63,7 +63,7 @@ const Hero = ({ isDarkMode }: HeroProps) => {
             }`}>
               Hello, I'm
               <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
-                {" Alex"}
+                {" Abduqayum"}
               </span>
             </h1>
           </div>

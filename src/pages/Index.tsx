@@ -122,11 +122,11 @@ const Index = () => {
             <div className="relative group order-2 lg:order-1">
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
                 {/* Replace this div with your actual image */}
-                <img 
-                  src="/lovable-uploads/ac584144-1958-4833-a1e9-6b423b673386.png" 
-                  alt="Alex - Data Scientist & Computer Vision Engineer" 
-                  className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
-                />
+                 <img 
+                   src="/lovable-uploads/ac584144-1958-4833-a1e9-6b423b673386.png" 
+                   alt="Abduqayum - Data Scientist & Computer Vision Engineer" 
+                   className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
+                 />
                 {/* Fallback if image doesn't load */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-600 flex items-center justify-center rounded-full border-4 border-blue-400/50" style={{display: 'none'}}>
                   <div className="text-center text-white px-4">
@@ -145,21 +145,21 @@ const Index = () => {
               <p className={`text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-300' : 'text-gray-700'
               }`}>
-                I'm a passionate Data Scientist and Computer Vision Engineer with expertise in developing 
-                cutting-edge machine learning solutions. I specialize in transforming complex data into 
-                actionable insights and building intelligent systems that can see and understand the world.
+                I'm Abduqayum, a passionate Data Scientist working in the field of Computer Vision and 
+                Natural Language Processing. With more than 2 years of experience, I specialize in 
+                developing cutting-edge machine learning solutions and building intelligent systems.
               </p>
               <p className={`text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-300' : 'text-gray-700'
               }`}>
-                My work spans across various domains including image processing, natural language processing, 
-                and predictive analytics. I enjoy creating interactive demonstrations that make AI accessible 
-                and understandable to everyone.
+                Currently working at Smart Soft Development Company as a Data Scientist, I focus on 
+                transforming complex data into actionable insights through advanced CV and NLP techniques. 
+                I enjoy creating interactive demonstrations that showcase real-world AI applications.
               </p>
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse text-xs sm:text-sm">5+ Years Experience</Badge>
-                <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-100 text-xs sm:text-sm">20+ Projects</Badge>
-                <Badge variant="secondary" className="bg-indigo-600 text-white animate-pulse delay-200 text-xs sm:text-sm">PhD in Computer Science</Badge>
+                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse text-xs sm:text-sm">2+ Years Experience</Badge>
+                <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-100 text-xs sm:text-sm">13 Projects</Badge>
+                <Badge variant="secondary" className="bg-indigo-600 text-white animate-pulse delay-200 text-xs sm:text-sm">CV & NLP Specialist</Badge>
               </div>
             </div>
           </div>
@@ -234,7 +234,7 @@ const Index = () => {
           <p className={`text-sm sm:text-base transition-colors duration-300 ${
             isDarkMode ? 'text-slate-400' : 'text-gray-600'
           }`}>
-            © 2024 Data Science Portfolio. Built with React and Tailwind CSS.
+            © 2024 Abduqayum Portfolio. Built with React and Tailwind CSS.
           </p>
         </div>
       </footer>

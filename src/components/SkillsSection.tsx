@@ -10,32 +10,32 @@ const SkillsSection = ({ isDarkMode }: SkillsSectionProps) => {
   const skillCategories = [
     {
       title: "Machine Learning",
-      skills: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "XGBoost", "LightGBM"],
+      skills: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "XGBoost", "LightGBM", "Random Forest"],
       color: "bg-blue-600"
     },
     {
       title: "Computer Vision",
-      skills: ["OpenCV", "PIL", "YOLO", "ResNet", "CNN", "Image Processing", "Object Detection"],
+      skills: ["OpenCV", "PIL", "YOLO", "ResNet", "CNN", "ViT", "Transformers", "MediaPipe", "Object Detection"],
       color: "bg-purple-600"
     },
     {
-      title: "Data Science",
-      skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "R", "SQL"],
+      title: "NLP & Speech",
+      skills: ["Whisper", "BERT", "GPT", "Transformers", "PaddleOCR", "OCR", "TimeSformer"],
       color: "bg-green-600"
     },
     {
       title: "Deep Learning",
-      skills: ["Neural Networks", "RNN", "LSTM", "GAN", "Transformer", "BERT", "GPT"],
+      skills: ["Neural Networks", "RNN", "LSTM", "GAN", "Transformer", "Fine-tuning", "Transfer Learning"],
       color: "bg-orange-600"
     },
     {
-      title: "Tools & Platforms",
-      skills: ["Docker", "AWS", "GCP", "Git", "MLflow", "Streamlit", "FastAPI"],
+      title: "Backend & Databases",
+      skills: ["FastAPI", "Django", "MySQL", "PostgreSQL", "Docker", "Git", "MLflow"],
       color: "bg-red-600"
     },
     {
-      title: "Languages",
-      skills: ["Python", "R", "SQL", "JavaScript", "C++", "MATLAB"],
+      title: "Data Science & Tools",
+      skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Streamlit", "Hugging Face"],
       color: "bg-pink-600"
     }
   ];
@@ -77,19 +77,19 @@ const SkillsSection = ({ isDarkMode }: SkillsSectionProps) => {
       {/* Experience Stats */}
       <div className="mt-16 grid md:grid-cols-4 gap-8 text-center">
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-blue-400">5+</div>
+          <div className="text-4xl font-bold text-blue-400">2+</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Years Experience</div>
         </div>
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-purple-400">20+</div>
+          <div className="text-4xl font-bold text-purple-400">13</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Projects Completed</div>
         </div>
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-green-400">15+</div>
+          <div className="text-4xl font-bold text-green-400">12+</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Models Deployed</div>
         </div>
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-orange-400">94%</div>
+          <div className="text-4xl font-bold text-orange-400">95%</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Avg Model Accuracy</div>
         </div>
       </div>
