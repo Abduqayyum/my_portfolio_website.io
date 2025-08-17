@@ -23,7 +23,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
         <div 
           className="h-40 sm:h-48 bg-cover bg-center relative"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop')`
+            backgroundImage: `url('${project.image}')`
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/40 to-teal-500/40"></div>
