@@ -124,7 +124,7 @@ const Index = () => {
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
                  {/* Portfolio logo */}
                  <img 
-                    src={portfolioLogo} 
+                    src="/lovable-uploads/IMG_20250819_122823.jpg" 
                     alt="Abduqayum - Data Scientist & Computer Vision Engineer" 
                     className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
                   />
