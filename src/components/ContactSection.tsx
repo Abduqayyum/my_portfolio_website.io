@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 interface ContactSectionProps {
   isDarkMode: boolean;
@@ -22,11 +23,28 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
+
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string,
+      formData,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string
+    )
+    .then((result) => {
+      console.log(result.text);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, (error) => {
+      console.log(error.text);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
     });
-    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -69,7 +87,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
                 }`}>Email</div>
                 <div className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-slate-300' : 'text-gray-600'
-                }`}>rabduqayum@mail.ru</div>
+                }`}>rasulmuhamedovabduqayum@gmail.com</div>
               </div>
             </div>
             

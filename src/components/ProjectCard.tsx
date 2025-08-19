@@ -1,5 +1,5 @@
 
-import { Github, Eye, Play } from "lucide-react";
+import { Eye, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -88,7 +88,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
           </div>
           
           <div className="flex flex-row items-center gap-2 sm:gap-3">
-            {project.githubUrl && (
+            {/* {project.githubUrl && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" variant="ghost" className={`transition-all text-xs sm:text-sm h-8 ${
                   isDarkMode 
@@ -99,7 +99,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
                   Code
                 </Button>
               </a>
-            )}
+            )} */}
             {project.hasLiveDemo && project.demoUrl && (
               <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm h-8">

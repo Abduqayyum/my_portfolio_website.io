@@ -7,7 +7,6 @@ export type Project = {
   image: string;
   technologies: string[];
   demoUrl?: string;
-  githubUrl?: string;
   hasLiveDemo: boolean;
   category: string;
   accuracy?: string;
@@ -28,7 +27,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "ViT", "Transformers", "PyTorch"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-Car-Model-Recognition",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "98%",
@@ -45,7 +43,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "ViT", "Transformers", "PyTorch"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Vehicle-Color-Recognition-Model",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "95%",
@@ -62,7 +59,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: false,
     category: "Computer Vision",
     accuracy: "95%",
@@ -79,7 +75,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: false,
     category: "Computer Vision",
     dataset: "Open‑source age‑labeled face datasets",
@@ -96,10 +91,11 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "PaddleOCR", "OpenCV", "OCR"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-License-Plate-Recognition-Model",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "OCR/NLP",
     accuracy: "94%",
+    dataset: "Custom Uzbek license plate dataset",
+    modelType: "PaddleOCR (fine-tuned)"
   },
   // {
   //   id: 6,
@@ -126,7 +122,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Mediapipe", "Random Forest", "OpenCV"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
@@ -145,7 +140,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "scikit-learn", "OpenCV", "Machine Learning"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "96%",
@@ -162,7 +156,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Transformers", "TimeSformer", "Video Analysis"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Video Analysis",
     demoVideo: true,
@@ -181,7 +174,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "OpenCV", "YOLO", "Real-time Processing"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
@@ -200,7 +192,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Whisper", "Transformers", "Audio Processing"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/uzbek-stt-model",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Speech/NLP",
     accuracy: "WER: 12%, CER: 3%",
@@ -217,7 +208,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "YOLO", "OpenCV", "Real-time Processing"],
     demoUrl: "",
-    githubUrl: "#",
     hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
@@ -236,7 +226,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "MediaPipe", "OpenCV", "Machine Learning"],
   demoUrl: "",
-  githubUrl: "#",
   hasLiveDemo: true,
   category: "AI & Education",
   demoVideo: true,

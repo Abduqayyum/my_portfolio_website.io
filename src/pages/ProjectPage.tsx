@@ -1,7 +1,7 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Github, Play, Sun, Moon } from "lucide-react";
+import { ArrowLeft, Play, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -162,7 +162,7 @@ const ProjectPage = () => {
                 </Button>
               </a>
             )}
-            {project.githubUrl && project.githubUrl !== "#" && (
+            {/* {project.githubUrl && project.githubUrl !== "#" && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className={`transition-colors duration-300 ${
                   isDarkMode 
@@ -173,7 +173,7 @@ const ProjectPage = () => {
                   View Code
                 </Button>
               </a>
-            )}
+            )} */}
             {!project.hasLiveDemo && project.demoVideo && project.videoUrl && (
               <a href={project.videoUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600">

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Download, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface HeroProps {
   isDarkMode: boolean;
@@ -93,12 +94,14 @@ const Hero = ({ isDarkMode }: HeroProps) => {
           
           {/* CTA Buttons with enhanced effects - responsive */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-6 sm:pt-8 px-4">
-            <Button 
-              size="lg" 
+            <Button
+              asChild
               className="w-full sm:w-auto bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 hover:from-blue-700 hover:via-teal-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 border border-white/20 text-sm sm:text-base"
             >
-              View My Work
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <a href="/#projects" className="flex items-center">
+                View My Work
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </a>
             </Button>
             
             <Button 
