@@ -9,6 +9,7 @@ import ProjectCard from "@/components/ProjectCard";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
 import { projects as projectsData } from "@/data/projects";
+import portfolioLogo from "@/assets/portfolio-logo.png";
 
 const Index = () => {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -121,12 +122,12 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="relative group order-2 lg:order-1">
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
-                {/* Replace this div with your actual image */}
+                 {/* Portfolio logo */}
                  <img 
-                   src="/lovable-uploads/ac584144-1958-4833-a1e9-6b423b673386.png" 
-                   alt="Abduqayum - Data Scientist & Computer Vision Engineer" 
-                   className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
-                 />
+                    src={portfolioLogo} 
+                    alt="Abduqayum - Data Scientist & Computer Vision Engineer" 
+                    className="w-full h-full object-cover rounded-full border-4 border-blue-400/50"
+                  />
                 {/* Fallback if image doesn't load */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-teal-600 flex items-center justify-center rounded-full border-4 border-blue-400/50" style={{display: 'none'}}>
                   <div className="text-center text-white px-4">
