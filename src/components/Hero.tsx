@@ -113,8 +113,10 @@ const Hero = ({ isDarkMode }: HeroProps) => {
                   : 'border-gray-700 bg-black/10 backdrop-blur-sm text-gray-800 hover:bg-black/20 hover:shadow-black/10'
               }`}
             >
-              <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              Download Resume
+              <a href="/docs/Abduqayum_Rasulmuhamedov_CV.pdf" download="Abduqayum_Rasulmuhamedov_CV.pdf" className="flex items-center">
+                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                Download Resume
+              </a>
             </Button>
           </div>
         </div>

@@ -397,120 +397,150 @@ const ProjectPage = () => {
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 1: News Broadcasting</h4>
+                      }`}>Sample 1: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Mittivine_NmaGap_chunk_0041.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Bugun O'zbekistonda yangi texnologiya sohasida muhim yutuqlarga erishildi. Raqamli transformatsiya jarayoni davom etmoqda."
+                        <strong>Transcription:</strong> "Ti doljen byl, xotyabi trety poluchit', deyapti. Ne, aka, sizga uch-ikki yarashmaydi. Yo'q, video, aka. Yo'q, mana bunaqa holat, to'g'risi, mana shu yetti-sakkizgacha ulgurmadim. Ulgurmadim hammaga ball berishga-da. To yest' mana qog'ozda tez-tez nimadir yoq-bu yoq bo'ldi-da. I eng qiziq narsa, to yest ballni ko'rsatyapman, boshqa qilyapman. Meni galim kelganda, mayli, mana siz, boshqalar ko'taryapti-yu, eng qizig'i, mana juda yaqin bo'lgan tanish, kak juda yaqin."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-green-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 2: Conversational Speech</h4>
+                      }`}>Sample 2: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Sayohat_xarajatmi_yoki_investitsiya_Iwash_va_Jamshidxon_bilan_Podcast.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Salom, qanday ahvolingiz? Men bugun juda band edim, lekin sizni ko'rish uchun vaqt topdim."
+                        <strong>Transcription:</strong> "Nima qilamiz? Nima yengilliklar? Qayerda asfalt qildinglar? Bu podkast, biz ham gapirishga haqlaymiz. Bu meni shoum deylik. Yo'q, realniy-da. O'shanga shuncha hasad. Ayniqsa topa-to'g'ri aytdingiz, Amerikada juda ham qiyin bo'ldi. Chunki men oldindan bu narsaga tayyor edim, tushungan edim. Odamlarda ro'zg'oyachiki bor, Amerikaga nisbatan. Boraman, zo'r bo'lib ketaman. Mana shunchasi zo'r bo'lib ketyapti, shunchasi uy quryapti, boshqa qilyapti. Shu narsani biluvdim, shto odamlarda bo'ladi. O'shaning uchun ham"
                       </p>
                     </div>
 
                     <div className="border-l-4 border-purple-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 3: Educational Content</h4>
+                      }`}>Sample 3: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Milliy_MrBeast_va_uning_bo'lajak_to'yi_haqida_IsomTV_Bu_Podcast.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Sun'iy intellekt zamonaviy dunyoda muhim o'rin tutadi. Machine learning algoritmlari hayotimizni osonlashtirmoqda."
+                        <strong>Transcription:</strong> "Situatsiya. Situatsiya A-da. Bizlarda bola bor, ishlamayotgan, u uylanayapti, takje ishlamayotgan qizga. I v dal'ney shu ular birgalikda o'sib, o'sib, o'sib, bola yestestvenno ish topyapti, birgalikda o'sib, hamma narsani sotib olishyapti. Uy sotib olishadi birgalikda, mashina sotib olishadi, qanaqadir moliyaviy savodxonligini oshirishyapti. Va hokazo. Tushunyapsiz-a? Bu situatsiya A. I situatsiya B. Bolada hamma narsa."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-red-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 4: Technical Discussion</h4>
+                      }`}>Sample 4: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Ortida_kim_bor_Nega_tez_mashxur_bo'lib_ketdi_Bir_oyda_qancha_chunk.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Dasturlash tillarini o'rganish uchun amaliy mashqlar qilish kerak. Python tili juda sodda va tushunarli."
+                        <strong>Transcription:</strong> "shunaqangi qalbimda qolgan, olib kelib berdilar o'sha emotsiyani menga, ulanga xuddi kechagi kunday eslayman, o'sha xotira o'chmaydimi? Plyus yana dadezdan navidan berganman. Da, yashirib. Uni keyin bozorchidan bildim sal vaqt o'tib. Nimani anchadan beri qilishda rejalashtiryapsiz, lekin vaqt yetmayapti? Vaqtim yetib turibdi. Anchadan beri rejalashtirib yurgan narsamni boshladim, Xudoga shukur, shu protsessdaman. Ya'ni ota hovlimda po polniy programmani komfort qilishni boshladim. Saunadan tortib, zona otdixigacha."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-yellow-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 5: Casual Conversation</h4>
+                      }`}>Sample 5: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Alisher_Uzoqov_suhbat_nma_gap_chunk_0169.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Ertaga do'stlarim bilan parkka boramiz. Havo juda yaxshi, sayr qilish uchun mukammal kun."
+                        <strong>Transcription:</strong> "Vot. Yo'q, u yerda o'shanaqa qanaqadir vizov-da, o'sha qiziq. O'zimga o'zim takoy vizovni bilmayman. Bu qachonligi o'zi? Ili umringizni oxirigacha qo'yilgan narsammi? Men til o'rganib olay. To est, ya vapshe ne ponimayu. Ya primerno kak budto vy ponimayu, nu ya ne ponimayu, chunki juda og'ir deyaptilar, qaysi moment men ham adashib ketyapman. Yo'q, prosta boshida nima bo'ldi? Men til o'rganyapman, to est qilmoqchi bo'lgan qanaqadir ham biznes ideyalarim bor dedingiz. O'sha ideyalar, angliyskiy bilan bog'liqmi desam, ha dedingiz. Hozir misol uchun qanaqadir ham"
                       </p>
                     </div>
 
                     <div className="border-l-4 border-indigo-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 6: Business Presentation</h4>
+                      }`}>Sample 6: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/Eski_Subyektiv_allaqachon_yo'q_Hammasi_siz_o'ylagandek_emas_JAMSHIDXON.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Bizning kompaniya yangi mahsulotni bozorga chiqarmoqchi. Bu mahsulot mijozlarimiz uchun juda foydali bo'ladi."
+                        <strong>Transcription:</strong> "o'rtog'im ko'rsatganda, mana ko'rasan, mana blogger, qarang, zo'r mana bu obzor qaysidir mashina chiqqan edi-da o'sha paytda. Nimaga? Choynakni qopqog'i? Mana shunaqa reaksiya bo'lganda. Menimcha 90% odamlarda birinchi reaksiyasi xuddi shunaqa. Birga boshlamaganmisiz? Menimcha bir vaqt o'zida Yo'q, yo'q, yo'q, yo'q, yo'q, yo'q, ancha oldin bo'lmagan. Chunki meni esimda bor, sizga ham, sizga ham Umid aka salom deb yuborsa bo'ladi-ku. Umid Gafur juda katta sababchi bo'lgan."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-pink-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 7: Interview Recording</h4>
+                      }`}>Sample 7: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/KEYINGI_5_YILDA_DOLZARB_MUAMMOGA_AYLANADI_AXAD_XUDAYAROV_chunk_0189.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Mening tajribam asosan web development sohasida. React va Node.js bilan ishlashni yaxshi bilaman."
+                        <strong>Transcription:</strong> "Agar kachok bo'laman deb-da. Bemalol yasha oladi-da demak. Bemalol. Chunki yo'lda-yu. O'shani yo'lida. Sal tezlashadi, bo'ldi. U hozir tezlashishga rozi emas, bemalol, marafoncha yugurib yurib. Marafon yo'nalishda deylik, keyin xohlasa Usain Bolt yo'nalishiga o'tib, tezroq, tezroq, tezroq deydi-yu. Xohlagan yo'lida yuroladi. Zato yo'lda. Samoye glavnoye finishni tez berib qo'ymasin bo'ldi. O'sha yuraversin, ketaversin. Judayam to'g'ri. Har kuni chiqsam bo'ladimi deydi. Marhamat, agar yengil obyomda bo'lsa, qilaversin."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-teal-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 8: Cultural Content</h4>
+                      }`}>Sample 8: </h4>
                       <audio controls className="w-full mb-2">
-                        <source src="/api/placeholder/audio" type="audio/mpeg" />
+                        <source src="/audios/nma_gap2.mp3" type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "O'zbek milliy oshpaziligida plov eng mashhur taom hisoblanadi. Har bir viloyatda o'ziga xos pishirish usuli bor."
+                        <strong>Transcription:</strong> "I anavi kecha qo'pol qilib aytganda-da, o'sha sahnani boshida yurgan stand-upchi bolalarni ko'rib, o'sha paytlar ko'rardim-da, i hozir otdelniy konsert desa, nima deyapman-da. Kak tak? I bir ikkitasini kirib, anavi kommentariyalarni o'qib, baribir analiz qilasiz-u, i juda yaxshi qabul qilinyapti-da. Odamlar mazza qilyapti-da. Ne to chto i ne plyus yumoriga, a vapshe v tselom-da, mana shu bo'layotgan narsaga. I"
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 9: </h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/audios/Pul_topish_va_millioner_bo'lishning_oson_yo'llari_chunk_0183.mp3" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "keyin u kuchayib ketdi. oyiga o'sha 10 000 topadigan bo'lib, chet elga ketib yubordi. ko'pchilik yozdi-da, Xitoyda o'zi Xitoyda ITshniklar tiqilib yotibdi. bo'lishi mumkin, Xitoyda ITshniklar tiqilib yotibdi, lekin aynan mana shunaqasi Xitoyda yo'q ekanda, Xitoyliklar 10 000, 15 000 berib olib ketyapti. Bekorga emas-da. Bekorga emas-da. Sizga ham o'xshagan tuning-chi, detailing-chi tiqilib yotibdi-yu, to'g'rimi? Aslida tiqilyapti. Siz bittasiz. Bilasizmi? Unik product. Alloh yaratgan, unik productmiz, har birimiz." 
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 border-cyan-500 pl-4">
+                      <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
+                        isDarkMode ? 'text-white' : 'text-black'
+                      }`}>Sample 10: </h4>
+                      <audio controls className="w-full mb-2">
+                        <source src="/audios/Axad_Xudayarov_Bilan_Tog’ri_Ozish_Semirish_va_Yashash_Xaqida_chunk.mp3" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <p className={`text-sm transition-colors duration-300 ${
+                        isDarkMode ? 'text-slate-300' : 'text-gray-700'
+                      }`}>
+                        <strong>Transcription:</strong> "Mana shu yangi zalga kirib kelgan bolalarda, boya aytgandek xavotir ko'p bo'ladi-da. Hamma karochi katta tosh ko'targan, men chunki g'alati formada kelyapman. Xijolat bo'lib ketadi-da. I mana shunaqa paytda o'ziga odam qidiradi, bitta aka qidiradi. To chto maslahat bersa, yomon gapirmasa, bo'ldi. O'shani uka xona bo'la oladi-da. I menda qachon sizni yana videoyingizni bunaqa qiziqdim, qani kim? Menga kelyapti-da, mana sport pitaniya do'kon-ku."
                       </p>
                     </div>
                   </div>
