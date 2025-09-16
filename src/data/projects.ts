@@ -233,6 +233,24 @@ export const projects: Project[] = [
   accuracy: "High accuracy in face & hand landmark detection",
   dataset: "Random Qur’an verses (no dataset required)",
   modelType: "MediaPipe + ML for verse evaluation",
+},
+{
+  id: 14,
+  title: "Uzbek TTS Model",
+  description:
+    "Revolutionary text-to-speech model that brings natural emotions and breathing to Uzbek speech synthesis, trained on just 20 hours of audio data.",
+  longDescription:
+    "While most Uzbek TTS models produce robotic, emotionless speech that limits their effectiveness as AI agents, this breakthrough model delivers remarkably natural-sounding voice synthesis with authentic emotional expression and even subtle breathing patterns. Built using the advanced XTTS-v2 architecture and trained efficiently on only 20 hours of carefully curated Uzbek audio, the model demonstrates exceptional quality that rivals systems trained on hundreds of hours of data. The natural breathing sounds and emotional nuances make it perfect for creating engaging AI assistants and voice applications that truly connect with Uzbek speakers.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "XTTS-v2", "TTS", "Audio Processing", "Deep Learning"],
+  demoUrl: "",
+  hasLiveDemo: true,
+  category: "Speech/NLP",
+  demoVideo: true,
+  videoUrl: "https://www.youtube.com/embed/T81CbYjXwTg",
+  accuracy: "Excellent quality with natural emotions and breathing",
+  dataset: "20 hours of curated Uzbek audio",
+  modelType: "XTTS-v2 (Coqui TTS)",
 }
 
 ];
