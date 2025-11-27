@@ -10,6 +10,8 @@ interface HeroProps {
 
 const Hero = ({ isDarkMode }: HeroProps) => {
   const [displayText, setDisplayText] = useState("");
+  // Set to true to show the download resume button, false to hide it
+  const showResumeButton = false;
   const fullText = "Data Scientist & Computer Vision Engineer";
   
   useEffect(() => {
@@ -104,20 +106,22 @@ const Hero = ({ isDarkMode }: HeroProps) => {
               </a>
             </Button>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-full transition-all duration-300 shadow-xl text-sm sm:text-base ${
-                isDarkMode 
-                  ? 'border-slate-300 bg-white/10 backdrop-blur-sm text-slate-200 hover:bg-white/20 hover:shadow-white/10' 
-                  : 'border-gray-700 bg-black/10 backdrop-blur-sm text-gray-800 hover:bg-black/20 hover:shadow-black/10'
-              }`}
-            >
-              <a href="/docs/Abduqayum_Rasulmuhamedov_CV.pdf" download="Abduqayum_Rasulmuhamedov_CV.pdf" className="flex items-center">
-                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                Download Resume
-              </a>
-            </Button>
+            {showResumeButton && (
+              <Button 
+                variant="outline" 
+                size="lg"
+                className={`w-full sm:w-auto px-6 sm:px-8 py-3 rounded-full transition-all duration-300 shadow-xl text-sm sm:text-base ${
+                  isDarkMode 
+                    ? 'border-slate-300 bg-white/10 backdrop-blur-sm text-slate-200 hover:bg-white/20 hover:shadow-white/10' 
+                    : 'border-gray-700 bg-black/10 backdrop-blur-sm text-gray-800 hover:bg-black/20 hover:shadow-black/10'
+                }`}
+              >
+                <a href="/docs/Abduqayum_Rasulmuhamedov_CV.pdf" download="Abduqayum_Rasulmuhamedov_CV.pdf" className="flex items-center">
+                  <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  Download Resume
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </div>
