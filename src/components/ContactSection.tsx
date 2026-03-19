@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
+import { useTranslation } from "react-i18next";
 
 interface ContactSectionProps {
   isDarkMode: boolean;
 }
 
 const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,15 +35,15 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
     .then((result) => {
       console.log(result.text);
       toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: t("contact.toast.sentTitle"),
+        description: t("contact.toast.sentDesc"),
       });
       setFormData({ name: "", email: "", subject: "", message: "" });
     }, (error) => {
       console.log(error.text);
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again later.",
+        title: t("contact.toast.errorTitle"),
+        description: t("contact.toast.errorDesc"),
         variant: "destructive",
       });
     });
@@ -58,7 +60,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
     <div className="container mx-auto max-w-6xl">
       <h2 className={`text-4xl font-bold text-center mb-12 transition-colors duration-300 ${
         isDarkMode ? 'text-white' : 'text-black'
-      }`}>Get In Touch</h2>
+      }`}>{t("contact.title")}</h2>
       
       <div className="grid md:grid-cols-2 gap-12">
         {/* Contact Info */}
@@ -66,13 +68,11 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
           <div>
             <h3 className={`text-2xl font-bold mb-6 transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-black'
-            }`}>Let's Connect</h3>
+            }`}>{t("contact.connectTitle")}</h3>
             <p className={`text-lg leading-relaxed mb-8 transition-colors duration-300 ${
               isDarkMode ? 'text-slate-300' : 'text-gray-700'
             }`}>
-              I'm always interested in discussing new opportunities, collaborations, 
-              or simply chatting about the latest in AI and machine learning. 
-              Feel free to reach out!
+              {t("contact.blurb")}
             </p>
           </div>
           
@@ -84,7 +84,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
               <div>
                 <div className={`font-medium transition-colors duration-300 ${
                   isDarkMode ? 'text-white' : 'text-black'
-                }`}>Email</div>
+                }`}>{t("contact.email")}</div>
                 <div className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-slate-300' : 'text-gray-600'
                 }`}>rasulmuhamedovabduqayum@gmail.com</div>
@@ -100,7 +100,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
               <div>
                 <div className={`font-medium transition-colors duration-300 ${
                   isDarkMode ? 'text-white' : 'text-black'
-                }`}>Telegram</div>
+                }`}>{t("contact.telegram")}</div>
                 <div className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-slate-300' : 'text-gray-600'
                 }`}>@abduqayum_0015</div>
@@ -118,14 +118,14 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
           <CardHeader>
             <CardTitle className={`transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-black'
-            }`}>Send Message</CardTitle>
+            }`}>{t("contact.sendTitle")}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <Input
                   name="name"
-                  placeholder="Your Name"
+                  placeholder={t("contact.placeholders.name")}
                   value={formData.name}
                   onChange={handleInputChange}
                   className={`transition-colors duration-300 ${
@@ -138,7 +138,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
                 <Input
                   name="email"
                   type="email"
-                  placeholder="Your Email"
+                  placeholder={t("contact.placeholders.email")}
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`transition-colors duration-300 ${
@@ -152,7 +152,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
               
               <Input
                 name="subject"
-                placeholder="Subject"
+                placeholder={t("contact.placeholders.subject")}
                 value={formData.subject}
                 onChange={handleInputChange}
                 className={`transition-colors duration-300 ${
@@ -165,7 +165,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
               
               <Textarea
                 name="message"
-                placeholder="Your Message"
+                placeholder={t("contact.placeholders.message")}
                 value={formData.message}
                 onChange={handleInputChange}
                 className={`min-h-32 transition-colors duration-300 ${
@@ -181,7 +181,7 @@ const ContactSection = ({ isDarkMode }: ContactSectionProps) => {
                 className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700"
               >
                 <Send className="h-4 w-4 mr-2" />
-                Send Message
+                {t("contact.send")}
               </Button>
             </form>
           </CardContent>

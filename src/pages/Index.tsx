@@ -8,16 +8,26 @@ import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import SkillsSection from "@/components/SkillsSection";
 import ContactSection from "@/components/ContactSection";
+import StartupSection from "@/components/StartupSection";
 import { projects as projectsData } from "@/data/projects";
 import portfolioLogo from "@/assets/portfolio-logo.png";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const { isDarkMode, toggleTheme } = useTheme();
+  const { t, i18n } = useTranslation();
   
   const projects = projectsData;
 
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const categories = ["All", "Computer Vision", "OCR/NLP", "Video Analysis", "Speech/NLP"];
+  const categories: Array<{ key: string; value: string; label: string }> = [
+    { key: "all", value: "All", label: t("categories.all") },
+    { key: "computerVision", value: "Computer Vision", label: t("categories.computerVision") },
+    { key: "ocrNlp", value: "OCR/NLP", label: t("categories.ocrNlp") },
+    { key: "videoAnalysis", value: "Video Analysis", label: t("categories.videoAnalysis") },
+    { key: "speechNlp", value: "Speech/NLP", label: t("categories.speechNlp") },
+    { key: "aiEducation", value: "AI & Education", label: t("categories.aiEducation") },
+  ];
 
   const filteredProjects = selectedCategory === "All" 
     ? projects 
@@ -26,7 +36,7 @@ const Index = () => {
   // Using toggleTheme from ThemeContext
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
+    <div className="min-h-screen transition-colors duration-300">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 backdrop-blur-md border-b transition-colors duration-300 ${
         isDarkMode 
@@ -45,29 +55,51 @@ const Index = () => {
                 isDarkMode 
                   ? 'text-slate-300 hover:text-blue-400' 
                   : 'text-gray-600 hover:text-blue-600'
-              }`}>Home</a>
+              }`}>{t("nav.home")}</a>
               <a href="#about" className={`transition-colors text-sm lg:text-base ${
                 isDarkMode 
                   ? 'text-slate-300 hover:text-blue-400' 
                   : 'text-gray-600 hover:text-blue-600'
-              }`}>About</a>
+              }`}>{t("nav.about")}</a>
               <a href="#projects" className={`transition-colors text-sm lg:text-base ${
                 isDarkMode 
                   ? 'text-slate-300 hover:text-blue-400' 
                   : 'text-gray-600 hover:text-blue-600'
-              }`}>Projects</a>
+              }`}>{t("nav.projects")}</a>
+              <a href="#startup" className={`transition-colors text-sm lg:text-base ${
+                isDarkMode 
+                  ? 'text-slate-300 hover:text-blue-400' 
+                  : 'text-gray-600 hover:text-blue-600'
+              }`}>{t("nav.startup")}</a>
               <a href="#skills" className={`transition-colors text-sm lg:text-base ${
                 isDarkMode 
                   ? 'text-slate-300 hover:text-blue-400' 
                   : 'text-gray-600 hover:text-blue-600'
-              }`}>Skills</a>
+              }`}>{t("nav.skills")}</a>
               <a href="#contact" className={`transition-colors text-sm lg:text-base ${
                 isDarkMode 
                   ? 'text-slate-300 hover:text-blue-400' 
                   : 'text-gray-600 hover:text-blue-600'
-              }`}>Contact</a>
+              }`}>{t("nav.contact")}</a>
             </div>
             <div className="flex space-x-2 sm:space-x-4">
+              <label className="sr-only" htmlFor="lang">
+                {t("language.label")}
+              </label>
+              <select
+                id="lang"
+                value={i18n.language}
+                onChange={(e) => i18n.changeLanguage(e.target.value)}
+                className={`hidden sm:block h-10 rounded-md px-3 text-sm backdrop-blur-md border transition-colors ${
+                  isDarkMode
+                    ? "bg-white/5 border-white/10 text-slate-200"
+                    : "bg-black/5 border-black/10 text-gray-800"
+                }`}
+              >
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+                <option value="uz">UZ</option>
+              </select>
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -118,7 +150,7 @@ const Index = () => {
         <div className="container mx-auto max-w-4xl relative z-10">
           <h2 className={`text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 transition-colors duration-300 ${
             isDarkMode ? 'text-white' : 'text-black'
-          }`}>About Me</h2>
+          }`}>{t("about.title")}</h2>
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <div className="relative group order-2 lg:order-1">
               <div className="relative overflow-hidden rounded-full shadow-2xl transform transition-all duration-300 group-hover:scale-105 aspect-square max-w-sm mx-auto">
@@ -146,21 +178,23 @@ const Index = () => {
               <p className={`text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-300' : 'text-gray-700'
               }`}>
-                I'm Abduqayum, a passionate Data Scientist working in the field of Computer Vision and 
-                Natural Language Processing. With more than 2 years of experience, I specialize in 
-                developing cutting-edge machine learning solutions and building intelligent systems.
+                {t("about.p1")}
               </p>
               <p className={`text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 isDarkMode ? 'text-slate-300' : 'text-gray-700'
               }`}>
-                Currently working at Smart Soft Development Company as a Data Scientist, I focus on 
-                transforming complex data into actionable insights through advanced CV and NLP techniques. 
-                I enjoy creating interactive demonstrations that showcase real-world AI applications.
+                {t("about.p2")}
               </p>
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse text-xs sm:text-sm">2+ Years Experience</Badge>
-                <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-100 text-xs sm:text-sm">13 Projects</Badge>
-                <Badge variant="secondary" className="bg-indigo-600 text-white animate-pulse delay-200 text-xs sm:text-sm">CV & NLP Specialist</Badge>
+                <Badge variant="secondary" className="bg-blue-600 text-white animate-pulse text-xs sm:text-sm">
+                  {t("about.badges.years")}
+                </Badge>
+                <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-100 text-xs sm:text-sm">
+                  16 {t("about.badges.projects")}
+                </Badge>
+                <Badge variant="secondary" className="bg-indigo-600 text-white animate-pulse delay-200 text-xs sm:text-sm">
+                  {t("about.badges.specialty")}
+                </Badge>
               </div>
             </div>
           </div>
@@ -168,19 +202,24 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative transition-colors duration-300 ${
-        isDarkMode ? 'bg-slate-900/50' : 'bg-gray-50'
-      }`}>
+      <section
+        id="projects"
+        className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 relative transition-colors duration-300 ${
+          isDarkMode ? "bg-slate-950/40" : "bg-slate-50"
+        }`}
+      >
         {/* Animated background */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 sm:w-40 sm:h-40 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute inset-0 bg-aurora opacity-60 animate-aurora" />
+          <div className="absolute inset-0 bg-grid opacity-30" />
+          <div className="absolute top-10 left-10 w-24 h-24 sm:w-32 sm:h-32 bg-blue-500/10 rounded-full blur-3xl animate-subtle-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 sm:w-40 sm:h-40 bg-teal-500/10 rounded-full blur-3xl animate-subtle-pulse delay-1000"></div>
         </div>
         
         <div className="container mx-auto max-w-7xl relative z-10">
           <h2 className={`text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 transition-colors duration-300 ${
             isDarkMode ? 'text-white' : 'text-black'
-          }`}>Featured Projects</h2>
+          }`}>{t("projects.title")}</h2>
           
           {/* Category Filter */}
           <div className="flex justify-center mb-8 sm:mb-12 px-2">
@@ -191,14 +230,14 @@ const Index = () => {
             }`}>
               {categories.map((category) => (
                 <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "ghost"}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`text-xs sm:text-sm px-3 py-2 transition-colors ${selectedCategory === category 
+                  key={category.key}
+                  variant={selectedCategory === category.value ? "default" : "ghost"}
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`text-xs sm:text-sm px-3 py-2 transition-colors ${selectedCategory === category.value 
                     ? (isDarkMode ? "bg-blue-600 text-white shadow-lg hover:bg-blue-700" : "bg-blue-600 text-white shadow-lg hover:bg-blue-700")
                     : (isDarkMode ? "text-slate-300 hover:text-white hover:bg-slate-600" : "text-gray-600 hover:text-black hover:bg-gray-200")}`}
                 >
-                  {category}
+                  {category.label}
                 </Button>
               ))}
             </div>
@@ -211,6 +250,16 @@ const Index = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Startup Section */}
+      <section
+        id="startup"
+        className={`py-12 sm:py-16 lg:py-20 px-4 sm:px-6 transition-colors duration-300 ${
+          isDarkMode ? "bg-slate-900/40" : "bg-white"
+        }`}
+      >
+        <StartupSection isDarkMode={isDarkMode} />
       </section>
 
       {/* Skills Section */}
@@ -235,7 +284,7 @@ const Index = () => {
           <p className={`text-sm sm:text-base transition-colors duration-300 ${
             isDarkMode ? 'text-slate-400' : 'text-gray-600'
           }`}>
-            © 2024 Abduqayum Portfolio. Built with React and Tailwind CSS.
+            {t("footer.text")}
           </p>
         </div>
       </footer>

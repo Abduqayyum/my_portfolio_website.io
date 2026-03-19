@@ -251,6 +251,42 @@ export const projects: Project[] = [
   accuracy: "Excellent quality with natural emotions and breathing",
   dataset: "20 hours of curated Uzbek audio",
   modelType: "XTTS-v2 (Coqui TTS)",
+},
+{
+  id: 15,
+  title: "Customer Action Recognition in Stores",
+  description:
+    "Video-based action recognition that detects in-store customer behaviors—taking items, walking, and standing—using a TimeSformer model for spatio-temporal understanding.",
+  longDescription:
+    "A video action recognition pipeline built with AI and deep learning to classify customer behaviors in store footage. Using a TimeSformer transformer architecture, the model learns spatio-temporal cues from video clips to recognize actions such as taking items, walking, and standing. This enables retailers to understand in-aisle engagement and movement patterns, supporting store analytics, layout optimization, and operational insights from surveillance or overhead camera feeds.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "TimeSformer", "Transformers", "Video Analysis"],
+  demoUrl: "https://www.youtube.com/watch?v=ZCVQq2x2c_Q",
+  hasLiveDemo: false,
+  category: "Video Analysis",
+  demoVideo: true,
+  videoUrl: "https://www.youtube.com/embed/ZCVQq2x2c_Q",
+  accuracy: "High accuracy on in-store action classes",
+  dataset: "Retail/store action video dataset",
+  modelType: "TimeSformer (video transformer)",
+},
+{
+  id: 16,
+  title: "AI-Powered Road Traffic Analysis",
+  description:
+    "Computer vision system for real-time road traffic analysis: vehicle detection, counting, flow estimation, and congestion monitoring from traffic camera feeds for smart city and traffic management.",
+  longDescription:
+    "An AI-powered pipeline that analyzes road traffic using computer vision. The system processes live or recorded traffic camera footage to detect and count vehicles, estimate traffic flow, and monitor congestion. Built for smart city applications and traffic management, it can support decisions on signal timing, incident detection, and infrastructure planning. Uses deep learning models for robust vehicle detection and tracking across varying lighting and weather conditions.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "Computer Vision", "Deep Learning", "OpenCV"],
+  demoUrl: "https://www.youtube.com/watch?v=F-DLN9_4gkA",
+  hasLiveDemo: false,
+  category: "Computer Vision",
+  demoVideo: true,
+  videoUrl: "https://www.youtube.com/embed/F-DLN9_4gkA",
+  accuracy: "High accuracy on vehicle detection and counting",
+  dataset: "Traffic camera footage / vehicle detection datasets",
+  modelType: "Deep learning (object detection & tracking)",
 }
 
 ];

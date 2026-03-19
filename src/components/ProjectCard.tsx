@@ -1,11 +1,19 @@
-
 import { Eye, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import type { Project } from "@/data/projects";
+
+const CATEGORY_KEY: Record<string, string> = {
+  "Computer Vision": "computerVision",
+  "OCR/NLP": "ocrNlp",
+  "Video Analysis": "videoAnalysis",
+  "Speech/NLP": "speechNlp",
+  "AI & Education": "aiEducation",
+};
 
 interface ProjectCardProps {
   project: Project;
@@ -13,6 +21,12 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
+  const { t } = useTranslation();
+  const title = t(`projectList.${project.id}.title`, project.title);
+  const description = t(`projectList.${project.id}.description`, project.description);
+  const categoryKey = CATEGORY_KEY[project.category];
+  const categoryLabel = categoryKey ? t(`categories.${categoryKey}`) : project.category;
+
   return (
     <Card className={`backdrop-blur-sm border transition-all duration-300 group overflow-hidden shadow-xl transform hover:-translate-y-2 ${
       isDarkMode 
@@ -36,7 +50,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="bg-blue-600 hover:bg-blue-700 shadow-lg transform hover:scale-105 transition-transform text-xs sm:text-sm">
                 <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                Try Demo
+                {t("projectCard.tryDemo")}
               </Button>
             </a>
           )}
@@ -47,7 +61,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
                 : 'bg-gray-700 text-white hover:bg-gray-600 border border-gray-500'
             }`}>
               <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-              View Details
+              {t("projectCard.viewDetails")}
             </Button>
           </Link>
         </div>
@@ -60,16 +74,16 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
               ? 'text-white group-hover:text-blue-400' 
               : 'text-black group-hover:text-blue-600'
           }`}>
-            {project.title}
+            {title}
           </CardTitle>
           <Badge variant="secondary" className="bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg text-xs shrink-0">
-            {project.category}
+            {categoryLabel}
           </Badge>
         </div>
         <CardDescription className={`text-sm sm:text-base leading-relaxed transition-colors duration-300 ${
           isDarkMode ? 'text-slate-400' : 'text-gray-600'
         }`}>
-          {project.description}
+          {description}
         </CardDescription>
       </CardHeader>
       
@@ -104,7 +118,7 @@ const ProjectCard = ({ project, isDarkMode }: ProjectCardProps) => {
               <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600 shadow-lg transform hover:scale-105 transition-all text-xs sm:text-sm h-8">
                   <Play className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                  Live Demo
+                  {t("projectCard.liveDemo")}
                 </Button>
               </a>
             )}

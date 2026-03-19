@@ -3,16 +3,18 @@ import { useState, useEffect } from "react";
 import { ArrowRight, Download, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface HeroProps {
   isDarkMode: boolean;
 }
 
 const Hero = ({ isDarkMode }: HeroProps) => {
+  const { t } = useTranslation();
   const [displayText, setDisplayText] = useState("");
   // Set to true to show the download resume button, false to hide it
   const showResumeButton = false;
-  const fullText = "Data Scientist & Computer Vision Engineer";
+  const fullText = t("hero.role");
   
   useEffect(() => {
     let index = 0;
@@ -26,20 +28,20 @@ const Hero = ({ isDarkMode }: HeroProps) => {
     }, 100);
     
     return () => clearInterval(timer);
-  }, []);
+  }, [fullText]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden">
-      {/* Background with overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop')`,
-        }}
-      >
-        <div className={`absolute inset-0 transition-colors duration-300 ${
-          isDarkMode ? 'bg-black/80' : 'bg-white/80'
-        }`}></div>
+      {/* Background (aurora + grid + noise) */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-aurora blur-2xl opacity-90 animate-aurora" />
+        <div className="absolute inset-0 bg-grid opacity-60" />
+        <div className="absolute inset-0 bg-noise opacity-25" />
+        <div
+          className={`absolute inset-0 transition-colors duration-300 ${
+            isDarkMode ? "bg-black/70" : "bg-white/60"
+          }`}
+        />
       </div>
 
       {/* Animated particles - responsive sizes */}
@@ -52,9 +54,9 @@ const Hero = ({ isDarkMode }: HeroProps) => {
       </div>
 
       {/* Floating geometric shapes - responsive */}
-      <div className="absolute top-20 left-4 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute top-40 right-8 sm:right-20 w-24 h-24 sm:w-32 sm:h-32 bg-teal-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-      <div className="absolute bottom-20 left-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-indigo-500/20 rounded-full blur-xl animate-pulse delay-2000"></div>
+      <div className="absolute top-20 left-4 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 bg-blue-500/20 rounded-full blur-xl animate-subtle-pulse"></div>
+      <div className="absolute top-40 right-8 sm:right-20 w-24 h-24 sm:w-32 sm:h-32 bg-teal-500/20 rounded-full blur-xl animate-subtle-pulse delay-1000"></div>
+      <div className="absolute bottom-20 left-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-indigo-500/20 rounded-full blur-xl animate-subtle-pulse delay-2000"></div>
       
       {/* Content */}
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -64,7 +66,7 @@ const Hero = ({ isDarkMode }: HeroProps) => {
             <h1 className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2 sm:mb-4 drop-shadow-2xl px-2 transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-black'
             }`}>
-              Hello, I'm
+              {t("hero.hello")}
               <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
                 {" Abduqayum"}
               </span>
@@ -85,12 +87,10 @@ const Hero = ({ isDarkMode }: HeroProps) => {
           <div className="relative px-4">
             <p className={`text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-2xl transition-colors duration-300 ${
               isDarkMode 
-                ? 'text-slate-300 bg-white/5 border border-white/10' 
-                : 'text-gray-700 bg-black/5 border border-black/10'
+                ? 'text-slate-200 bg-white/5 border border-white/10' 
+                : 'text-gray-800 bg-white/60 border border-black/10'
             }`}>
-              I transform complex data into intelligent solutions. Specializing in machine learning, 
-              deep learning, and computer vision to solve real-world problems. Experience my models 
-              in action through interactive demonstrations.
+              {t("hero.blurb")}
             </p>
           </div>
           
@@ -101,7 +101,7 @@ const Hero = ({ isDarkMode }: HeroProps) => {
               className="w-full sm:w-auto bg-gradient-to-r from-blue-600 via-teal-600 to-indigo-600 hover:from-blue-700 hover:via-teal-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/25 border border-white/20 text-sm sm:text-base"
             >
               <a href="/#projects" className="flex items-center">
-                View My Work
+                {t("hero.ctaWork")}
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
               </a>
             </Button>
@@ -118,7 +118,7 @@ const Hero = ({ isDarkMode }: HeroProps) => {
               >
                 <a href="/docs/Abduqayum_Rasulmuhamedov_CV.pdf" download="Abduqayum_Rasulmuhamedov_CV.pdf" className="flex items-center">
                   <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  Download Resume
+                  {t("hero.ctaResume")}
                 </a>
               </Button>
             )}

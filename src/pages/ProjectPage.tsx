@@ -6,19 +6,29 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { projects, type Project } from "@/data/projects";
+import { useTranslation } from "react-i18next";
 
-// Project type imported from shared data
+const CATEGORY_KEY: Record<string, string> = {
+  "Computer Vision": "computerVision",
+  "OCR/NLP": "ocrNlp",
+  "Video Analysis": "videoAnalysis",
+  "Speech/NLP": "speechNlp",
+  "AI & Education": "aiEducation",
+};
 
 const ProjectPage = () => {
   const { id } = useParams();
   const { isDarkMode, toggleTheme } = useTheme();
-
-// Projects are imported from shared data
+  const { t, i18n } = useTranslation();
 
   const project = projects.find(p => p.id === parseInt(id || "1"));
   const hasVideo = Boolean(project?.demoVideo && project?.videoUrl);
 
-  // Using toggleTheme from ThemeContext
+  const title = project ? t(`projectList.${project.id}.title`, project.title) : "";
+  const description = project ? t(`projectList.${project.id}.description`, project.description) : "";
+  const longDescription = project ? t(`projectList.${project.id}.longDescription`, project.longDescription ?? "") : "";
+  const categoryKey = project ? CATEGORY_KEY[project.category] : "";
+  const categoryLabel = categoryKey ? t(`categories.${categoryKey}`) : (project?.category ?? "");
 
   if (!project) {
     return (
@@ -28,11 +38,11 @@ const ProjectPage = () => {
         <div className="text-center">
           <h1 className={`text-4xl font-bold mb-4 transition-colors duration-300 ${
             isDarkMode ? 'text-white' : 'text-black'
-          }`}>Project Not Found</h1>
+          }`}>{t("projectPage.notFoundTitle")}</h1>
           <Link to="/">
             <Button className="bg-blue-600 hover:bg-blue-700">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              {t("projectPage.backHome")}
             </Button>
           </Link>
         </div>
@@ -60,7 +70,7 @@ const ProjectPage = () => {
                 : 'text-black hover:text-blue-600'
             }`}>
               <ArrowLeft className="mr-2 h-5 w-5" />
-              Back to Portfolio
+              {t("projectPage.backPortfolio")}
             </Link>
             <div className="flex items-center space-x-4">
               <div className={`text-2xl font-bold transition-colors duration-300 ${
@@ -68,6 +78,23 @@ const ProjectPage = () => {
               }`}>
                 DS<span className={isDarkMode ? 'text-blue-400' : 'text-blue-600'}>Portfolio</span>
               </div>
+              <label className="sr-only" htmlFor="lang-project">
+                {t("language.label")}
+              </label>
+              <select
+                id="lang-project"
+                value={i18n.language}
+                onChange={(e) => i18n.changeLanguage(e.target.value)}
+                className={`hidden sm:block h-10 rounded-md px-3 text-sm backdrop-blur-md border transition-colors ${
+                  isDarkMode
+                    ? "bg-white/5 border-white/10 text-slate-200"
+                    : "bg-black/5 border-black/10 text-gray-800"
+                }`}
+              >
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+                <option value="uz">UZ</option>
+              </select>
               <Button 
                 variant="ghost" 
                 size="icon" 
@@ -90,15 +117,15 @@ const ProjectPage = () => {
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
             <Badge variant="secondary" className="bg-blue-600 text-white">
-              {project.category}
+              {categoryLabel}
             </Badge>
             <h1 className={`text-4xl font-bold transition-colors duration-300 ${
               isDarkMode ? 'text-white' : 'text-black'
-            }`}>{project.title}</h1>
+            }`}>{title}</h1>
           </div>
           <p className={`text-xl mb-8 transition-colors duration-300 ${
             isDarkMode ? 'text-slate-300' : 'text-gray-700'
-          }`}>{project.description}</p>
+          }`}>{description}</p>
           
           {/* Project Stats */}
           {(project.accuracy || project.dataset || project.modelType) && (
@@ -111,7 +138,7 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Accuracy</CardTitle>
+                  }`}>{t("projectPage.stats.accuracy")}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-2xl font-bold text-green-400">{project.accuracy}</p>
@@ -125,7 +152,7 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Dataset</CardTitle>
+                  }`}>{t("projectPage.stats.dataset")}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className={`transition-colors duration-300 ${
@@ -141,7 +168,7 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Type</CardTitle>
+                  }`}>{t("projectPage.stats.modelType")}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className={`transition-colors duration-300 ${
@@ -158,7 +185,7 @@ const ProjectPage = () => {
               <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
                   <Play className="mr-2 h-4 w-4" />
-                  Live Demo
+                  {t("projectPage.actions.liveDemo")}
                 </Button>
               </a>
             )}
@@ -174,14 +201,6 @@ const ProjectPage = () => {
                 </Button>
               </a>
             )} */}
-            {!project.hasLiveDemo && project.demoVideo && project.videoUrl && (
-              <a href={project.videoUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600">
-                  <Play className="mr-2 h-4 w-4" />
-                  Watch Demo
-                </Button>
-              </a>
-            )}
           </div>
         </div>
 
@@ -196,18 +215,18 @@ const ProjectPage = () => {
               <CardHeader>
                 <CardTitle className={`transition-colors duration-300 ${
                   isDarkMode ? 'text-white' : 'text-black'
-                }`}>Project Overview</CardTitle>
+                }`}>{t("projectPage.overview")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className={`leading-relaxed mb-6 transition-colors duration-300 ${
                   isDarkMode ? 'text-slate-300' : 'text-gray-700'
                 }`}>
-                  {project.longDescription}
+                  {longDescription}
                 </p>
                 <div>
                   <h4 className={`font-semibold mb-3 transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Technologies Used:</h4>
+                  }`}>{t("projectPage.technologiesUsed")}</h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <Badge key={tech} variant="outline" className={`transition-colors duration-300 ${
@@ -235,18 +254,18 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Demo Video</CardTitle>
+                }`}>{t("projectPage.demoVideo")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Watch how this model works in practice
+                  {t("projectPage.demoVideoSubtitle")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="aspect-video w-full overflow-hidden rounded-lg">
                     <iframe
                       src={project.videoUrl}
-                      title={`${project.title} demo video`}
+                      title={`${title} demo video`}
                       className="w-full h-full"
                       loading="lazy"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -269,11 +288,11 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Performance Results</CardTitle>
+                  }`}>{t("projectPage.resultsTitle")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Real vehicle model classification results with confidence scores
+                    {t("projectPage.resultsCar")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -298,11 +317,11 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Performance Results</CardTitle>
+                  }`}>{t("projectPage.resultsTitle")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Real gender classification results with confidence scores
+                    {t("projectPage.resultsGender")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -327,11 +346,11 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Performance Results</CardTitle>
+                  }`}>{t("projectPage.resultsTitle")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Real age detection results with confidence scores
+                    {t("projectPage.resultsAge")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -356,11 +375,11 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Model Performance Results</CardTitle>
+                  }`}>{t("projectPage.resultsTitle")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Real vehicle color classification results with confidence scores
+                    {t("projectPage.resultsColor")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -385,11 +404,11 @@ const ProjectPage = () => {
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-white' : 'text-black'
-                  }`}>Audio Examples</CardTitle>
+                  }`}>{t("projectPage.audioExamples")}</CardTitle>
                   <CardDescription className={`transition-colors duration-300 ${
                     isDarkMode ? 'text-slate-400' : 'text-gray-600'
                   }`}>
-                    Listen to sample audio files and see how the model transcribes them
+                    {t("projectPage.audioExamplesSubtitle")}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -397,150 +416,150 @@ const ProjectPage = () => {
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 1: </h4>
+                      }`}>{t("projectPage.sample")} 1: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Mittivine_NmaGap_chunk_0041.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Ti doljen byl, xotyabi trety poluchit', deyapti. Ne, aka, sizga uch-ikki yarashmaydi. Yo'q, video, aka. Yo'q, mana bunaqa holat, to'g'risi, mana shu yetti-sakkizgacha ulgurmadim. Ulgurmadim hammaga ball berishga-da. To yest' mana qog'ozda tez-tez nimadir yoq-bu yoq bo'ldi-da. I eng qiziq narsa, to yest ballni ko'rsatyapman, boshqa qilyapman. Meni galim kelganda, mayli, mana siz, boshqalar ko'taryapti-yu, eng qizig'i, mana juda yaqin bo'lgan tanish, kak juda yaqin."
+                        <strong>{t("projectPage.transcription")}</strong> "Ti doljen byl, xotyabi trety poluchit', deyapti. Ne, aka, sizga uch-ikki yarashmaydi. Yo'q, video, aka. Yo'q, mana bunaqa holat, to'g'risi, mana shu yetti-sakkizgacha ulgurmadim. Ulgurmadim hammaga ball berishga-da. To yest' mana qog'ozda tez-tez nimadir yoq-bu yoq bo'ldi-da. I eng qiziq narsa, to yest ballni ko'rsatyapman, boshqa qilyapman. Meni galim kelganda, mayli, mana siz, boshqalar ko'taryapti-yu, eng qizig'i, mana juda yaqin bo'lgan tanish, kak juda yaqin."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-green-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 2: </h4>
+                      }`}>{t("projectPage.sample")} 2: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Sayohat_xarajatmi_yoki_investitsiya_Iwash_va_Jamshidxon_bilan_Podcast.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Nima qilamiz? Nima yengilliklar? Qayerda asfalt qildinglar? Bu podkast, biz ham gapirishga haqlaymiz. Bu meni shoum deylik. Yo'q, realniy-da. O'shanga shuncha hasad. Ayniqsa topa-to'g'ri aytdingiz, Amerikada juda ham qiyin bo'ldi. Chunki men oldindan bu narsaga tayyor edim, tushungan edim. Odamlarda ro'zg'oyachiki bor, Amerikaga nisbatan. Boraman, zo'r bo'lib ketaman. Mana shunchasi zo'r bo'lib ketyapti, shunchasi uy quryapti, boshqa qilyapti. Shu narsani biluvdim, shto odamlarda bo'ladi. O'shaning uchun ham"
+                        <strong>{t("projectPage.transcription")}</strong> "Nima qilamiz? Nima yengilliklar? Qayerda asfalt qildinglar? Bu podkast, biz ham gapirishga haqlaymiz. Bu meni shoum deylik. Yo'q, realniy-da. O'shanga shuncha hasad. Ayniqsa topa-to'g'ri aytdingiz, Amerikada juda ham qiyin bo'ldi. Chunki men oldindan bu narsaga tayyor edim, tushungan edim. Odamlarda ro'zg'oyachiki bor, Amerikaga nisbatan. Boraman, zo'r bo'lib ketaman. Mana shunchasi zo'r bo'lib ketyapti, shunchasi uy quryapti, boshqa qilyapti. Shu narsani biluvdim, shto odamlarda bo'ladi. O'shaning uchun ham"
                       </p>
                     </div>
 
                     <div className="border-l-4 border-purple-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 3: </h4>
+                      }`}>{t("projectPage.sample")} 3: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Milliy_MrBeast_va_uning_bo'lajak_to'yi_haqida_IsomTV_Bu_Podcast.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Situatsiya. Situatsiya A-da. Bizlarda bola bor, ishlamayotgan, u uylanayapti, takje ishlamayotgan qizga. I v dal'ney shu ular birgalikda o'sib, o'sib, o'sib, bola yestestvenno ish topyapti, birgalikda o'sib, hamma narsani sotib olishyapti. Uy sotib olishadi birgalikda, mashina sotib olishadi, qanaqadir moliyaviy savodxonligini oshirishyapti. Va hokazo. Tushunyapsiz-a? Bu situatsiya A. I situatsiya B. Bolada hamma narsa."
+                        <strong>{t("projectPage.transcription")}</strong> "Situatsiya. Situatsiya A-da. Bizlarda bola bor, ishlamayotgan, u uylanayapti, takje ishlamayotgan qizga. I v dal'ney shu ular birgalikda o'sib, o'sib, o'sib, bola yestestvenno ish topyapti, birgalikda o'sib, hamma narsani sotib olishyapti. Uy sotib olishadi birgalikda, mashina sotib olishadi, qanaqadir moliyaviy savodxonligini oshirishyapti. Va hokazo. Tushunyapsiz-a? Bu situatsiya A. I situatsiya B. Bolada hamma narsa."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-red-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 4: </h4>
+                      }`}>{t("projectPage.sample")} 4: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Ortida_kim_bor_Nega_tez_mashxur_bo'lib_ketdi_Bir_oyda_qancha_chunk.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "shunaqangi qalbimda qolgan, olib kelib berdilar o'sha emotsiyani menga, ulanga xuddi kechagi kunday eslayman, o'sha xotira o'chmaydimi? Plyus yana dadezdan navidan berganman. Da, yashirib. Uni keyin bozorchidan bildim sal vaqt o'tib. Nimani anchadan beri qilishda rejalashtiryapsiz, lekin vaqt yetmayapti? Vaqtim yetib turibdi. Anchadan beri rejalashtirib yurgan narsamni boshladim, Xudoga shukur, shu protsessdaman. Ya'ni ota hovlimda po polniy programmani komfort qilishni boshladim. Saunadan tortib, zona otdixigacha."
+                        <strong>{t("projectPage.transcription")}</strong> "shunaqangi qalbimda qolgan, olib kelib berdilar o'sha emotsiyani menga, ulanga xuddi kechagi kunday eslayman, o'sha xotira o'chmaydimi? Plyus yana dadezdan navidan berganman. Da, yashirib. Uni keyin bozorchidan bildim sal vaqt o'tib. Nimani anchadan beri qilishda rejalashtiryapsiz, lekin vaqt yetmayapti? Vaqtim yetib turibdi. Anchadan beri rejalashtirib yurgan narsamni boshladim, Xudoga shukur, shu protsessdaman. Ya'ni ota hovlimda po polniy programmani komfort qilishni boshladim. Saunadan tortib, zona otdixigacha."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-yellow-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 5: </h4>
+                      }`}>{t("projectPage.sample")} 5: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Alisher_Uzoqov_suhbat_nma_gap_chunk_0169.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Vot. Yo'q, u yerda o'shanaqa qanaqadir vizov-da, o'sha qiziq. O'zimga o'zim takoy vizovni bilmayman. Bu qachonligi o'zi? Ili umringizni oxirigacha qo'yilgan narsammi? Men til o'rganib olay. To est, ya vapshe ne ponimayu. Ya primerno kak budto vy ponimayu, nu ya ne ponimayu, chunki juda og'ir deyaptilar, qaysi moment men ham adashib ketyapman. Yo'q, prosta boshida nima bo'ldi? Men til o'rganyapman, to est qilmoqchi bo'lgan qanaqadir ham biznes ideyalarim bor dedingiz. O'sha ideyalar, angliyskiy bilan bog'liqmi desam, ha dedingiz. Hozir misol uchun qanaqadir ham"
+                        <strong>{t("projectPage.transcription")}</strong> "Vot. Yo'q, u yerda o'shanaqa qanaqadir vizov-da, o'sha qiziq. O'zimga o'zim takoy vizovni bilmayman. Bu qachonligi o'zi? Ili umringizni oxirigacha qo'yilgan narsammi? Men til o'rganib olay. To est, ya vapshe ne ponimayu. Ya primerno kak budto vy ponimayu, nu ya ne ponimayu, chunki juda og'ir deyaptilar, qaysi moment men ham adashib ketyapman. Yo'q, prosta boshida nima bo'ldi? Men til o'rganyapman, to est qilmoqchi bo'lgan qanaqadir ham biznes ideyalarim bor dedingiz. O'sha ideyalar, angliyskiy bilan bog'liqmi desam, ha dedingiz. Hozir misol uchun qanaqadir ham"
                       </p>
                     </div>
 
                     <div className="border-l-4 border-indigo-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 6: </h4>
+                      }`}>{t("projectPage.sample")} 6: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Eski_Subyektiv_allaqachon_yo'q_Hammasi_siz_o'ylagandek_emas_JAMSHIDXON.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "o'rtog'im ko'rsatganda, mana ko'rasan, mana blogger, qarang, zo'r mana bu obzor qaysidir mashina chiqqan edi-da o'sha paytda. Nimaga? Choynakni qopqog'i? Mana shunaqa reaksiya bo'lganda. Menimcha 90% odamlarda birinchi reaksiyasi xuddi shunaqa. Birga boshlamaganmisiz? Menimcha bir vaqt o'zida Yo'q, yo'q, yo'q, yo'q, yo'q, yo'q, ancha oldin bo'lmagan. Chunki meni esimda bor, sizga ham, sizga ham Umid aka salom deb yuborsa bo'ladi-ku. Umid Gafur juda katta sababchi bo'lgan."
+                        <strong>{t("projectPage.transcription")}</strong> "o'rtog'im ko'rsatganda, mana ko'rasan, mana blogger, qarang, zo'r mana bu obzor qaysidir mashina chiqqan edi-da o'sha paytda. Nimaga? Choynakni qopqog'i? Mana shunaqa reaksiya bo'lganda. Menimcha 90% odamlarda birinchi reaksiyasi xuddi shunaqa. Birga boshlamaganmisiz? Menimcha bir vaqt o'zida Yo'q, yo'q, yo'q, yo'q, yo'q, yo'q, ancha oldin bo'lmagan. Chunki meni esimda bor, sizga ham, sizga ham Umid aka salom deb yuborsa bo'ladi-ku. Umid Gafur juda katta sababchi bo'lgan."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-pink-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 7: </h4>
+                      }`}>{t("projectPage.sample")} 7: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/KEYINGI_5_YILDA_DOLZARB_MUAMMOGA_AYLANADI_AXAD_XUDAYAROV_chunk_0189.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Agar kachok bo'laman deb-da. Bemalol yasha oladi-da demak. Bemalol. Chunki yo'lda-yu. O'shani yo'lida. Sal tezlashadi, bo'ldi. U hozir tezlashishga rozi emas, bemalol, marafoncha yugurib yurib. Marafon yo'nalishda deylik, keyin xohlasa Usain Bolt yo'nalishiga o'tib, tezroq, tezroq, tezroq deydi-yu. Xohlagan yo'lida yuroladi. Zato yo'lda. Samoye glavnoye finishni tez berib qo'ymasin bo'ldi. O'sha yuraversin, ketaversin. Judayam to'g'ri. Har kuni chiqsam bo'ladimi deydi. Marhamat, agar yengil obyomda bo'lsa, qilaversin."
+                        <strong>{t("projectPage.transcription")}</strong> "Agar kachok bo'laman deb-da. Bemalol yasha oladi-da demak. Bemalol. Chunki yo'lda-yu. O'shani yo'lida. Sal tezlashadi, bo'ldi. U hozir tezlashishga rozi emas, bemalol, marafoncha yugurib yurib. Marafon yo'nalishda deylik, keyin xohlasa Usain Bolt yo'nalishiga o'tib, tezroq, tezroq, tezroq deydi-yu. Xohlagan yo'lida yuroladi. Zato yo'lda. Samoye glavnoye finishni tez berib qo'ymasin bo'ldi. O'sha yuraversin, ketaversin. Judayam to'g'ri. Har kuni chiqsam bo'ladimi deydi. Marhamat, agar yengil obyomda bo'lsa, qilaversin."
                       </p>
                     </div>
 
                     <div className="border-l-4 border-teal-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 8: </h4>
+                      }`}>{t("projectPage.sample")} 8: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/nma_gap2.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "I anavi kecha qo'pol qilib aytganda-da, o'sha sahnani boshida yurgan stand-upchi bolalarni ko'rib, o'sha paytlar ko'rardim-da, i hozir otdelniy konsert desa, nima deyapman-da. Kak tak? I bir ikkitasini kirib, anavi kommentariyalarni o'qib, baribir analiz qilasiz-u, i juda yaxshi qabul qilinyapti-da. Odamlar mazza qilyapti-da. Ne to chto i ne plyus yumoriga, a vapshe v tselom-da, mana shu bo'layotgan narsaga. I"
+                        <strong>{t("projectPage.transcription")}</strong> "I anavi kecha qo'pol qilib aytganda-da, o'sha sahnani boshida yurgan stand-upchi bolalarni ko'rib, o'sha paytlar ko'rardim-da, i hozir otdelniy konsert desa, nima deyapman-da. Kak tak? I bir ikkitasini kirib, anavi kommentariyalarni o'qib, baribir analiz qilasiz-u, i juda yaxshi qabul qilinyapti-da. Odamlar mazza qilyapti-da. Ne to chto i ne plyus yumoriga, a vapshe v tselom-da, mana shu bo'layotgan narsaga. I"
                       </p>
                     </div>
 
                     <div className="border-l-4 border-orange-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 9: </h4>
+                      }`}>{t("projectPage.sample")} 9: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Pul_topish_va_millioner_bo'lishning_oson_yo'llari_chunk_0183.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "keyin u kuchayib ketdi. oyiga o'sha 10 000 topadigan bo'lib, chet elga ketib yubordi. ko'pchilik yozdi-da, Xitoyda o'zi Xitoyda ITshniklar tiqilib yotibdi. bo'lishi mumkin, Xitoyda ITshniklar tiqilib yotibdi, lekin aynan mana shunaqasi Xitoyda yo'q ekanda, Xitoyliklar 10 000, 15 000 berib olib ketyapti. Bekorga emas-da. Bekorga emas-da. Sizga ham o'xshagan tuning-chi, detailing-chi tiqilib yotibdi-yu, to'g'rimi? Aslida tiqilyapti. Siz bittasiz. Bilasizmi? Unik product. Alloh yaratgan, unik productmiz, har birimiz." 
+                        <strong>{t("projectPage.transcription")}</strong> "keyin u kuchayib ketdi. oyiga o'sha 10 000 topadigan bo'lib, chet elga ketib yubordi. ko'pchilik yozdi-da, Xitoyda o'zi Xitoyda ITshniklar tiqilib yotibdi. bo'lishi mumkin, Xitoyda ITshniklar tiqilib yotibdi, lekin aynan mana shunaqasi Xitoyda yo'q ekanda, Xitoyliklar 10 000, 15 000 berib olib ketyapti. Bekorga emas-da. Bekorga emas-da. Sizga ham o'xshagan tuning-chi, detailing-chi tiqilib yotibdi-yu, to'g'rimi? Aslida tiqilyapti. Siz bittasiz. Bilasizmi? Unik product. Alloh yaratgan, unik productmiz, har birimiz." 
                       </p>
                     </div>
 
                     <div className="border-l-4 border-cyan-500 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
-                      }`}>Sample 10: </h4>
+                      }`}>{t("projectPage.sample")} 10: </h4>
                       <audio controls className="w-full mb-2">
                         <source src="/audios/Axad_Xudayarov_Bilan_Tog’ri_Ozish_Semirish_va_Yashash_Xaqida_chunk.mp3" type="audio/mpeg" />
-                        Your browser does not support the audio element.
+                        {t("projectPage.browserNoAudio")}
                       </audio>
                       <p className={`text-sm transition-colors duration-300 ${
                         isDarkMode ? 'text-slate-300' : 'text-gray-700'
                       }`}>
-                        <strong>Transcription:</strong> "Mana shu yangi zalga kirib kelgan bolalarda, boya aytgandek xavotir ko'p bo'ladi-da. Hamma karochi katta tosh ko'targan, men chunki g'alati formada kelyapman. Xijolat bo'lib ketadi-da. I mana shunaqa paytda o'ziga odam qidiradi, bitta aka qidiradi. To chto maslahat bersa, yomon gapirmasa, bo'ldi. O'shani uka xona bo'la oladi-da. I menda qachon sizni yana videoyingizni bunaqa qiziqdim, qani kim? Menga kelyapti-da, mana sport pitaniya do'kon-ku."
+                        <strong>{t("projectPage.transcription")}</strong> "Mana shu yangi zalga kirib kelgan bolalarda, boya aytgandek xavotir ko'p bo'ladi-da. Hamma karochi katta tosh ko'targan, men chunki g'alati formada kelyapman. Xijolat bo'lib ketadi-da. I mana shunaqa paytda o'ziga odam qidiradi, bitta aka qidiradi. To chto maslahat bersa, yomon gapirmasa, bo'ldi. O'shani uka xona bo'la oladi-da. I menda qachon sizni yana videoyingizni bunaqa qiziqdim, qani kim? Menga kelyapti-da, mana sport pitaniya do'kon-ku."
                       </p>
                     </div>
                   </div>
