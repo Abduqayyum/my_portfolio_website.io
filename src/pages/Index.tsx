@@ -190,7 +190,7 @@ const Index = () => {
                   {t("about.badges.years")}
                 </Badge>
                 <Badge variant="secondary" className="bg-teal-600 text-white animate-pulse delay-100 text-xs sm:text-sm">
-                  16 {t("about.badges.projects")}
+                  {projectsData.length} {t("about.badges.projects")}
                 </Badge>
                 <Badge variant="secondary" className="bg-indigo-600 text-white animate-pulse delay-200 text-xs sm:text-sm">
                   {t("about.badges.specialty")}

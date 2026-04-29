@@ -287,6 +287,40 @@ export const projects: Project[] = [
   accuracy: "High accuracy on vehicle detection and counting",
   dataset: "Traffic camera footage / vehicle detection datasets",
   modelType: "Deep learning (object detection & tracking)",
+},
+{
+  id: 17,
+  title: "Illegal Parking Detection (Plate + Zone + Time)",
+  description:
+    "Real-time system that tracks vehicles, detects license plates, recognizes Uzbek plate text, and flags illegal parking when a vehicle stays inside a defined no-parking zone longer than a time threshold.",
+  longDescription:
+    "An end-to-end illegal parking detection pipeline built for real-world surveillance cameras. Vehicles are detected and tracked across frames, while a custom YOLO plate detector localizes license plates. A dedicated Uzbek plate recognition model reads the plate text with high accuracy. Polygon zones define parking/no-parking areas, and a timer-based rule triggers an illegal parking event when a tracked vehicle remains in a restricted zone beyond the configured duration.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "YOLO", "OpenCV", "Object Tracking", "OCR"],
+  demoUrl: "https://www.youtube.com/watch?v=DpFsWbK1154",
+  hasLiveDemo: false,
+  category: "Computer Vision",
+  demoVideo: true,
+  videoUrl: "https://www.youtube.com/embed/DpFsWbK1154",
+  accuracy: "High accuracy (custom plate detector + Uzbek plate OCR)",
+  dataset: "Custom vehicle & Uzbek license plate dataset",
+  modelType: "YOLO (plate detection) + tracking + OCR",
+},
+{
+  id: 18,
+  title: "Garbage Overflow & Litter Detection",
+  description:
+    "Custom YOLO model that detects garbage bins, overflowed containers, and trash on the ground to help prevent long-lasting overflow situations and improve city cleanliness operations.",
+  longDescription:
+    "A computer vision monitoring solution for waste management. The detector identifies bins/containers and recognizes two critical situations: (1) overflow, when trash exceeds the container capacity and spills out, and (2) litter, when garbage is lying on the floor near the bin. The goal is to automatically notify responsible teams so bins can be emptied quickly, reducing hygiene risks and keeping public areas clean. The model was trained as a custom YOLO detector and achieved solid real-world performance.",
+  image: "/lovable-uploads/garbage_detection_imgs/garbage-3.jpg",
+  technologies: ["Python", "YOLO", "OpenCV", "Real-time Monitoring"],
+  demoUrl: "",
+  hasLiveDemo: false,
+  category: "Computer Vision",
+  accuracy: "Decent accuracy (custom YOLO detector)",
+  dataset: "Custom garbage bin / overflow / litter dataset",
+  modelType: "YOLO (custom object detector)",
 }
 
 ];

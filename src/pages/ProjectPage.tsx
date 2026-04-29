@@ -29,6 +29,15 @@ const ProjectPage = () => {
   const longDescription = project ? t(`projectList.${project.id}.longDescription`, project.longDescription ?? "") : "";
   const categoryKey = project ? CATEGORY_KEY[project.category] : "";
   const categoryLabel = categoryKey ? t(`categories.${categoryKey}`) : (project?.category ?? "");
+  const garbageDemoImages =
+    project?.id === 18
+      ? [
+          "/lovable-uploads/garbage_detection_imgs/garbage-1.jpg",
+          "/lovable-uploads/garbage_detection_imgs/garbage-2.jpg",
+          "/lovable-uploads/garbage_detection_imgs/garbage-3.jpg",
+          "/lovable-uploads/garbage_detection_imgs/garbage-4.jpg",
+        ]
+      : [];
 
   if (!project) {
     return (
@@ -241,6 +250,54 @@ const ProjectPage = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Demo Images (Garbage project) */}
+            {garbageDemoImages.length > 0 && (
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode 
+                  ? 'bg-slate-800 border-slate-700' 
+                  : 'bg-white border-gray-200'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>{t("projectPage.demoImages")}</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    {t("projectPage.demoImagesSubtitle")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {garbageDemoImages.map((src) => (
+                      <a
+                        key={src}
+                        href={src}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group"
+                      >
+                        <div
+                          className={`w-full overflow-hidden rounded-lg border transition-transform duration-200 group-hover:scale-[1.01] ${
+                            isDarkMode ? "border-slate-700" : "border-gray-200"
+                          }`}
+                        >
+                          <div className="aspect-video">
+                            <img
+                              src={src}
+                              alt="Garbage detection demo result"
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Demo Video */}

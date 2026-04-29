@@ -135,6 +135,16 @@ const resources = {
           description: "Computer vision system for real-time road traffic analysis: vehicle detection, counting, flow estimation, and congestion monitoring from traffic camera feeds for smart city and traffic management.",
           longDescription: "An AI-powered pipeline that analyzes road traffic using computer vision. The system processes live or recorded traffic camera footage to detect and count vehicles, estimate traffic flow, and monitor congestion. Built for smart city applications and traffic management, it can support decisions on signal timing, incident detection, and infrastructure planning. Uses deep learning models for robust vehicle detection and tracking across varying lighting and weather conditions.",
         },
+        17: {
+          title: "Illegal Parking Detection (Plate + Zone + Time)",
+          description: "Real-time system that tracks vehicles, detects license plates, recognizes Uzbek plate text, and flags illegal parking when a vehicle stays inside a defined no-parking zone longer than a time threshold.",
+          longDescription: "An end-to-end illegal parking detection pipeline built for real-world surveillance cameras. Vehicles are detected and tracked across frames, while a custom YOLO plate detector localizes license plates. A dedicated Uzbek plate recognition model reads the plate text with high accuracy. Polygon zones define parking/no-parking areas, and a timer-based rule triggers an illegal parking event when a tracked vehicle remains in a restricted zone beyond the configured duration.",
+        },
+        18: {
+          title: "Garbage Overflow & Litter Detection",
+          description: "Custom YOLO model that detects garbage bins, overflowed containers, and trash on the ground to help prevent long-lasting overflow situations and improve city cleanliness operations.",
+          longDescription: "A computer vision monitoring solution for waste management. The detector identifies bins/containers and recognizes two critical situations: (1) overflow, when trash exceeds the container capacity and spills out, and (2) litter, when garbage is lying on the floor near the bin. The goal is to automatically notify responsible teams so bins can be emptied quickly, reducing hygiene risks and keeping public areas clean.",
+        },
       },
       projectCard: {
         tryDemo: "Try Demo",
@@ -151,6 +161,8 @@ const resources = {
         technologiesUsed: "Technologies Used:",
         demoVideo: "Demo Video",
         demoVideoSubtitle: "Watch how this model works in practice",
+        demoImages: "Demonstration Images",
+        demoImagesSubtitle: "Example frames showing detections and results",
         resultsTitle: "Model Performance Results",
         resultsCar: "Real vehicle model classification results with confidence scores",
         resultsGender: "Real gender classification results with confidence scores",
@@ -339,6 +351,16 @@ const resources = {
           description: "Система компьютерного зрения для анализа дорожного движения в реальном времени: детекция и подсчет транспорта, оценка потока и контроль загруженности по видеопотоку с камер.",
           longDescription: "AI-пайплайн для анализа дорожного трафика по live и архивному видеопотоку с камер. Система обнаруживает и считает транспорт, оценивает поток и фиксирует пробки. Решение подходит для задач умного города и управления дорожной инфраструктурой.",
         },
+        17: {
+          title: "Детекция незаконной парковки (номер + зона + время)",
+          description: "Система в реальном времени: трекинг автомобилей, детекция номерных знаков, распознавание текста узбекских номеров и фиксация нарушения, если машина находится в запрещенной зоне дольше заданного времени.",
+          longDescription: "Полный пайплайн для камер наблюдения: детекция и трекинг автомобилей по кадрам, пользовательский YOLO-детектор номерных знаков и отдельная модель распознавания узбекских номеров с высокой точностью. Полигональные зоны задают парковочные/запрещенные участки, а таймерное правило фиксирует незаконную парковку, когда автомобиль задерживается в запрещенной зоне сверх порога.",
+        },
+        18: {
+          title: "Детекция переполнения контейнеров и мусора на земле",
+          description: "Пользовательская YOLO-модель, которая распознает контейнеры, переполнение (overflow) и мусор на полу, чтобы вовремя реагировать и поддерживать чистоту.",
+          longDescription: "Решение для мониторинга вывозa мусора: детектор находит контейнеры и выявляет два ключевых состояния — (1) overflow, когда мусор вываливается из контейнера, и (2) litter, когда мусор лежит на земле рядом. Цель — автоматически информировать ответственные службы, чтобы контейнеры вовремя очищались и переполнение не оставалось надолго.",
+        },
       },
       projectCard: {
         tryDemo: "Демо",
@@ -355,6 +377,8 @@ const resources = {
         technologiesUsed: "Технологии:",
         demoVideo: "Демо-видео",
         demoVideoSubtitle: "Посмотрите, как модель работает на практике",
+        demoImages: "Демонстрационные изображения",
+        demoImagesSubtitle: "Примеры кадров с детекцией и результатами",
         resultsTitle: "Результаты модели",
         resultsCar: "Реальные результаты классификации моделей авто с вероятностями",
         resultsGender: "Реальные результаты классификации пола с вероятностями",
@@ -543,6 +567,16 @@ const resources = {
           description: "Real vaqtli yo'l harakati tahlili uchun computer vision tizimi: transportni aniqlash va sanash, oqimni baholash hamda tirbandlik monitoringi.",
           longDescription: "AI asosidagi pipeline yo'l kamerasi videolarini qayta ishlaydi: transport vositalarini aniqlaydi, sonini hisoblaydi, oqim va tirbandlik holatini tahlil qiladi. Yechim smart city va trafik boshqaruvi vazifalariga mos keladi.",
         },
+        17: {
+          title: "Noqonuniy to'xtashni aniqlash (raqam + zona + vaqt)",
+          description: "Real vaqtli tizim: transportni kuzatadi, davlat raqamini aniqlaydi, o'zbek raqamlarini yuqori aniqlikda o'qiydi va mashina taqiqlangan zonada belgilangan vaqtdan ko'p tursa, noqonuniy to'xtash sifatida belgilaydi.",
+          longDescription: "Kuzatuv kameralariga mos end-to-end pipeline: transport vositalari aniqlanadi va tracking qilinadi, custom YOLO raqam detektori raqamni lokalizatsiya qiladi, alohida o'zbek raqamini tanish modeli matnni yuqori aniqlikda o'qiydi. Polygon zonalar parking/no-parking hududlarini belgilaydi, time-threshold qoidasi esa mashina taqiqlangan zonada uzoq qolsa, hodisani avtomatik qayd etadi.",
+        },
+        18: {
+          title: "Konteyner overflow va yerda yotgan chiqindini aniqlash",
+          description: "Custom YOLO modeli konteynerlarni, to'lib-toshgan holatni (overflow) va yerda yotgan chiqindini aniqlab, uzoq vaqt qolib ketgan overflow holatlarini oldini olishga yordam beradi.",
+          longDescription: "Chiqindi boshqaruvi uchun monitoring yechimi: detektor konteynerlarni topadi va 2 ta muhim holatni aniqlaydi — (1) overflow: chiqindi konteynerdan tashqariga toshib ketgan, (2) litter: konteyner yonida yerda yotgan chiqindi. Maqsad — mas'ul xodimlarni avtomatik xabardor qilish va konteynerlarni tezroq bo'shatish orqali tozalikni saqlash.",
+        },
       },
       projectCard: {
         tryDemo: "Demo",
@@ -559,6 +593,8 @@ const resources = {
         technologiesUsed: "Texnologiyalar:",
         demoVideo: "Demo video",
         demoVideoSubtitle: "Model amalda qanday ishlashini ko‘ring",
+        demoImages: "Namuna rasmlar",
+        demoImagesSubtitle: "Deteksiya va natijalarni ko‘rsatuvchi kadrlar",
         resultsTitle: "Model natijalari",
         resultsCar: "Avto modelini tasniflash natijalari (ishonchlilik bilan)",
         resultsGender: "Jinsni tasniflash natijalari (ishonchlilik bilan)",

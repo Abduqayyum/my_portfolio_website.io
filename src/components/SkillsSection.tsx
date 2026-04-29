@@ -2,6 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
+import { projects as projectsData } from "@/data/projects";
 
 interface SkillsSectionProps {
   isDarkMode: boolean;
@@ -82,11 +83,11 @@ const SkillsSection = ({ isDarkMode }: SkillsSectionProps) => {
       {/* Experience Stats */}
       <div className="mt-16 grid md:grid-cols-4 gap-8 text-center">
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-blue-400">2+</div>
+          <div className="text-4xl font-bold text-blue-400">3+</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.years")}</div>
         </div>
         <div className="space-y-2">
-          <div className="text-4xl font-bold text-purple-400">13</div>
+          <div className="text-4xl font-bold text-purple-400">{projectsData.length}</div>
           <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.projects")}</div>
         </div>
         <div className="space-y-2">
