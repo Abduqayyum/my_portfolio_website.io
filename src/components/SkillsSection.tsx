@@ -1,8 +1,9 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
 import { projects as projectsData } from "@/data/projects";
+import SectionHeading from "@/components/SectionHeading";
+import CornerFrame from "@/components/CornerFrame";
 
 interface SkillsSectionProps {
   isDarkMode: boolean;
@@ -11,65 +12,78 @@ interface SkillsSectionProps {
 const SkillsSection = ({ isDarkMode }: SkillsSectionProps) => {
   const { t } = useTranslation();
 
-  const skillCategories = [
+  const skillCategories: Array<{ title: string; skills: string[]; accent: "cyan" | "lime" | "amber" }> = [
     {
       title: t("skills.categories.ml"),
       skills: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "XGBoost", "LightGBM", "Random Forest"],
-      color: "bg-blue-600"
+      accent: "cyan",
     },
     {
       title: t("skills.categories.cv"),
       skills: ["OpenCV", "PIL", "YOLO", "ResNet", "CNN", "ViT", "Transformers", "MediaPipe", "Object Detection"],
-      color: "bg-purple-600"
+      accent: "lime",
     },
     {
       title: t("skills.categories.nlpSpeech"),
       skills: ["Whisper", "BERT", "GPT", "Transformers", "PaddleOCR", "OCR", "TimeSformer"],
-      color: "bg-green-600"
+      accent: "amber",
     },
     {
       title: t("skills.categories.dl"),
       skills: ["Neural Networks", "RNN", "LSTM", "GAN", "Transformer", "Fine-tuning", "Transfer Learning"],
-      color: "bg-orange-600"
+      accent: "cyan",
     },
     {
       title: t("skills.categories.backend"),
       skills: ["FastAPI", "Django", "MySQL", "PostgreSQL", "Docker", "Git", "MLflow"],
-      color: "bg-red-600"
+      accent: "amber",
     },
     {
       title: t("skills.categories.tools"),
       skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter", "Streamlit", "Hugging Face"],
-      color: "bg-pink-600"
-    }
+      accent: "lime",
+    },
+  ];
+
+  const accentDot: Record<string, string> = {
+    cyan: "bg-brand-1",
+    lime: "bg-brand-2",
+    amber: "bg-brand-3",
+  };
+
+  const stats = [
+    { value: "3+", label: t("skills.stats.years"), accent: "text-brand-1" },
+    { value: String(projectsData.length), label: t("skills.stats.projects"), accent: "text-brand-2" },
+    { value: "12+", label: t("skills.stats.models"), accent: "text-brand-3" },
+    { value: "95%", label: t("skills.stats.accuracy"), accent: "text-brand-1" },
   ];
 
   return (
     <div className="container mx-auto max-w-7xl">
-      <h2 className={`text-4xl font-bold text-center mb-12 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-        {t("skills.title")}
-      </h2>
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <SectionHeading index="04" kicker="SKILLS" title={t("skills.title")} isDarkMode={isDarkMode} />
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {skillCategories.map((category, index) => (
-          <Card 
-            key={category.title} 
-            className={`${isDarkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} hover:border-blue-500 transition-all duration-300 animate-fade-in`}
+          <Card
+            key={category.title}
+            className={`relative transition-all duration-300 animate-fade-in ${
+              isDarkMode ? "bg-white/5 border-white/10 hover:border-brand-1/40" : "bg-white border-black/10 hover:border-brand-1/40"
+            }`}
             style={{ animationDelay: `${index * 100}ms` }}
           >
             <CardHeader>
-              <CardTitle className={`${isDarkMode ? 'text-white' : 'text-black'} flex items-center`}>
-                <div className={`w-3 h-3 rounded-full ${category.color} mr-3`}></div>
+              <CardTitle className={`${isDarkMode ? "text-white" : "text-black"} flex items-center font-display`}>
+                <div className={`w-2.5 h-2.5 rounded-full ${accentDot[category.accent]} mr-3`}></div>
                 {category.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 font-mono text-xs">
                 {category.skills.map((skill) => (
-                  <Badge 
-                    key={skill} 
-                    variant="secondary" 
-                    className={`${isDarkMode ? 'bg-slate-700 text-slate-300 hover:bg-slate-600' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} transition-colors cursor-default`}
+                  <Badge
+                    key={skill}
+                    variant="secondary"
+                    className={`${isDarkMode ? "bg-white/5 text-slate-300 border border-white/10 hover:border-brand-1/40" : "bg-black/[0.03] text-gray-700 border border-black/10 hover:border-brand-1/40"} transition-colors cursor-default font-mono`}
                   >
                     {skill}
                   </Badge>
@@ -79,25 +93,16 @@ const SkillsSection = ({ isDarkMode }: SkillsSectionProps) => {
           </Card>
         ))}
       </div>
-      
+
       {/* Experience Stats */}
-      <div className="mt-16 grid md:grid-cols-4 gap-8 text-center">
-        <div className="space-y-2">
-          <div className="text-4xl font-bold text-blue-400">3+</div>
-          <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.years")}</div>
-        </div>
-        <div className="space-y-2">
-          <div className="text-4xl font-bold text-purple-400">{projectsData.length}</div>
-          <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.projects")}</div>
-        </div>
-        <div className="space-y-2">
-          <div className="text-4xl font-bold text-green-400">12+</div>
-          <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.models")}</div>
-        </div>
-        <div className="space-y-2">
-          <div className="text-4xl font-bold text-orange-400">95%</div>
-          <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{t("skills.stats.accuracy")}</div>
-        </div>
+      <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
+        {stats.map((stat) => (
+          <div key={stat.label} className={`relative space-y-2 rounded-lg border p-4 sm:p-6 ${isDarkMode ? "border-white/10 bg-white/5" : "border-black/10 bg-black/[0.02]"}`}>
+            <CornerFrame accent={stat.accent === "text-brand-2" ? "lime" : "cyan"} visible={false} />
+            <div className={`font-mono text-3xl sm:text-4xl font-bold ${stat.accent}`}>{stat.value}</div>
+            <div className={`text-xs sm:text-sm ${isDarkMode ? "text-slate-300" : "text-gray-700"}`}>{stat.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

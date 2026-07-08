@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import SectionHeading from "@/components/SectionHeading";
+import CornerFrame from "@/components/CornerFrame";
 
 interface StartupSectionProps {
   isDarkMode: boolean;
@@ -13,26 +15,21 @@ const StartupSection = ({ isDarkMode }: StartupSectionProps) => {
 
   return (
     <div className="container mx-auto max-w-5xl">
-      <h2
-        className={`text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 transition-colors duration-300 ${
-          isDarkMode ? "text-white" : "text-black"
-        }`}
-      >
-        {t("startup.title")}
-      </h2>
+      <SectionHeading index="03" kicker="STARTUP" title={t("startup.title")} isDarkMode={isDarkMode} />
 
       <Card
-        className={`transition-all duration-300 border shadow-xl ${
+        className={`relative transition-all duration-300 border shadow-xl group ${
           isDarkMode
-            ? "bg-slate-800/90 border-slate-700 hover:border-blue-500"
-            : "bg-white/90 border-gray-200 hover:border-blue-500"
+            ? "bg-white/5 border-white/10 hover:border-brand-1/50"
+            : "bg-white border-black/10 hover:border-brand-1/50"
         }`}
       >
+        <CornerFrame accent="cyan" visible={false} />
         <CardHeader>
           <div className="flex items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <Building2 className="h-6 w-6 text-blue-500" />
+                <Building2 className="h-6 w-6 text-brand-1" />
                 <CardTitle
                   className={`text-2xl transition-colors duration-300 ${
                     isDarkMode ? "text-white" : "text-black"
@@ -50,7 +47,7 @@ const StartupSection = ({ isDarkMode }: StartupSectionProps) => {
               </CardDescription>
             </div>
 
-            <Badge className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+            <Badge className="bg-brand-1 text-primary-foreground font-mono">
               {t("startup.badge")}
             </Badge>
           </div>
@@ -75,7 +72,7 @@ const StartupSection = ({ isDarkMode }: StartupSectionProps) => {
             <li>{t("startup.features.f3")}</li>
           </ul>
 
-          <Button asChild className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+          <Button asChild className="bg-brand-1 hover:bg-brand-1/90 text-primary-foreground">
             <a href="https://mizanpos.uz/" target="_blank" rel="noopener noreferrer">
               {t("startup.visit")}
               <ExternalLink className="ml-2 h-4 w-4" />
@@ -88,4 +85,3 @@ const StartupSection = ({ isDarkMode }: StartupSectionProps) => {
 };
 
 export default StartupSection;
-

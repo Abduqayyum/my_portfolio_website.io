@@ -25,11 +25,11 @@ const resources = {
       about: {
         title: "About Me",
         p1:
-          "I'm Abduqayum, a passionate Data Scientist working in the field of Computer Vision and Natural Language Processing. With more than 2 years of experience, I specialize in developing cutting-edge machine learning solutions and building intelligent systems.",
+          "I'm Abduqayum, a passionate Data Scientist working in the field of Computer Vision and Natural Language Processing. With more than 3 years of experience, I specialize in developing cutting-edge machine learning solutions and building intelligent systems.",
         p2:
           "Currently working at Smart Soft Development Company as a Data Scientist, I focus on transforming complex data into actionable insights through advanced CV and NLP techniques. I enjoy creating interactive demonstrations that showcase real-world AI applications.",
         badges: {
-          years: "3+ Years Experience",
+          years: "Years Experience",
           projects: "Projects",
           specialty: "CV & NLP Specialist",
         },
@@ -82,8 +82,8 @@ const resources = {
         },
         5: {
           title: "Uzbek License Plate Recognition",
-          description: "Fine-tuned PaddleOCR English model specifically for Uzbek license plates. Improved character recognition accuracy to 94% by handling O/0 confusion.",
-          longDescription: "OCR pipeline adapting PaddleOCR for Uzbek plates with custom post-processing to disambiguate similar characters (e.g., O vs 0).",
+          description: "Fine-tuned TrOCR model on a custom dataset of ~16k Uzbek license plate images. Achieved 96% training and 93% validation accuracy, recognizing both 8- and 9-character Uzbek plate formats.",
+          longDescription: "An OCR pipeline built by fine-tuning TrOCR (Transformer-based OCR) on a custom dataset of approximately 16,000 Uzbek license plate images. The model reached 96% accuracy on training data and 93% on validation data, and is able to correctly read both 8-character and 9-character Uzbek license plate formats, handling the variety of plate layouts used across the country.",
         },
         7: {
           title: "Active Liveness Detection",
@@ -107,8 +107,8 @@ const resources = {
         },
         11: {
           title: "Uzbek Speech-to-Text Model",
-          description: "Custom STT model trained by fine-tuning Whisper Medium on 600+ hours of Uzbek audio dataset. Achieved high accuracy with excellent WER metrics for Uzbek language.",
-          longDescription: "Advanced speech-to-text model specifically designed for the Uzbek language, built by fine-tuning OpenAI's Whisper Medium model on a comprehensive dataset of over 600 hours of Uzbek audio. The model demonstrates exceptional performance with a Word Error Rate (WER) of approximately 12% on unknown test data and a Character Error Rate (CER) of around 3%. This represents a significant advancement in Uzbek language processing capabilities, enabling accurate transcription across various speaking styles, accents, and audio qualities. The training process involved careful data curation, extensive audio preprocessing, and iterative fine-tuning to optimize performance for Uzbek phonetics and linguistic patterns.",
+          description: "Custom STT model trained by fine-tuning Whisper Medium on 780+ hours of Uzbek audio, with added call-center augmentation for robust performance on real-world telephone audio.",
+          longDescription: "Advanced speech-to-text model specifically designed for the Uzbek language, built by fine-tuning OpenAI's Whisper Medium model on ~780 hours of Uzbek audio (audiobooks, podcasts, and tech talks). To make the model practical for real-world telephone and call-center use, ~50% of training clips were augmented to simulate telephone narrowband audio (8 kHz codec, 300-3400 Hz band), background noise, light reverb, and gain variation. Anti-hallucination training with synthetic non-speech segments (empty labels) was also used to prevent the model from generating spurious text during silence. The model achieves strong WER results across benchmarks: 7.88% on FeruzaSpeech, 13.37% on Common Voice 17.0 (Uzbek), and 14.40% on FLEURS (Uzbek), making it well-suited for customer service, call-center, and general Uzbek transcription applications.",
         },
         12: {
           title: "Abandoned Object Detection",
@@ -145,18 +145,25 @@ const resources = {
           description: "Custom YOLO model that detects garbage bins, overflowed containers, and trash on the ground to help prevent long-lasting overflow situations and improve city cleanliness operations.",
           longDescription: "A computer vision monitoring solution for waste management. The detector identifies bins/containers and recognizes two critical situations: (1) overflow, when trash exceeds the container capacity and spills out, and (2) litter, when garbage is lying on the floor near the bin. The goal is to automatically notify responsible teams so bins can be emptied quickly, reducing hygiene risks and keeping public areas clean.",
         },
+        19: {
+          title: "AI Sidewalk Violation Detection System",
+          description: "Real-time YOLO-based system that tracks vehicles and pedestrians to detect vehicles that fail to yield to pedestrians in sidewalks or waiting zones, flagging violators and recognizing their license plates.",
+          longDescription: "A computer vision pipeline that uses YOLO for object detection and multi-object tracking to monitor both vehicle and pedestrian movement in real time. When a pedestrian is present in a sidewalk or designated waiting zone and a vehicle fails to yield, the vehicle is flagged as a violator. Once flagged, the vehicle's license plate is detected and passed to a separate recognition service for plate number extraction, enabling automated enforcement and traffic safety monitoring.",
+        },
+        20: {
+          title: "AI Audio Translator",
+          description: "Speech translation pipeline that transcribes audio using a custom fine-tuned Uzbek Whisper model or the default Whisper model for other languages, then translates the transcript into the target language using an LLM.",
+          longDescription: "An end-to-end audio translation system combining speech-to-text and LLM-based translation. For Uzbek audio, the pipeline uses the custom fine-tuned Uzbek Whisper model for accurate transcription; for all other languages, it falls back to the default OpenAI Whisper model. The resulting transcript is then passed to an LLM, which translates it into the desired target language, producing natural, context-aware translations rather than literal word-for-word conversions.",
+        },
       },
       projectCard: {
-        tryDemo: "Try Demo",
         viewDetails: "View Details",
-        liveDemo: "Live Demo",
       },
       projectPage: {
         notFoundTitle: "Project Not Found",
         backHome: "Back to Home",
         backPortfolio: "Back to Portfolio",
         stats: { accuracy: "Accuracy", dataset: "Dataset", modelType: "Model Type" },
-        actions: { liveDemo: "Live Demo" },
         overview: "Project Overview",
         technologiesUsed: "Technologies Used:",
         demoVideo: "Demo Video",
@@ -168,6 +175,12 @@ const resources = {
         resultsGender: "Real gender classification results with confidence scores",
         resultsAge: "Real age detection results with confidence scores",
         resultsColor: "Real vehicle color classification results with confidence scores",
+        resultsPlate: "Real license plate OCR predictions on test images (TrOCR)",
+        benchmarkTitle: "WER Benchmarks",
+        benchmarkSubtitle: "Word Error Rate on standard Uzbek test sets",
+        benchmarkDataset: "Dataset",
+        benchmarkSamples: "Test Samples",
+        benchmarkWer: "WER",
         audioExamples: "Audio Examples",
         audioExamplesSubtitle: "Listen to sample audio files and see how the model transcribes them",
         sample: "Sample",
@@ -244,11 +257,11 @@ const resources = {
       about: {
         title: "Обо мне",
         p1:
-          "Я Абдуқайюм — Data Scientist, работаю в области Computer Vision и Natural Language Processing. Более 2 лет опыта: разрабатываю современные ML-решения и создаю интеллектуальные системы.",
+          "Я Абдуқайюм — Data Scientist, работаю в области Computer Vision и Natural Language Processing. Более 3 лет опыта: разрабатываю современные ML-решения и создаю интеллектуальные системы.",
         p2:
           "Сейчас я Data Scientist в Smart Soft Development Company: превращаю сложные данные в практические инсайты с помощью CV и NLP. Люблю делать интерактивные демонстрации реальных AI‑кейсов.",
         badges: {
-          years: "3+ года опыта",
+          years: "года опыта",
           projects: "Проектов",
           specialty: "CV и NLP",
         },
@@ -298,8 +311,8 @@ const resources = {
         },
         5: {
           title: "Распознавание узбекских номерных знаков",
-          description: "Дообученная англоязычная модель PaddleOCR для узбекских номерных знаков. Точность распознавания символов повышена до 94% за счет обработки путаницы O/0.",
-          longDescription: "OCR-пайплайн на базе PaddleOCR, адаптированный под узбекские номера, с постобработкой для различения похожих символов (например, O и 0).",
+          description: "Дообученная модель TrOCR на пользовательском датасете из ~16 тыс. изображений узбекских номеров. Точность 96% на обучении и 93% на валидации, распознает как 8-, так и 9-значные форматы номеров.",
+          longDescription: "OCR-пайплайн на базе дообученной TrOCR (Transformer-based OCR), обученной на пользовательском датасете из примерно 16 000 изображений узбекских номерных знаков. Модель достигла точности 96% на обучающих данных и 93% на валидации, и способна корректно распознавать как 8-значные, так и 9-значные форматы узбекских номеров, охватывая разнообразие форматов, используемых в стране.",
         },
         7: {
           title: "Активная проверка живости",
@@ -323,8 +336,8 @@ const resources = {
         },
         11: {
           title: "Узбекская модель Speech-to-Text",
-          description: "Пользовательская STT-модель, обученная через fine-tuning Whisper Medium на 600+ часах узбекского аудио. Достигнута высокая точность и хорошие WER-метрики для узбекского языка.",
-          longDescription: "Продвинутая модель преобразования речи в текст для узбекского языка, построенная на дообучении Whisper Medium от OpenAI на корпусе более 600 часов. На неизвестных тестовых данных показывает около 12% WER и 3% CER. Это заметно расширяет возможности обработки узбекской речи: модель стабильно работает на разных стилях речи, акцентах и качестве аудио.",
+          description: "Пользовательская STT-модель, обученная через fine-tuning Whisper Medium на 780+ часах узбекского аудио, с добавленной аугментацией под звонки call-центра для устойчивой работы с телефонным аудио.",
+          longDescription: "Продвинутая модель преобразования речи в текст для узбекского языка, построенная на дообучении Whisper Medium от OpenAI на ~780 часах узбекского аудио (аудиокниги, подкасты, техно-выступления). Чтобы модель хорошо работала с телефонным и call-центр аудио, ~50% обучающих клипов были аугментированы: телефонная узкополосная передача (8 кГц кодек, полоса 300-3400 Гц), фоновый шум, легкая реверберация и изменение усиления. Также использовалось anti-hallucination обучение на синтетических не-речевых сегментах с пустыми метками, чтобы модель не генерировала лишний текст в тишине. Модель показывает хорошие результаты WER: 7.88% на FeruzaSpeech, 13.37% на Common Voice 17.0 (узбекский) и 14.40% на FLEURS (узбекский), что делает её подходящей для задач call-центра, клиентского сервиса и общей транскрипции узбекской речи.",
         },
         12: {
           title: "Детекция оставленных предметов",
@@ -361,18 +374,25 @@ const resources = {
           description: "Пользовательская YOLO-модель, которая распознает контейнеры, переполнение (overflow) и мусор на полу, чтобы вовремя реагировать и поддерживать чистоту.",
           longDescription: "Решение для мониторинга вывозa мусора: детектор находит контейнеры и выявляет два ключевых состояния — (1) overflow, когда мусор вываливается из контейнера, и (2) litter, когда мусор лежит на земле рядом. Цель — автоматически информировать ответственные службы, чтобы контейнеры вовремя очищались и переполнение не оставалось надолго.",
         },
+        19: {
+          title: "Система обнаружения нарушений на тротуаре (AI)",
+          description: "Система реального времени на базе YOLO, которая отслеживает автомобили и пешеходов и фиксирует нарушения, когда транспорт не уступает пешеходу на тротуаре или в зоне ожидания, распознавая номерной знак нарушителя.",
+          longDescription: "Пайплайн компьютерного зрения на базе YOLO для детекции объектов и многообъектного трекинга, который отслеживает движение автомобилей и пешеходов в реальном времени. Если пешеход находится на тротуаре или в специальной зоне ожидания, а автомобиль не уступает ему дорогу, транспортное средство помечается как нарушитель. После этого его номерной знак определяется и передаётся в отдельный сервис распознавания номеров.",
+        },
+        20: {
+          title: "AI Аудио-переводчик",
+          description: "Пайплайн перевода речи, который транскрибирует аудио с помощью дообученной узбекской модели Whisper или стандартной модели Whisper для других языков, а затем переводит транскрипт на нужный язык с помощью LLM.",
+          longDescription: "Комплексная система перевода аудио, объединяющая распознавание речи и перевод на основе LLM. Для узбекского аудио используется дообученная узбекская модель Whisper для точной транскрипции; для всех остальных языков используется стандартная модель Whisper от OpenAI. Полученный текст передаётся в LLM, которая переводит его на нужный целевой язык, обеспечивая естественный, контекстно-зависимый перевод, а не дословный.",
+        },
       },
       projectCard: {
-        tryDemo: "Демо",
         viewDetails: "Подробнее",
-        liveDemo: "Онлайн-демо",
       },
       projectPage: {
         notFoundTitle: "Проект не найден",
         backHome: "На главную",
         backPortfolio: "Назад к портфолио",
         stats: { accuracy: "Точность", dataset: "Набор данных", modelType: "Тип модели" },
-        actions: { liveDemo: "Онлайн-демо" },
         overview: "Обзор проекта",
         technologiesUsed: "Технологии:",
         demoVideo: "Демо-видео",
@@ -384,6 +404,12 @@ const resources = {
         resultsGender: "Реальные результаты классификации пола с вероятностями",
         resultsAge: "Реальные результаты определения возраста с вероятностями",
         resultsColor: "Реальные результаты распознавания цвета авто с вероятностями",
+        resultsPlate: "Реальные результаты распознавания номерных знаков (TrOCR) на тестовых изображениях",
+        benchmarkTitle: "WER на бенчмарках",
+        benchmarkSubtitle: "Word Error Rate на стандартных узбекских тестовых наборах",
+        benchmarkDataset: "Датасет",
+        benchmarkSamples: "Тестовых примеров",
+        benchmarkWer: "WER",
         audioExamples: "Аудио примеры",
         audioExamplesSubtitle: "Послушайте аудио и посмотрите расшифровку",
         sample: "Пример",
@@ -464,7 +490,7 @@ const resources = {
         p2:
           "Hozir Smart Soft Development Company’da Data Scientist sifatida CV va NLP yordamida murakkab ma’lumotlardan amaliy insightlar chiqaraman. Real AI ilovalarini ko‘rsatadigan interaktiv demolar yaratishni yoqtiraman.",
         badges: {
-          years: "3+ yil tajriba",
+          years: "yil tajriba",
           projects: "Loyiha",
           specialty: "CV & NLP",
         },
@@ -514,8 +540,8 @@ const resources = {
         },
         5: {
           title: "O'zbek davlat raqamlarini tanish",
-          description: "PaddleOCR'ning ingliz modeli O'zbek davlat raqamlari uchun moslashtirildi. O/0 chalkashligini bartaraf etish orqali belgi aniqligi 94% ga ko'tarildi.",
-          longDescription: "O'zbek davlat raqamlari uchun PaddleOCR asosidagi OCR pipeline. O'xshash belgilarni (masalan, O va 0) ajratish uchun maxsus post-processing qoidalari qo'shilgan.",
+          description: "TrOCR modeli ~16 ming o'zbek davlat raqami tasviridan iborat custom datasetda fine-tune qilindi. Trening aniqligi 96%, validatsiya aniqligi 93%, ham 8 ham 9 belgili o'zbek raqam formatlarini tanib oladi.",
+          longDescription: "TrOCR (Transformer asosidagi OCR) modelini ~16 000 ta o'zbek davlat raqami tasviridan iborat custom datasetda fine-tune qilish orqali qurilgan OCR pipeline. Model trening ma'lumotlarida 96%, validatsiya ma'lumotlarida esa 93% aniqlikka erishdi va mamlakatda qo'llaniladigan turli xil raqam formatlariga mos, ham 8 belgili, ham 9 belgili o'zbek davlat raqamlarini to'g'ri o'qiy oladi.",
         },
         7: {
           title: "Faol liveness aniqlash",
@@ -539,8 +565,8 @@ const resources = {
         },
         11: {
           title: "O'zbekcha Speech-to-Text modeli",
-          description: "Whisper Medium modeli 600+ soatlik o'zbek audiosida fine-tune qilinib, o'zbek tili uchun yuqori aniqlik va kuchli WER natijalarini berdi.",
-          longDescription: "O'zbek tili uchun maxsus speech-to-text model. Whisper Medium 600+ soat audio korpusida o'qitilgan. Noma'lum testlarda taxminan WER 12% va CER 3% ko'rsatkichiga erishilgan. Model turli nutq uslublari va audio sifati sharoitida barqaror transkripsiya beradi.",
+          description: "Whisper Medium modeli 780+ soatlik o'zbek audiosida fine-tune qilinib, real hayotdagi telefon audiosi bilan ishlash uchun call-center augmentatsiyasi qo'shildi.",
+          longDescription: "O'zbek tili uchun maxsus speech-to-text model. OpenAI'ning Whisper Medium modeli ~780 soat o'zbek audiosi (audiokitoblar, podkastlar, tex-nutqlar) asosida fine-tune qilingan. Modelni telefon va call-center audiosida ishonchli ishlashi uchun treningdagi kliplarning ~50% qismi maxsus augmentatsiya qilindi: telefon tor-polosali audio (8 kHz kodek, 300-3400 Hz diapazon), fon shovqini, yengil reverb va gain o'zgarishi. Shuningdek, tinch joylarda bo'sh matn generatsiya qilib yubormasligi uchun sintetik nutqsiz segmentlar bilan anti-hallucination trening o'tkazilgan. Model turli benchmarklarda kuchli WER natijalarini ko'rsatadi: FeruzaSpeech'da 7.88%, Common Voice 17.0 (o'zbekcha)da 13.37%, FLEURS (o'zbekcha)da 14.40%. Bu uni call-center, mijozlarga xizmat ko'rsatish va umumiy o'zbekcha transkripsiya vazifalari uchun mos qiladi.",
         },
         12: {
           title: "Qoldirib ketilgan buyumni aniqlash",
@@ -577,18 +603,25 @@ const resources = {
           description: "Custom YOLO modeli konteynerlarni, to'lib-toshgan holatni (overflow) va yerda yotgan chiqindini aniqlab, uzoq vaqt qolib ketgan overflow holatlarini oldini olishga yordam beradi.",
           longDescription: "Chiqindi boshqaruvi uchun monitoring yechimi: detektor konteynerlarni topadi va 2 ta muhim holatni aniqlaydi — (1) overflow: chiqindi konteynerdan tashqariga toshib ketgan, (2) litter: konteyner yonida yerda yotgan chiqindi. Maqsad — mas'ul xodimlarni avtomatik xabardor qilish va konteynerlarni tezroq bo'shatish orqali tozalikni saqlash.",
         },
+        19: {
+          title: "AI Piyodalar yo'lida qoidabuzarlikni aniqlash tizimi",
+          description: "YOLO asosidagi real vaqtli tizim avtomobil va piyodalar harakatini kuzatib, piyoda oldida yo'l bermagan mashinalarni aniqlaydi va uning davlat raqamini tanib oladi.",
+          longDescription: "YOLO orqali obyekt aniqlash va ko'p-obyektli tracking yordamida avtomobil va piyodalar harakati real vaqtda kuzatib boriladi. Agar piyoda trotuar yoki maxsus kutish zonasida bo'lsa-yu, mashina unga yo'l bermasa, o'sha mashina qoidabuzar sifatida belgilanadi. Keyin uning davlat raqami aniqlanib, alohida tanish xizmatiga yuboriladi.",
+        },
+        20: {
+          title: "AI Audio tarjimon",
+          description: "O'zim fine-tune qilgan o'zbekcha Whisper modeli yoki boshqa tillar uchun standart Whisper modeli orqali audio transkripsiya qiladigan, so'ngra LLM yordamida tarjima qiladigan pipeline.",
+          longDescription: "Nutqni tanish va LLM asosidagi tarjimani birlashtirgan end-to-end audio tarjima tizimi. O'zbekcha audio uchun maxsus fine-tune qilingan o'zbek Whisper modeli aniq transkripsiya qiladi; boshqa barcha tillar uchun standart OpenAI Whisper modeli ishlatiladi. Olingan matn keyin LLM'ga uzatiladi, u matnni kerakli tilga tabiiy va kontekstga mos tarzda tarjima qiladi (so'zma-so'z emas).",
+        },
       },
       projectCard: {
-        tryDemo: "Demo",
         viewDetails: "Batafsil",
-        liveDemo: "Jonli demo",
       },
       projectPage: {
         notFoundTitle: "Loyiha topilmadi",
         backHome: "Bosh sahifaga",
         backPortfolio: "Portfolioga qaytish",
         stats: { accuracy: "Aniqlik", dataset: "Ma'lumotlar to'plami", modelType: "Model turi" },
-        actions: { liveDemo: "Jonli demo" },
         overview: "Loyiha haqida",
         technologiesUsed: "Texnologiyalar:",
         demoVideo: "Demo video",
@@ -600,6 +633,12 @@ const resources = {
         resultsGender: "Jinsni tasniflash natijalari (ishonchlilik bilan)",
         resultsAge: "Yoshni aniqlash natijalari (ishonchlilik bilan)",
         resultsColor: "Avto rangini aniqlash natijalari (ishonchlilik bilan)",
+        resultsPlate: "Test rasmlarida davlat raqamini aniqlash natijalari (TrOCR)",
+        benchmarkTitle: "WER benchmarklari",
+        benchmarkSubtitle: "Standart o'zbekcha test to'plamlarida Word Error Rate",
+        benchmarkDataset: "Dataset",
+        benchmarkSamples: "Test namunalari",
+        benchmarkWer: "WER",
         audioExamples: "Audio misollar",
         audioExamplesSubtitle: "Audio namunalarni tinglang va transkripsiyani ko‘ring",
         sample: "Namuna",

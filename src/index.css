@@ -6,91 +6,86 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Vision HUD — light mode: cool paper background, deep ink text */
+    --background: 210 25% 97%;
+    --foreground: 222 47% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 189 88% 34%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 22% 93%;
+    --secondary-foreground: 222 40% 14%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 22% 93%;
+    --muted-foreground: 215 14% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 22% 93%;
+    --accent-foreground: 222 40% 14%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 18% 87%;
+    --input: 210 18% 87%;
+    --ring: 189 88% 34%;
 
     --radius: 0.5rem;
 
-    /* Brand accents (AI/portfolio look) */
-    --brand-1: 214 100% 60%; /* blue */
-    --brand-2: 173 80% 45%;  /* teal */
-    --brand-3: 259 85% 65%;  /* violet */
+    /* Brand accents — CV/HUD palette: cyan (scan), lime (detection), amber (flagged) */
+    --brand-1: 191 90% 38%;  /* cyan */
+    --brand-2: 142 60% 32%;  /* detection green */
+    --brand-3: 32 90% 42%;   /* amber */
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Vision HUD — dark mode: near-black, phosphor accents */
+    --background: 222 34% 5%;
+    --foreground: 210 30% 96%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 30% 8%;
+    --card-foreground: 210 30% 96%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 30% 8%;
+    --popover-foreground: 210 30% 96%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 189 94% 55%;
+    --primary-foreground: 222 47% 6%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 222 24% 14%;
+    --secondary-foreground: 210 25% 92%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 222 22% 13%;
+    --muted-foreground: 215 15% 62%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 222 24% 14%;
+    --accent-foreground: 210 25% 92%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 222 20% 18%;
+    --input: 222 20% 18%;
+    --ring: 189 94% 55%;
 
-    /* Slightly brighter accents in dark mode */
-    --brand-1: 214 100% 68%;
-    --brand-2: 173 85% 52%;
-    --brand-3: 259 90% 72%;
+    /* Brighter phosphor accents in dark mode */
+    --brand-1: 189 94% 55%;  /* cyan scanline */
+    --brand-2: 142 76% 52%;  /* detection-box green */
+    --brand-3: 38 92% 58%;   /* amber flag */
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -113,17 +108,21 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     text-rendering: geometricPrecision;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
 }
 
 @layer utilities {
   .bg-aurora {
     background-image:
-      radial-gradient(900px circle at 10% 10%, hsl(var(--brand-1) / 0.28), transparent 55%),
-      radial-gradient(800px circle at 90% 30%, hsl(var(--brand-2) / 0.22), transparent 60%),
-      radial-gradient(700px circle at 50% 90%, hsl(var(--brand-3) / 0.20), transparent 62%);
+      radial-gradient(900px circle at 12% 8%, hsl(var(--brand-1) / 0.20), transparent 55%),
+      radial-gradient(800px circle at 88% 28%, hsl(var(--brand-2) / 0.14), transparent 60%);
   }
 
   .bg-grid {
@@ -139,5 +138,31 @@
     background-size: 180px 180px;
     mix-blend-mode: overlay;
     pointer-events: none;
+  }
+
+  /* HUD scanline sweep — a moving beam used inside relative/overflow-hidden containers */
+  .hud-scanline {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hud-scanline::before {
+    content: "";
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    height: 1.5px;
+    background: linear-gradient(to right, transparent, hsl(var(--brand-1) / 0.9), transparent);
+    box-shadow: 0 0 14px hsl(var(--brand-1) / 0.85);
+    animation: scan-y 4s linear infinite;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px hsl(var(--brand-1) / 0.35);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 0 1px hsl(var(--brand-1) / 0.25), 0 0 30px hsl(var(--brand-1) / 0.15);
   }
 }

@@ -18,7 +18,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['"Inter"', 'system-ui', 'sans-serif'],
+				display: ['"Space Grotesk"', '"Inter"', 'system-ui', 'sans-serif'],
+				mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+			},
 			colors: {
+				brand: {
+					1: 'hsl(var(--brand-1))',
+					2: 'hsl(var(--brand-2))',
+					3: 'hsl(var(--brand-3))',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -82,6 +92,20 @@ export default {
 					"50%": { transform: "translate3d(8%, 6%, 0) scale(1.05)" },
 					"100%": { transform: "translate3d(-8%, -6%, 0) scale(1)" }
 				},
+				"bracket-in": {
+					"0%": { opacity: "0", transform: "scale(0.92)" },
+					"100%": { opacity: "1", transform: "scale(1)" }
+				},
+				"scan-y": {
+					"0%": { transform: "translateY(-10%)", opacity: "0" },
+					"10%": { opacity: "1" },
+					"90%": { opacity: "1" },
+					"100%": { transform: "translateY(110%)", opacity: "0" }
+				},
+				blink: {
+					"0%, 100%": { opacity: "1" },
+					"50%": { opacity: "0" }
+				},
 				'accordion-down': {
 					from: {
 						height: '0'
@@ -104,7 +128,10 @@ export default {
 				"subtle-pulse": "subtle-pulse 3.5s ease-in-out infinite",
 				aurora: "aurora 14s ease-in-out infinite",
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				"bracket-in": "bracket-in 0.4s ease-out both",
+				"scan-y": "scan-y 4s linear infinite",
+				blink: "blink 1.1s step-end infinite"
 			}
 		}
 	},

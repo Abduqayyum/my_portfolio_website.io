@@ -7,7 +7,6 @@ export type Project = {
   image: string;
   technologies: string[];
   demoUrl?: string;
-  hasLiveDemo: boolean;
   category: string;
   accuracy?: string;
   dataset?: string;
@@ -27,7 +26,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "ViT", "Transformers", "PyTorch"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-Car-Model-Recognition",
-    hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "98%",
     dataset: "Custom Uzbek car models dataset",
@@ -43,7 +41,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "ViT", "Transformers", "PyTorch"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Vehicle-Color-Recognition-Model",
-    hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "95%",
     dataset: "Custom color-labeled vehicle dataset",
@@ -59,7 +56,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
-    hasLiveDemo: false,
     category: "Computer Vision",
     accuracy: "95%",
     dataset: "Open‑source gender-labeled face datasets (~20k images)",
@@ -75,7 +71,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "TensorFlow", "Keras", "OpenCV"],
     demoUrl: "",
-    hasLiveDemo: false,
     category: "Computer Vision",
     dataset: "Open‑source age‑labeled face datasets",
     modelType: "VGG (fine‑tuned)",
@@ -85,17 +80,16 @@ export const projects: Project[] = [
     id: 5,
     title: "Uzbek License Plate Recognition",
     description:
-      "Fine-tuned PaddleOCR English model specifically for Uzbek license plates. Improved character recognition accuracy to 94% by handling O/0 confusion.",
+      "Fine-tuned TrOCR model on a custom dataset of ~16k Uzbek license plate images. Achieved 96% training and 93% validation accuracy, recognizing both 8- and 9-character Uzbek plate formats.",
     longDescription:
-      "OCR pipeline adapting PaddleOCR for Uzbek plates with custom post-processing to disambiguate similar characters (e.g., O vs 0).",
+      "An OCR pipeline built by fine-tuning TrOCR (Transformer-based OCR) on a custom dataset of approximately 16,000 Uzbek license plate images. The model reached 96% accuracy on training data and 93% on validation data, and is able to correctly read both 8-character and 9-character Uzbek license plate formats, handling the variety of plate layouts used across the country.",
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
-    technologies: ["Python", "PaddleOCR", "OpenCV", "OCR"],
+    technologies: ["Python", "TrOCR", "Transformers", "PyTorch", "OCR"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/Uzbek-License-Plate-Recognition-Model",
-    hasLiveDemo: true,
     category: "OCR/NLP",
-    accuracy: "94%",
-    dataset: "Custom Uzbek license plate dataset",
-    modelType: "PaddleOCR (fine-tuned)"
+    accuracy: "96% (training), 93% (validation)",
+    dataset: "Custom Uzbek license plate dataset (~16k images)",
+    modelType: "TrOCR (fine-tuned)"
   },
   // {
   //   id: 6,
@@ -122,7 +116,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Mediapipe", "Random Forest", "OpenCV"],
     demoUrl: "",
-    hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
     videoUrl: "https://www.youtube.com/embed/nIMXNp0Xb4c",
@@ -140,7 +133,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "scikit-learn", "OpenCV", "Machine Learning"],
     demoUrl: "",
-    hasLiveDemo: true,
     category: "Computer Vision",
     accuracy: "96%",
     dataset: "Multiple face datasets (configurable per deployment)",
@@ -156,7 +148,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Transformers", "TimeSformer", "Video Analysis"],
     demoUrl: "",
-    hasLiveDemo: true,
     category: "Video Analysis",
     demoVideo: true,
     videoUrl: "https://player.vimeo.com/video/1110664534",
@@ -174,7 +165,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "OpenCV", "YOLO", "Real-time Processing"],
     demoUrl: "",
-    hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
     videoUrl: "https://www.youtube.com/embed/d8nuUv0gHug",
@@ -186,17 +176,16 @@ export const projects: Project[] = [
     id: 11,
     title: "Uzbek Speech-to-Text Model",
     description:
-      "Custom STT model trained by fine-tuning Whisper Medium on 600+ hours of Uzbek audio dataset. Achieved high accuracy with excellent WER metrics for Uzbek language.",
+      "Custom STT model trained by fine-tuning Whisper Medium on 780+ hours of Uzbek audio, with added call-center augmentation for robust performance on real-world telephone audio.",
     longDescription:
-      "Advanced speech-to-text model specifically designed for the Uzbek language, built by fine-tuning OpenAI's Whisper Medium model on a comprehensive dataset of over 600 hours of Uzbek audio. The model demonstrates exceptional performance with a Word Error Rate (WER) of approximately 12% on unknown test data and a Character Error Rate (CER) of around 3%. This represents a significant advancement in Uzbek language processing capabilities, enabling accurate transcription across various speaking styles, accents, and audio qualities. The training process involved careful data curation, extensive audio preprocessing, and iterative fine-tuning to optimize performance for Uzbek phonetics and linguistic patterns.",
+      "Advanced speech-to-text model specifically designed for the Uzbek language, built by fine-tuning OpenAI's Whisper Medium model on ~780 hours of Uzbek audio (audiobooks, podcasts, and tech talks). To make the model practical for real-world telephone and call-center use, ~50% of training clips were augmented to simulate telephone narrowband audio (8 kHz codec, 300-3400 Hz band), background noise, light reverb, and gain variation. Anti-hallucination training with synthetic non-speech segments (empty labels) was also used to prevent the model from generating spurious text during silence. The model achieves strong WER results across benchmarks: 7.88% on FeruzaSpeech, 13.37% on Common Voice 17.0 (Uzbek), and 14.40% on FLEURS (Uzbek), making it well-suited for customer service, call-center, and general Uzbek transcription applications.",
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "Whisper", "Transformers", "Audio Processing"],
     demoUrl: "https://huggingface.co/spaces/Abduqayum/uzbek-stt-model",
-    hasLiveDemo: true,
     category: "Speech/NLP",
-    accuracy: "WER: 12%, CER: 3%",
-    dataset: "600+ hours of Uzbek audio dataset",
-    modelType: "Whisper Medium (fine-tuned)",
+    accuracy: "WER: 7.88% (FeruzaSpeech), 13.37% (Common Voice), 14.40% (FLEURS)",
+    dataset: "780+ hours of Uzbek audio (audiobooks, podcasts, tech talks) + call-center augmentation",
+    modelType: "Whisper Medium (fine-tuned, call-center optimized)",
   },
   {
     id: 12,
@@ -208,7 +197,6 @@ export const projects: Project[] = [
     image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
     technologies: ["Python", "YOLO", "OpenCV", "Real-time Processing"],
     demoUrl: "",
-    hasLiveDemo: true,
     category: "Computer Vision",
     demoVideo: true,
     videoUrl: "https://www.youtube.com/embed/vHi8Sb2d6v4",
@@ -226,7 +214,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "MediaPipe", "OpenCV", "Machine Learning"],
   demoUrl: "",
-  hasLiveDemo: true,
   category: "AI & Education",
   demoVideo: true,
   videoUrl: "https://www.youtube.com/embed/JMhSPKQMl_s",
@@ -244,7 +231,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "XTTS-v2", "TTS", "Audio Processing", "Deep Learning"],
   demoUrl: "",
-  hasLiveDemo: true,
   category: "Speech/NLP",
   demoVideo: true,
   videoUrl: "https://www.youtube.com/embed/T81CbYjXwTg",
@@ -262,7 +248,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "TimeSformer", "Transformers", "Video Analysis"],
   demoUrl: "https://www.youtube.com/watch?v=ZCVQq2x2c_Q",
-  hasLiveDemo: false,
   category: "Video Analysis",
   demoVideo: true,
   videoUrl: "https://www.youtube.com/embed/ZCVQq2x2c_Q",
@@ -280,7 +265,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "Computer Vision", "Deep Learning", "OpenCV"],
   demoUrl: "https://www.youtube.com/watch?v=F-DLN9_4gkA",
-  hasLiveDemo: false,
   category: "Computer Vision",
   demoVideo: true,
   videoUrl: "https://www.youtube.com/embed/F-DLN9_4gkA",
@@ -298,7 +282,6 @@ export const projects: Project[] = [
   image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "YOLO", "OpenCV", "Object Tracking", "OCR"],
   demoUrl: "https://www.youtube.com/watch?v=DpFsWbK1154",
-  hasLiveDemo: false,
   category: "Computer Vision",
   demoVideo: true,
   videoUrl: "https://www.youtube.com/embed/DpFsWbK1154",
@@ -313,14 +296,44 @@ export const projects: Project[] = [
     "Custom YOLO model that detects garbage bins, overflowed containers, and trash on the ground to help prevent long-lasting overflow situations and improve city cleanliness operations.",
   longDescription:
     "A computer vision monitoring solution for waste management. The detector identifies bins/containers and recognizes two critical situations: (1) overflow, when trash exceeds the container capacity and spills out, and (2) litter, when garbage is lying on the floor near the bin. The goal is to automatically notify responsible teams so bins can be emptied quickly, reducing hygiene risks and keeping public areas clean. The model was trained as a custom YOLO detector and achieved solid real-world performance.",
-  image: "/lovable-uploads/garbage_detection_imgs/garbage-3.jpg",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
   technologies: ["Python", "YOLO", "OpenCV", "Real-time Monitoring"],
   demoUrl: "",
-  hasLiveDemo: false,
   category: "Computer Vision",
   accuracy: "Decent accuracy (custom YOLO detector)",
   dataset: "Custom garbage bin / overflow / litter dataset",
   modelType: "YOLO (custom object detector)",
+},
+{
+  id: 19,
+  title: "AI Sidewalk Violation Detection System",
+  description:
+    "Real-time YOLO-based system that tracks vehicles and pedestrians to detect vehicles that fail to yield to pedestrians in sidewalks or waiting zones, flagging violators and recognizing their license plates.",
+  longDescription:
+    "A computer vision pipeline that uses YOLO for object detection and multi-object tracking to monitor both vehicle and pedestrian movement in real time. When a pedestrian is present in a sidewalk or designated waiting zone and a vehicle fails to yield, the vehicle is flagged as a violator. Once flagged, the vehicle's license plate is detected and passed to a separate recognition service for plate number extraction, enabling automated enforcement and traffic safety monitoring.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "YOLO", "OpenCV", "Object Tracking", "OCR"],
+  demoUrl: "https://www.youtube.com/watch?v=Tn9oRujQZIk",
+  category: "Computer Vision",
+  demoVideo: true,
+  videoUrl: "https://www.youtube.com/embed/Tn9oRujQZIk",
+  accuracy: "Real-time detection and tracking of vehicle yield violations",
+  dataset: "Custom vehicle & pedestrian tracking dataset",
+  modelType: "YOLO (detection + tracking) + plate OCR",
+},
+{
+  id: 20,
+  title: "AI Audio Translator",
+  description:
+    "Speech translation pipeline that transcribes audio using a custom fine-tuned Uzbek Whisper model or the default Whisper model for other languages, then translates the transcript into the target language using an LLM.",
+  longDescription:
+    "An end-to-end audio translation system combining speech-to-text and LLM-based translation. For Uzbek audio, the pipeline uses the custom fine-tuned Uzbek Whisper model for accurate transcription; for all other languages, it falls back to the default OpenAI Whisper model. The resulting transcript is then passed to an LLM, which translates it into the desired target language, producing natural, context-aware translations rather than literal word-for-word conversions.",
+  image: "/lovable-uploads/dd9ddeec-f92e-4646-bc5e-42b18f5249e1.png",
+  technologies: ["Python", "Whisper", "LLM", "Transformers", "Audio Processing"],
+  demoUrl: "",
+  category: "Speech/NLP",
+  accuracy: "Uses fine-tuned Uzbek STT for Uzbek, default Whisper for other languages",
+  modelType: "Whisper (custom Uzbek + default) + LLM translation",
 }
 
 ];

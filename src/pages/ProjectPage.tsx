@@ -1,12 +1,13 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Play, Sun, Moon } from "lucide-react";
+import { ArrowLeft, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { projects, type Project } from "@/data/projects";
 import { useTranslation } from "react-i18next";
+import CornerFrame from "@/components/CornerFrame";
 
 const CATEGORY_KEY: Record<string, string> = {
   "Computer Vision": "computerVision",
@@ -39,17 +40,24 @@ const ProjectPage = () => {
         ]
       : [];
 
+  const sttBenchmarks =
+    project?.id === 11
+      ? [
+          { dataset: "FeruzaSpeech", samples: 899, wer: "7.88%" },
+          { dataset: "Common Voice 17.0 (uz)", samples: 12348, wer: "13.37%" },
+          { dataset: "FLEURS (uz)", samples: 4165, wer: "14.40%" },
+        ]
+      : [];
+
   if (!project) {
     return (
-      <div className={`min-h-screen flex items-center justify-center transition-colors duration-300 ${
-        isDarkMode ? 'bg-black' : 'bg-white'
-      }`}>
+      <div className="min-h-screen flex items-center justify-center bg-background transition-colors duration-300">
         <div className="text-center">
           <h1 className={`text-4xl font-bold mb-4 transition-colors duration-300 ${
             isDarkMode ? 'text-white' : 'text-black'
           }`}>{t("projectPage.notFoundTitle")}</h1>
           <Link to="/">
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button className="bg-brand-1 hover:bg-brand-1/90 text-primary-foreground">
               <ArrowLeft className="mr-2 h-4 w-4" />
               {t("projectPage.backHome")}
             </Button>
@@ -59,33 +67,30 @@ const ProjectPage = () => {
     );
   }
 
-  // Removed in-page testing per requirements
-
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      isDarkMode ? 'bg-black' : 'bg-white'
-    }`}>
+    <div className="min-h-screen bg-background relative transition-colors duration-300">
+      <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none" />
       {/* Navigation */}
       <nav className={`backdrop-blur-md border-b transition-colors duration-300 ${
         isDarkMode 
-          ? 'bg-black/80 border-slate-700/30' 
-          : 'bg-white/80 border-gray-200/30'
+          ? 'bg-black/80 border-white/10' 
+          : 'bg-white/80 border-black/10'
       }`}>
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className={`flex items-center transition-colors ${
               isDarkMode 
-                ? 'text-white hover:text-blue-400' 
-                : 'text-black hover:text-blue-600'
+                ? 'text-white hover:text-brand-1' 
+                : 'text-black hover:text-brand-1'
             }`}>
               <ArrowLeft className="mr-2 h-5 w-5" />
               {t("projectPage.backPortfolio")}
             </Link>
             <div className="flex items-center space-x-4">
-              <div className={`text-2xl font-bold transition-colors duration-300 ${
+              <div className={`font-display text-2xl font-bold transition-colors duration-300 ${
                 isDarkMode ? 'text-white' : 'text-black'
               }`}>
-                DS<span className={isDarkMode ? 'text-blue-400' : 'text-blue-600'}>Portfolio</span>
+                <span className="text-brand-1">&lt;</span>DS<span className="text-brand-1">/&gt;</span>
               </div>
               <label className="sr-only" htmlFor="lang-project">
                 {t("language.label")}
@@ -110,8 +115,8 @@ const ProjectPage = () => {
                 onClick={toggleTheme}
                 className={`h-10 w-10 transition-colors ${
                   isDarkMode 
-                    ? 'text-slate-300 hover:text-blue-400' 
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? 'text-slate-300 hover:text-brand-1' 
+                    : 'text-gray-600 hover:text-brand-1'
                 }`}
               >
                 {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -125,7 +130,7 @@ const ProjectPage = () => {
         {/* Project Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
-            <Badge variant="secondary" className="bg-blue-600 text-white">
+            <Badge variant="secondary" className="bg-brand-1/10 text-brand-1 border border-brand-1/30 font-mono">
               {categoryLabel}
             </Badge>
             <h1 className={`text-4xl font-bold transition-colors duration-300 ${
@@ -140,9 +145,9 @@ const ProjectPage = () => {
           {(project.accuracy || project.dataset || project.modelType) && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
@@ -150,13 +155,26 @@ const ProjectPage = () => {
                   }`}>{t("projectPage.stats.accuracy")}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold text-green-400">{project.accuracy}</p>
+                  {sttBenchmarks.length > 0 ? (
+                    <div className="space-y-1.5">
+                      {sttBenchmarks.map((row) => (
+                        <div key={row.dataset} className="flex items-baseline justify-between gap-3">
+                          <span className={`text-sm truncate transition-colors duration-300 ${
+                            isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                          }`}>{row.dataset}</span>
+                          <span className="text-lg font-bold text-brand-2 whitespace-nowrap">{row.wer}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-2xl font-bold text-brand-2">{project.accuracy}</p>
+                  )}
                 </CardContent>
               </Card>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
@@ -170,9 +188,9 @@ const ProjectPage = () => {
                 </CardContent>
               </Card>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`text-lg transition-colors duration-300 ${
@@ -190,14 +208,6 @@ const ProjectPage = () => {
 
           {/* Action Buttons */}
           <div className="flex gap-4 mb-8">
-            {project.hasLiveDemo && project.demoUrl && (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
-                  <Play className="mr-2 h-4 w-4" />
-                  {t("projectPage.actions.liveDemo")}
-                </Button>
-              </a>
-            )}
             {/* {project.githubUrl && project.githubUrl !== "#" && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className={`transition-colors duration-300 ${
@@ -218,8 +228,8 @@ const ProjectPage = () => {
           <div>
             <Card className={`mb-8 transition-colors duration-300 ${
               isDarkMode 
-                ? 'bg-slate-800 border-slate-700' 
-                : 'bg-white border-gray-200'
+                ? 'bg-white/5 border-white/10' 
+                : 'bg-white border-black/10'
             }`}>
               <CardHeader>
                 <CardTitle className={`transition-colors duration-300 ${
@@ -254,9 +264,9 @@ const ProjectPage = () => {
             {/* Demo Images (Garbage project) */}
             {garbageDemoImages.length > 0 && (
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -280,7 +290,7 @@ const ProjectPage = () => {
                       >
                         <div
                           className={`w-full overflow-hidden rounded-lg border transition-transform duration-200 group-hover:scale-[1.01] ${
-                            isDarkMode ? "border-slate-700" : "border-gray-200"
+                            isDarkMode ? "border-white/10" : "border-black/10"
                           }`}
                         >
                           <div className="aspect-video">
@@ -304,9 +314,9 @@ const ProjectPage = () => {
           {hasVideo && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -319,7 +329,7 @@ const ProjectPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-video w-full overflow-hidden rounded-lg">
+                  <div className="relative aspect-video w-full overflow-hidden">
                     <iframe
                       src={project.videoUrl}
                       title={`${title} demo video`}
@@ -328,6 +338,7 @@ const ProjectPage = () => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
+                    <CornerFrame accent="cyan" />
                   </div>
                 </CardContent>
               </Card>
@@ -338,9 +349,9 @@ const ProjectPage = () => {
           {project.id === 1 && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -353,11 +364,14 @@ const ProjectPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img 
-                    src="/lovable-uploads/8ecf2722-6365-4366-a317-e546d720458e.png" 
-                    alt="Car model recognition predictions showing various vehicles with model classifications and probability scores" 
-                    className="w-full rounded-lg border"
-                  />
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/8ecf2722-6365-4366-a317-e546d720458e.png"
+                      alt="Car model recognition predictions showing various vehicles with model classifications and probability scores"
+                      className="w-full border"
+                    />
+                    <CornerFrame accent="lime" />
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -367,9 +381,9 @@ const ProjectPage = () => {
           {project.id === 3 && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -382,11 +396,14 @@ const ProjectPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img 
-                    src="/lovable-uploads/9e2b643d-89f9-48a0-9b84-130e8f7c9537.png" 
-                    alt="Gender detection predictions showing various faces with gender classifications and probability scores" 
-                    className="w-full rounded-lg border"
-                  />
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/9e2b643d-89f9-48a0-9b84-130e8f7c9537.png"
+                      alt="Gender detection predictions showing various faces with gender classifications and probability scores"
+                      className="w-full border"
+                    />
+                    <CornerFrame accent="lime" />
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -396,9 +413,9 @@ const ProjectPage = () => {
           {project.id === 4 && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -411,11 +428,46 @@ const ProjectPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img 
-                    src="/lovable-uploads/0f31b8a6-57e8-44f1-b644-02c5897bc4f4.png" 
-                    alt="Age detection predictions showing various faces with age range classifications and probability scores" 
-                    className="w-full rounded-lg border"
-                  />
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/0f31b8a6-57e8-44f1-b644-02c5897bc4f4.png"
+                      alt="Age detection predictions showing various faces with age range classifications and probability scores"
+                      className="w-full border"
+                    />
+                    <CornerFrame accent="lime" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* License Plate Recognition Results */}
+          {project.id === 5 && (
+            <div>
+              <Card className={`transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>{t("projectPage.resultsTitle")}</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    {t("projectPage.resultsPlate")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/predictions_test_images_seed2.png"
+                      alt="Uzbek license plate TrOCR predictions showing test images with predicted plate text"
+                      className="w-full border"
+                    />
+                    <CornerFrame accent="lime" />
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -425,9 +477,9 @@ const ProjectPage = () => {
           {project.id === 2 && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -440,11 +492,64 @@ const ProjectPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img 
-                    src="/lovable-uploads/a6872517-9e97-48fa-98d2-35cb3aa3451a.png" 
-                    alt="Vehicle color recognition model predictions showing various cars with color classifications and probability scores" 
-                    className="w-full rounded-lg border"
-                  />
+                  <div className="relative">
+                    <img
+                      src="/lovable-uploads/a6872517-9e97-48fa-98d2-35cb3aa3451a.png"
+                      alt="Vehicle color recognition model predictions showing various cars with color classifications and probability scores"
+                      className="w-full border"
+                    />
+                    <CornerFrame accent="lime" />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {/* WER Benchmarks for STT Model */}
+          {sttBenchmarks.length > 0 && (
+            <div>
+              <Card className={`mb-8 transition-colors duration-300 ${
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
+              }`}>
+                <CardHeader>
+                  <CardTitle className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-white' : 'text-black'
+                  }`}>{t("projectPage.benchmarkTitle")}</CardTitle>
+                  <CardDescription className={`transition-colors duration-300 ${
+                    isDarkMode ? 'text-slate-400' : 'text-gray-600'
+                  }`}>
+                    {t("projectPage.benchmarkSubtitle")}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm font-mono">
+                      <thead>
+                        <tr className={`border-b ${isDarkMode ? 'border-white/10' : 'border-black/10'}`}>
+                          <th className={`text-left py-2 pr-4 font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                            {t("projectPage.benchmarkDataset")}
+                          </th>
+                          <th className={`text-left py-2 pr-4 font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                            {t("projectPage.benchmarkSamples")}
+                          </th>
+                          <th className={`text-left py-2 font-semibold ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                            {t("projectPage.benchmarkWer")}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sttBenchmarks.map((row) => (
+                          <tr key={row.dataset} className={`border-b last:border-0 ${isDarkMode ? 'border-white/5' : 'border-black/5'}`}>
+                            <td className={`py-2 pr-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{row.dataset}</td>
+                            <td className={`py-2 pr-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{row.samples.toLocaleString()}</td>
+                            <td className="py-2 font-semibold text-brand-2">{row.wer}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -454,9 +559,9 @@ const ProjectPage = () => {
           {project.id === 11 && (
             <div>
               <Card className={`transition-colors duration-300 ${
-                isDarkMode 
-                  ? 'bg-slate-800 border-slate-700' 
-                  : 'bg-white border-gray-200'
+                isDarkMode
+                  ? 'bg-white/5 border-white/10'
+                  : 'bg-white border-black/10'
               }`}>
                 <CardHeader>
                   <CardTitle className={`transition-colors duration-300 ${
@@ -470,7 +575,7 @@ const ProjectPage = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
-                    <div className="border-l-4 border-blue-500 pl-4">
+                    <div className="border-l-4 border-brand-1 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 1: </h4>
@@ -485,7 +590,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-green-500 pl-4">
+                    <div className="border-l-4 border-brand-2 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 2: </h4>
@@ -500,7 +605,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-purple-500 pl-4">
+                    <div className="border-l-4 border-brand-3 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 3: </h4>
@@ -515,7 +620,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-red-500 pl-4">
+                    <div className="border-l-4 border-brand-1 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 4: </h4>
@@ -530,7 +635,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-yellow-500 pl-4">
+                    <div className="border-l-4 border-brand-2 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 5: </h4>
@@ -545,7 +650,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-indigo-500 pl-4">
+                    <div className="border-l-4 border-brand-3 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 6: </h4>
@@ -560,7 +665,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-pink-500 pl-4">
+                    <div className="border-l-4 border-brand-1 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 7: </h4>
@@ -575,7 +680,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-teal-500 pl-4">
+                    <div className="border-l-4 border-brand-2 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 8: </h4>
@@ -590,7 +695,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-orange-500 pl-4">
+                    <div className="border-l-4 border-brand-3 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 9: </h4>
@@ -605,7 +710,7 @@ const ProjectPage = () => {
                       </p>
                     </div>
 
-                    <div className="border-l-4 border-cyan-500 pl-4">
+                    <div className="border-l-4 border-brand-1 pl-4">
                       <h4 className={`font-semibold mb-2 transition-colors duration-300 ${
                         isDarkMode ? 'text-white' : 'text-black'
                       }`}>{t("projectPage.sample")} 10: </h4>

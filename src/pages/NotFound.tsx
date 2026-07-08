@@ -14,11 +14,13 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">{t("notFound.title")}</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
+      <div className="text-center relative z-10 px-4">
+        <div className="font-mono text-sm text-brand-2 mb-4">// ERROR — NO DETECTION</div>
+        <h1 className="font-display text-6xl sm:text-7xl font-bold mb-4 text-brand-1 text-glow">404</h1>
+        <p className="text-lg text-muted-foreground mb-6">{t("notFound.title")}</p>
+        <a href="/" className="font-mono text-sm text-brand-1 hover:text-brand-2 underline underline-offset-4 transition-colors">
           {t("notFound.back")}
         </a>
       </div>
